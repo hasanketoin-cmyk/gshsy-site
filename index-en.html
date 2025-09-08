@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>German Smart Home</title>
+  <!-- Use the uploaded logo as favicon -->
+  <link rel="icon" type="image/png" href="logo.png" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-white via-white to-white text-slate-900">
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-[#FF6A00]/30" role="banner">
+    <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between" aria-label="Main navigation">
+      <div class="flex items-center gap-3">
+        <!-- Company logo -->
+        <img src="logo.png" alt="German Smart Home logo" class="h-10 w-10 rounded-xl object-cover ring-1 ring-[#FF6A00]/40 bg-white" />
+        <div>
+          <div class="text-lg font-semibold text-slate-900">German Smart Home</div>
+          <div class="text-xs text-slate-500">We make your home smarter</div>
+        </div>
+      </div>
+      <!-- Primary navigation links -->
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#services" class="hover:text-[#FF6A00]">Services</a>
+        <a href="#products" class="hover:text-[#FF6A00]">Products</a>
+        <a href="#solutions" class="hover:text-[#FF6A00]">Solutions</a>
+        <a href="#process" class="hover:text-[#FF6A00]">Process</a>
+        <a href="#pricing" class="hover:text-[#FF6A00]">Packages</a>
+        <a href="#projects" class="hover:text-[#FF6A00]">Projects</a>
+        <a href="#about" class="hover:text-[#FF6A00]">About Us</a>
+        <a href="#partners" class="hover:text-[#FF6A00]">Partners</a>
+        <a href="#faq" class="hover:text-[#FF6A00]">FAQ</a>
+        <a href="#contact" class="hover:text-[#FF6A00]">Contact</a>
+        <!-- Link back to Arabic version -->
+        <a href="index.html" class="hover:text-[#FF6A00] font-bold">AR</a>
+      </div>
+      <!-- CTA buttons -->
+      <div class="flex items-center gap-2">
+        <span class="rounded-xl bg-[#FF6A00] text-white px-2 py-1 text-xs">SONOFF Agent in Syria</span>
+        <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="rounded-2xl bg-[#FF6A00] text-white hover:bg-[#ff8533] px-4 py-2">Book a Free Visit</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative overflow-hidden" aria-label="Hero section">
+    <div class="absolute inset-0 bg-[radial-gradient(40rem_40rem_at_80%_-10%,rgba(255,106,0,0.12),transparent)]"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-slate-900">
+            Turn your home into a <span class="text-[#FF6A00]">smart home</span>
+          </h1>
+          <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+            Integrated solutions for lighting, locks, HVAC, security, and energy—with SONOFF equipment and trusted partners.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <span class="rounded-xl bg-[#FF6A00]/10 text-[#FF6A00] px-3 py-1 text-sm">Free electrical plan design</span>
+            <span class="rounded-xl bg-[#FF6A00]/10 text-[#FF6A00] px-3 py-1 text-sm">Professional installation & programming</span>
+            <span class="rounded-xl bg-[#FF6A00]/10 text-[#FF6A00] px-3 py-1 text-sm">After‑sales support</span>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" class="px-6 py-3 rounded-2xl bg-[#FF6A00] text-white hover:bg-[#ff8533]">Get Started</button>
+            <button onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })" class="px-6 py-3 rounded-2xl border border-[#00AEEF] text-[#00AEEF] hover:bg-[#00AEEF]/5">View Projects</button>
+          </div>
+          <div class="mt-6 text-sm text-slate-500 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 text-[#00AEEF]"><path d="M12 3C7.03 3 2.92 6.05 1 10.5C2.92 14.95 7.03 18 12 18C16.97 18 21.08 14.95 23 10.5C21.08 6.05 16.97 3 12 3ZM12 16C9.25 16 6.92 14.74 5.68 13H12V11H3.56C3.42 10.65 3.32 10.32 3.26 10C3.32 9.68 3.42 9.35 3.56 9H12V7H5.68C6.92 5.26 9.25 4 12 4C14.75 4 17.08 5.26 18.32 7H12V9H20.44C20.58 9.35 20.68 9.68 20.74 10C20.68 10.32 20.58 10.65 20.44 11H12V13H18.32C17.08 14.74 14.75 16 12 16Z"></path></svg>
+            Works locally and remotely |
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 text-[#FF6A00]"><path d="M7 2V13H5L12 22V11H14L7 2Z"></path></svg>
+            Energy saving
+          </div>
+        </div>
+        <div class="relative">
+          <div class="aspect-[4/3] w-full rounded-3xl bg-gradient-to-tr from-slate-100 to-[#FFF4EC] shadow-xl ring-1 ring-[#FF6A00]/30 p-4">
+            <div class="grid grid-cols-3 gap-4 h-full">
+              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
+                <span class="text-2xl">💡</span>
+                <span class="mt-2 text-sm font-medium text-slate-700">Lighting</span>
+              </div>
+              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
+                <span class="text-2xl">🔒</span>
+                <span class="mt-2 text-sm font-medium text-slate-700">Locks</span>
+              </div>
+              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
+                <span class="text-2xl">❄️</span>
+                <span class="mt-2 text-sm font-medium text-slate-700">HVAC</span>
+              </div>
+              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
+                <span class="text-2xl">📷</span>
+                <span class="mt-2 text-sm font-medium text-slate-700">Cameras</span>
+              </div>
+              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
+                <span class="text-2xl">📦</span>
+                <span class="mt-2 text-sm font-medium text-slate-700">Curtains</span>
+              </div>
+              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
+                <span class="text-2xl">🔌</span>
+                <span class="mt-2 text-sm font-medium text-slate-700">Outlets</span>
+              </div>
+              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
+                <span class="text-2xl">🎯</span>
+                <span class="mt-2 text-sm font-medium text-slate-700">Sensors</span>
+              </div>
+              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
+                <span class="text-2xl">🎞️</span>
+                <span class="mt-2 text-sm font-medium text-slate-700">Scenes</span>
+              </div>
+              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
+                <span class="text-2xl">🔊</span>
+                <span class="mt-2 text-sm font-medium text-slate-700">Audio</span>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-lg ring-1 ring-[#FF6A00]/30 px-4 py-3 text-sm">
+            <div class="font-semibold text-[#FF6A00]">Integration with SONOFF</div>
+            <div class="text-slate-500">Zigbee | Wi‑Fi | RF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-[#FF6A00]/10 py-16" aria-label="Contact">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Contact Us</h2>
+          <p class="mt-3 text-slate-600">Free consultation to evaluate your home and design a smart plan suitable for your budget.</p>
+          <div class="mt-6 space-y-3 text-slate-700" aria-label="Contact methods">
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 text-[#FF6A00]"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24a11.72 11.72 0 003.68.59c.55 0 1 .45 1 1v3.5c0 .55-.45 1-1 1C9.16 20.03 4.03 14.9 4.03 8.5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.29.21 2.55.59 3.74.12.35.03.75-.24 1.02l-2.26 2.26z"></path></svg>
+              <a href="tel:+963961102030" class="underline decoration-[#00AEEF] underline-offset-4">+963 961 102 030</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 text-[#FF6A00]"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24a11.72 11.72 0 003.68.59c.55 0 1 .45 1 1v3.5c0 .55-.45 1-1 1C9.16 20.03 4.03 14.9 4.03 8.5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.29.21 2.55.59 3.74.12.35.03.75-.24 1.02l-2.26 2.26z"></path></svg>
+              <a href="tel:+961984077258" class="underline decoration-[#00AEEF] underline-offset-4">+961 984 077 258</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 text-[#FF6A00]"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24a11.72 11.72 0 003.68.59c.55 0 1 .45 1 1v3.5c0 .55-.45 1-1 1C9.16 20.03 4.03 14.9 4.03 8.5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.29.21 2.55.59 3.74.12.35.03.75-.24 1.02l-2.26 2.26z"></path></svg>
+              <a href="tel:+961984077259" class="underline decoration-[#00AEEF] underline-offset-4">+961 984 077 259</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 text-[#FF6A00]"><path d="M20 2H4c-1.1 0-2 .9-2 2v16l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"></path></svg>
+              <a href="https://wa.me/491793477320" target="_blank" class="underline decoration-[#00AEEF] underline-offset-4">WhatsApp</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 text-[#FF6A00]"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9 2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+              <span>g.smarthome.sy@gmail.com</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 text-[#FF6A00]"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 6.34 11.52 6.59 11.77.22.22.57.22.79 0C12.66 20.52 19 14.25 19 9c0-3.86-3.14-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"></path></svg>
+              <span>Damascus, Syria</span>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl border-[#FF6A00]/20 bg-white p-6">
+          <h3 class="text-lg font-semibold mb-4">Book Your Visit</h3>
+          <form onsubmit="return false" class="space-y-4">
+            <div>
+              <label class="block text-sm mb-1 text-slate-700">Name</label>
+              <input required class="w-full rounded-xl border border-[#FF6A00]/30 bg-white p-3 outline-none focus:ring-2 focus:ring-[#FF6A00]" placeholder="Enter your name" />
+            </div>
+            <div>
+              <label class="block text-sm mb-1 text-slate-700">Phone</label>
+              <input required class="w-full rounded-xl border border-[#FF6A00]/30 bg-white p-3 outline-none focus:ring-2 focus:ring-[#FF6A00]" placeholder="09XXXXXXXX" />
+            </div>
+            <div>
+              <label class="block text-sm mb-1 text-slate-700">Message</label>
+              <textarea rows="4" class="w-full rounded-xl border border-[#FF6A00]/30 bg-white p-3 outline-none focus:ring-2 focus:ring-[#FF6A00]" placeholder="Describe your project or request"></textarea>
+            </div>
+            <label class="flex items-center gap-2 text-sm text-slate-600">
+              <input type="checkbox" /> I agree to the <a class="underline decoration-[#00AEEF] underline-offset-4" href="#">privacy policy</a>
+            </label>
+            <div class="flex gap-3">
+              <button type="submit" class="rounded-2xl bg-[#FF6A00] text-white hover:bg-[#ff8533] px-4 py-2">Send Email</button>
+              <a href="https://wa.me/491793477320" target="_blank" class="rounded-2xl border border-[#00AEEF] text-[#00AEEF] hover:bg-[#00AEEF]/5 px-4 py-2">Send WhatsApp</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-[#FF6A00]/20" role="contentinfo">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-4 items-center justify-between text-sm">
+      <div class="text-slate-600">© <script>document.write(new Date().getFullYear());</script> German Smart Home. All rights reserved.</div>
+      <div class="flex items-center gap-4 text-slate-500">
+        <a class="hover:text-[#FF6A00]" href="#">Privacy Policy</a>
+        <a class="hover:text-[#FF6A00]" href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
