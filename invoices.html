@@ -233,3 +233,178 @@ placeholder="ابحث عن فاتورة..."
 <input type="number" class="form-control">
 
 </div>
+<!-- تاريخ الاستحقاق -->
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label">
+
+تاريخ الاستحقاق
+
+</label>
+
+<input
+type="date"
+class="form-control"
+id="dueDate">
+
+</div>
+
+<!-- ملاحظات -->
+
+<div class="col-md-8 mb-3">
+
+<label class="form-label">
+
+ملاحظات
+
+</label>
+
+<textarea
+class="form-control"
+rows="3"
+id="notes"
+placeholder="أي ملاحظات تخص الفاتورة"></textarea>
+
+</div>
+
+<!-- المرفقات -->
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label">
+
+إرفاق الفاتورة
+
+</label>
+
+<input
+type="file"
+class="form-control"
+id="attachment"
+accept=".pdf,.png,.jpg,.jpeg">
+
+</div>
+
+</div>
+
+<hr class="my-4">
+
+<div class="d-flex gap-2 flex-wrap">
+
+<button
+class="btn btn-primary"
+id="saveInvoice">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+حفظ الفاتورة
+
+</button>
+
+<button
+class="btn btn-success"
+id="newInvoice">
+
+<i class="fa-solid fa-plus"></i>
+
+فاتورة جديدة
+
+</button>
+
+<button
+class="btn btn-warning text-white"
+id="editInvoice">
+
+<i class="fa-solid fa-pen"></i>
+
+تعديل
+
+</button>
+
+<button
+class="btn btn-danger"
+id="deleteInvoice">
+
+<i class="fa-solid fa-trash"></i>
+
+حذف
+
+</button>
+
+</div>
+
+</div>
+<div class="table-card mt-4">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h4>
+
+<i class="fa-solid fa-table"></i>
+
+سجل الفواتير
+
+</h4>
+
+<input
+type="text"
+class="form-control"
+style="max-width:300px"
+placeholder="بحث..."
+id="searchInvoice">
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle">
+
+<thead>
+
+<tr>
+
+<th>رقم</th>
+
+<th>التاريخ</th>
+
+<th>المورد</th>
+
+<th>القسم</th>
+
+<th>العملة</th>
+
+<th>المبلغ</th>
+
+<th>الاستحقاق</th>
+
+<th>إجراءات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="invoiceTable">
+
+<tr>
+
+<td colspan="8" class="text-center text-muted">
+
+لا توجد فواتير حتى الآن
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
