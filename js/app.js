@@ -28,7 +28,12 @@ const currency = document.getElementById("currency");
 const amount = document.getElementById("amount");
 const dueDate = document.getElementById("dueDate");
 const notes = document.getElementById("notes");
-
+console.log("invoiceNumber =", invoiceNumber);
+console.log("supplier =", supplier);
+console.log("section =", section);
+console.log("currency =", currency);
+console.log("amount =", amount);
+console.log("dueDate =", dueDate);
 const saveBtn = document.getElementById("saveInvoice");
 
 const table = document.getElementById("invoiceTable");
