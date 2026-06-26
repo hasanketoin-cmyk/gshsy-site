@@ -528,6 +528,141 @@ placeholder="ابحث عن فاتورة أو مورد..."
 
 </div>
 <!-- ===================================== -->
+<!-- Financial Indicators -->
+<!-- ===================================== -->
+
+<div class="row mt-4">
+
+    <div class="col-lg-6">
+
+        <div class="table-card fade-up">
+
+            <h4>
+
+                <i class="fa-solid fa-chart-pie text-primary"></i>
+
+                المؤشرات المالية
+
+            </h4>
+
+            <table class="table">
+
+                <tbody>
+
+                    <tr>
+
+                        <td>إجمالي قيمة العقود</td>
+
+                        <td><strong>18,250,000 USD</strong></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>إجمالي الفواتير</td>
+
+                        <td><strong>8,520,000 USD</strong></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>إجمالي المدفوع</td>
+
+                        <td><strong>5,740,000 USD</strong></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>إجمالي المتبقي</td>
+
+                        <td class="text-danger">
+
+                            <strong>2,780,000 USD</strong>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="table-card fade-up">
+
+            <h4>
+
+                <i class="fa-solid fa-building text-success"></i>
+
+                أكثر الموردين تعاملًا
+
+            </h4>
+
+            <table class="table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>المورد</th>
+
+                        <th>عدد الفواتير</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>شركة الحديد</td>
+
+                        <td>125</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>شركة الإسمنت</td>
+
+                        <td>98</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>شركة الكهرباء</td>
+
+                        <td>76</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>شركة الألمنيوم</td>
+
+                        <td>42</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ===================================== -->
 <!-- Upcoming Dues -->
 <!-- ===================================== -->
 
@@ -785,8 +920,13 @@ animateCounter("todayPayments",5);
 
 animateCounter("weekDue",8);
 
-document.getElementById("progress").innerHTML="76%";
-</script>
+const progress=document.getElementById("progress");
+
+if(progress){
+
+progress.innerHTML="76%";
+
+}</script>
 
 <script src="js/app.js"></script>
 
