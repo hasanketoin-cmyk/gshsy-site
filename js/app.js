@@ -160,14 +160,14 @@ console.log("notes:", notes);
 
         loadInvoices();
 
-    } catch (error) {
+  } catch (error) {
 
-        console.error(error);
+    console.error("Firestore Error:", error);
 
-        alert("حدث خطأ أثناء الحفظ");
+    alert(error.message);
 
-    }
-
+}
+    
 }
 
 // =========================
