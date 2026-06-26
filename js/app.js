@@ -1,100 +1,100 @@
-// ===============================
-// K GROUP ERP
-// Invoice System
-// ===============================
+import { db } from "./firebase.js";
 
-let invoices = [];
+import {
+    collection,
+    addDoc,
+    getDocs,
+    deleteDoc,
+    doc,
+    updateDoc
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
-// إنشاء فاتورة جديدة
-document.getElementById("newInvoice")?.addEventListener("click", () => {
+// =========================
+// Collections
+// =========================
 
-    document.getElementById("invoiceNumber").value = "";
-    document.getElementById("invoiceDate").value = "";
-    document.getElementById("supplier").selectedIndex = 0;
-    document.getElementById("dueDate").value = "";
-    document.getElementById("notes").value = "";
+const invoicesRef = collection(db, "invoices");
 
-    const amount = document.querySelector('input[type="number"]');
-    if(amount) amount.value = "";
+// =========================
+// عناصر الصفحة
+// =========================
 
-});
+const invoiceNumber = document.getElementById("invoiceNumber");
+const invoiceDate = document.getElementById("invoiceDate");
+const supplier = document.getElementById("supplier");
+const section = document.getElementById("section");
+const currency = document.getElementById("currency");
+const amount = document.getElementById("amount");
+const dueDate = document.getElementById("dueDate");
+const notes = document.getElementById("notes");
 
-// حفظ فاتورة
-document.getElementById("saveInvoice")?.addEventListener("click", saveInvoice);
+const saveBtn = document.getElementById("saveInvoice");
 
-function saveInvoice(){
+const table = document.getElementById("invoiceTable");
 
-    const invoice = {
+// =========================
+// تحميل الفواتير
+// =========================
 
-        number: document.getElementById("invoiceNumber").value,
+async function loadInvoices(){
 
-        date: document.getElementById("invoiceDate").value,
+    table.innerHTML = "";
 
-        supplier: document.getElementById("supplier").value,
+    const snapshot = await getDocs(invoicesRef);
 
-        section: document.querySelectorAll(".form-select")[1].value,
+    if(snapshot.empty){
 
-        currency: document.querySelectorAll(".form-select")[2].value,
+        table.innerHTML = `
 
-        amount: document.querySelector('input[type="number"]').value,
+        <tr>
 
-        due: document.getElementById("dueDate").value
+        <td colspan="8" class="text-center">
 
-    };
+        لا توجد فواتير
 
-    if(invoice.number==""){
+        </td>
 
-        alert("يرجى إدخال رقم الفاتورة");
+        </tr>
+
+        `;
 
         return;
 
     }
 
-    invoices.push(invoice);
+    snapshot.forEach((docItem)=>{
 
-    renderInvoices();
-
-}
-
-// عرض الجدول
-
-function renderInvoices(){
-
-    const table=document.getElementById("invoiceTable");
-
-    table.innerHTML="";
-
-    invoices.forEach((inv,index)=>{
+        const inv = docItem.data();
 
         table.innerHTML += `
 
         <tr>
 
-        <td>${inv.number}</td>
+            <td>${inv.number}</td>
 
-        <td>${inv.date}</td>
+            <td>${inv.date}</td>
 
-        <td>${inv.supplier}</td>
+            <td>${inv.supplier}</td>
 
-        <td>${inv.section}</td>
+            <td>${inv.section}</td>
 
-        <td>${inv.currency}</td>
+            <td>${inv.currency}</td>
 
-        <td>${inv.amount}</td>
+            <td>${inv.amount}</td>
 
-        <td>${inv.due}</td>
+            <td>${inv.dueDate}</td>
 
-        <td>
+            <td>
 
-        <button class="btn btn-sm btn-danger"
+                <button
+                class="btn btn-sm btn-danger"
+                onclick="deleteInvoice('${docItem.id}')">
 
-        onclick="deleteInvoice(${index})">
+                حذف
 
-        حذف
+                </button>
 
-        </button>
-
-        </td>
+            </td>
 
         </tr>
 
@@ -104,12 +104,4 @@ function renderInvoices(){
 
 }
 
-// حذف
-
-function deleteInvoice(index){
-
-    invoices.splice(index,1);
-
-    renderInvoices();
-
-}
+loadInvoices();
