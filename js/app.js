@@ -120,7 +120,13 @@ async function saveInvoice() {
     }
 
     try {
-
+console.log("supplier:", supplier);
+console.log("section:", section);
+console.log("currency:", currency);
+console.log("amount:", amount);
+console.log("dueDate:", dueDate);
+console.log("notes:", notes);
+        
         await addDoc(invoicesRef, {
 
             number: invoiceNumber.value,
