@@ -350,3 +350,428 @@ placeholder="ابحث عن فاتورة أو مورد..."
 <canvas id="expensesChart" height="90"></canvas>
 
 </div>
+<!-- ================= Main Tables ================= -->
+
+<div class="row">
+
+    <!-- آخر الفواتير -->
+    <div class="col-lg-7">
+
+        <div class="table-card fade-up">
+
+            <h4>
+                <i class="fa-solid fa-file-invoice-dollar text-primary"></i>
+                آخر الفواتير
+            </h4>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>رقم</th>
+                            <th>المورد</th>
+                            <th>القسم</th>
+                            <th>العملة</th>
+                            <th>المبلغ</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>1001</td>
+                            <td>شركة الحديد</td>
+                            <td>الإنشاءات</td>
+                            <td>USD</td>
+                            <td>25,000</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>1002</td>
+                            <td>شركة الإسمنت</td>
+                            <td>الهيكل</td>
+                            <td>SYP</td>
+                            <td>12,000,000</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>1003</td>
+                            <td>شركة الكهرباء</td>
+                            <td>الكهرباء</td>
+                            <td>USD</td>
+                            <td>6,500</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- آخر الدفعات -->
+
+    <div class="col-lg-5">
+
+        <div class="table-card fade-up">
+
+            <h4>
+
+                <i class="fa-solid fa-money-bill-transfer text-success"></i>
+
+                آخر الدفعات
+
+            </h4>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>المورد</th>
+                            <th>القيمة</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>شركة الحديد</td>
+                            <td>10,000 USD</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>شركة الإسمنت</td>
+                            <td>5,000,000 SYP</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>شركة الكهرباء</td>
+                            <td>3,500 USD</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= Upcoming Dues ================= -->
+
+<div class="table-card fade-up mt-4">
+
+    <h4>
+
+        <i class="fa-solid fa-clock text-danger"></i>
+
+        المستحقات القادمة
+
+    </h4>
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>المورد</th>
+                    <th>المبلغ</th>
+                    <th>التاريخ</th>
+                    <th>الحالة</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>شركة الحديد</td>
+                    <td>25,000 USD</td>
+                    <td>27/06/2026</td>
+                    <td><span class="badge bg-danger">متأخر</span></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>شركة الإسمنت</td>
+                    <td>12,000,000 SYP</td>
+                    <td>30/06/2026</td>
+                    <td><span class="badge bg-warning text-dark">قريب</span></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>شركة الكهرباء</td>
+                    <td>6,500 USD</td>
+                    <td>05/07/2026</td>
+                    <td><span class="badge bg-success">مدفوع</span></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+<!-- ================= Financial Indicators ================= -->
+
+<div class="row mt-4">
+
+    <div class="col-lg-6">
+
+        <div class="table-card fade-up">
+
+            <h4>
+
+                <i class="fa-solid fa-chart-pie text-primary"></i>
+
+                المؤشرات المالية
+
+            </h4>
+
+            <table class="table">
+
+                <tbody>
+
+                    <tr>
+                        <td>إجمالي قيمة العقود</td>
+                        <td><strong>18,250,000 USD</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>إجمالي الفواتير</td>
+                        <td><strong>8,520,000 USD</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>إجمالي المدفوع</td>
+                        <td><strong>5,740,000 USD</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>إجمالي المتبقي</td>
+                        <td class="text-danger">
+                            <strong>2,780,000 USD</strong>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="table-card fade-up">
+
+            <h4>
+
+                <i class="fa-solid fa-building text-success"></i>
+
+                أكثر الموردين تعاملًا
+
+            </h4>
+
+            <table class="table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>المورد</th>
+                        <th>عدد الفواتير</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>شركة الحديد</td>
+                        <td>125</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>شركة الإسمنت</td>
+                        <td>98</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>شركة الكهرباء</td>
+                        <td>76</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>شركة الألمنيوم</td>
+                        <td>42</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= Dashboard Scripts ================= -->
+
+<script>
+
+const ctx = document.getElementById('expensesChart');
+
+new Chart(ctx, {
+
+type:'bar',
+
+data:{
+
+labels:['يناير','فبراير','مارس','أبريل','مايو','يونيو'],
+
+datasets:[{
+
+label:'المصروفات',
+
+data:[12000,18000,15000,24000,22000,28000],
+
+backgroundColor:'#2563eb',
+
+borderRadius:8
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+
+legend:{display:false}
+
+},
+
+scales:{
+
+y:{beginAtZero:true}
+
+}
+
+}
+
+});
+
+function animateCounter(id,target){
+
+let obj=document.getElementById(id);
+
+if(!obj) return;
+
+let current=0;
+
+let speed=target/60;
+
+let timer=setInterval(()=>{
+
+current+=speed;
+
+if(current>=target){
+
+current=target;
+
+clearInterval(timer);
+
+}
+
+obj.innerHTML=Math.floor(current).toLocaleString();
+
+},20);
+
+}
+
+animateCounter("totalInvoices",152);
+
+animateCounter("totalPaid",1250000);
+
+animateCounter("totalDue",345000);
+
+animateCounter("totalSuppliers",38);
+
+animateCounter("todayInvoices",12);
+
+animateCounter("todayPayments",5);
+
+animateCounter("weekDue",8);
+
+const progress=document.getElementById("progress");
+
+if(progress){
+
+progress.innerHTML="76%";
+
+}
+
+</script>
+
+<script src="js/app.js"></script>
+
+</div>
+
+</body>
+
+</html>
