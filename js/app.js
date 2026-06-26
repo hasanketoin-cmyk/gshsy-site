@@ -105,3 +105,72 @@ async function loadInvoices(){
 }
 
 loadInvoices();
+// =========================
+// حفظ فاتورة جديدة
+// =========================
+
+saveBtn.addEventListener("click", saveInvoice);
+
+async function saveInvoice() {
+
+    if (invoiceNumber.value.trim() === "") {
+        alert("يرجى إدخال رقم الفاتورة");
+        return;
+    }
+
+    try {
+
+        await addDoc(invoicesRef, {
+
+            number: invoiceNumber.value,
+
+            date: invoiceDate.value,
+
+            supplier: supplier.value,
+
+            section: section.value,
+
+            currency: currency.value,
+
+            amount: Number(amount.value),
+
+            dueDate: dueDate.value,
+
+            notes: notes.value,
+
+            createdAt: new Date()
+
+        });
+
+        alert("تم حفظ الفاتورة بنجاح");
+
+        clearForm();
+
+        loadInvoices();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("حدث خطأ أثناء الحفظ");
+
+    }
+
+}
+
+// =========================
+// تنظيف النموذج
+// =========================
+
+function clearForm(){
+
+    invoiceNumber.value = "";
+    invoiceDate.value = "";
+    supplier.selectedIndex = 0;
+    section.selectedIndex = 0;
+    currency.selectedIndex = 0;
+    amount.value = "";
+    dueDate.value = "";
+    notes.value = "";
+
+}
