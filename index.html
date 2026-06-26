@@ -1600,3 +1600,442 @@ row.style.display="none";
 </body>
 
 </html>
+<!-- بطاقات الإحصائيات -->
+
+<div class="row g-4">
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card-box">
+
+<div class="card-icon blue">
+
+<i class="fa-solid fa-file-invoice"></i>
+
+</div>
+
+<h3 id="totalInvoices">0</h3>
+
+<p>إجمالي الفواتير</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card-box">
+
+<div class="card-icon green">
+
+<i class="fa-solid fa-money-bill-wave"></i>
+
+</div>
+
+<h3 id="totalPaid">0</h3>
+
+<p>إجمالي المدفوع</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card-box">
+
+<div class="card-icon orange">
+
+<i class="fa-solid fa-clock"></i>
+
+</div>
+
+<h3 id="totalDue">0</h3>
+
+<p>إجمالي المستحقات</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card-box">
+
+<div class="card-icon red">
+
+<i class="fa-solid fa-building"></i>
+
+</div>
+
+<h3 id="totalSuppliers">0</h3>
+
+<p>عدد الموردين</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- الرسم البياني -->
+
+<div class="chart-box">
+
+<h4 class="mb-4">
+
+<i class="fa-solid fa-chart-column text-primary"></i>
+
+المصروفات الشهرية
+
+</h4>
+
+<canvas id="expensesChart"></canvas>
+
+</div>
+
+<!-- آخر الفواتير -->
+
+<div class="table-box">
+
+<h4 class="mb-3">
+
+<i class="fa-solid fa-file-invoice-dollar text-primary"></i>
+
+آخر الفواتير
+
+</h4>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle">
+
+<thead>
+
+<tr>
+
+<th>رقم الفاتورة</th>
+
+<th>التاريخ</th>
+
+<th>المورد</th>
+
+<th>القسم</th>
+
+<th>العملة</th>
+
+<th>المبلغ</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>1001</td>
+
+<td>26/06/2026</td>
+
+<td>شركة الحديد</td>
+
+<td>الإنشاءات</td>
+
+<td>USD</td>
+
+<td>25,000</td>
+
+</tr>
+
+<tr>
+
+<td>1002</td>
+
+<td>25/06/2026</td>
+
+<td>شركة الإسمنت</td>
+
+<td>الهيكل</td>
+
+<td>SYP</td>
+
+<td>12,000,000</td>
+
+</tr>
+
+<tr>
+
+<td>1003</td>
+
+<td>24/06/2026</td>
+
+<td>شركة الكهرباء</td>
+
+<td>الكهرباء</td>
+
+<td>7,500</td>
+
+<td>USD</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- آخر الدفعات -->
+
+<div class="table-box">
+
+<h4 class="mb-3">
+
+<i class="fa-solid fa-money-bill-transfer text-success"></i>
+
+آخر الدفعات
+
+</h4>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle">
+
+<thead>
+
+<tr>
+
+<th>المورد</th>
+
+<th>التاريخ</th>
+
+<th>القيمة</th>
+
+<th>العملة</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>شركة الحديد</td>
+
+<td>26/06/2026</td>
+
+<td>10000</td>
+
+<td>USD</td>
+
+</tr>
+
+<tr>
+
+<td>شركة الإسمنت</td>
+
+<td>25/06/2026</td>
+
+<td>5000000</td>
+
+<td>SYP</td>
+
+</tr>
+
+<tr>
+
+<td>شركة الكهرباء</td>
+
+<td>24/06/2026</td>
+
+<td>3000</td>
+
+<td>USD</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<!-- Footer -->
+
+<div class="text-center mt-5 mb-3 text-secondary">
+
+© 2026 مشروع العباسيين - النظام المالي
+
+</div>
+
+</div>
+
+<!-- نهاية Main -->
+
+<script>
+
+const ctx = document.getElementById("expensesChart");
+
+new Chart(ctx,{
+
+type:"bar",
+
+data:{
+
+labels:[
+
+"يناير",
+
+"فبراير",
+
+"مارس",
+
+"أبريل",
+
+"مايو",
+
+"يونيو",
+
+"يوليو",
+
+"أغسطس",
+
+"سبتمبر",
+
+"أكتوبر",
+
+"نوفمبر",
+
+"ديسمبر"
+
+],
+
+datasets:[{
+
+label:"المصروفات",
+
+data:[
+
+12000,
+
+18000,
+
+14000,
+
+21000,
+
+19500,
+
+25000,
+
+17000,
+
+28000,
+
+23000,
+
+26000,
+
+22000,
+
+30000
+
+],
+
+backgroundColor:"#2563eb",
+
+borderRadius:10
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+
+legend:{
+
+display:false
+
+}
+
+},
+
+scales:{
+
+y:{
+
+beginAtZero:true
+
+}
+
+}
+
+}
+
+});
+
+function counter(id,value){
+
+let start=0;
+
+let speed=value/80;
+
+let obj=document.getElementById(id);
+
+let timer=setInterval(function(){
+
+start+=speed;
+
+if(start>=value){
+
+start=value;
+
+clearInterval(timer);
+
+}
+
+obj.innerHTML=Math.floor(start).toLocaleString();
+
+},15);
+
+}
+
+counter("totalInvoices",152);
+
+counter("totalPaid",1250000);
+
+counter("totalDue",345000);
+
+counter("totalSuppliers",38);
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+<tr>
+
+<td>1003</td>
+
+<td>24/06/2026</td>
+
+<td>شركة الكهرباء</td>
+
+<td>الكهرباء</td>
+
+<td>USD</td>
+
+<td>7,500</td>
+
+</tr>
