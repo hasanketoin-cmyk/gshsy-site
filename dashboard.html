@@ -225,32 +225,70 @@ placeholder="ابحث عن فاتورة أو مورد..."
     </div>
 
 </div>
+<!-- ============================= -->
+<!-- Quick Statistics -->
+<!-- ============================= -->
 
+<div class="dashboard-grid fade-up">
+
+    <div class="stat-card">
+
+        <div class="stat-icon bg-blue">
+            <i class="fa-solid fa-calendar-day"></i>
+        </div>
+
+        <div class="stat-number" id="todayInvoices">0</div>
+
+        <div class="stat-title">فواتير اليوم</div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon bg-green">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+        </div>
+
+        <div class="stat-number" id="todayPayments">0</div>
+
+        <div class="stat-title">دفعات اليوم</div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon bg-orange">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+
+        <div class="stat-number" id="weekDue">0</div>
+
+        <div class="stat-title">مستحقات الأسبوع</div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon bg-red">
+            <i class="fa-solid fa-chart-line"></i>
+        </div>
+
+        <div class="stat-number" id="progress">0%</div>
+
+        <div class="stat-title">نسبة الإنجاز</div>
+
+    </div>
+
+</div>
 <!-- ============================= -->
 <!-- Chart -->
 <!-- ============================= -->
 
-<div class="chart-card fade-up">
+<div class="row">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="col-lg-8">
 
-        <h4>
-
-            <i class="fa-solid fa-chart-column text-primary"></i>
-
-            المصروفات الشهرية
-
-        </h4>
-
-        <button class="btn btn-primary">
-
-            <i class="fa-solid fa-download"></i>
-
-            تصدير التقرير
-
-        </button>
-
-    </div>
+        <div class="chart-card fade-up">
 
     <canvas id="expensesChart" height="90"></canvas>
 
@@ -407,6 +445,137 @@ placeholder="ابحث عن فاتورة أو مورد..."
 
 </div>
 
-</div>
+<!-- ============================= -->
+<!-- Dashboard Scripts -->
+<!-- ============================= -->
 
-</div>
+<script>
+
+const ctx = document.getElementById('expensesChart');
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: [
+
+            'يناير',
+
+            'فبراير',
+
+            'مارس',
+
+            'أبريل',
+
+            'مايو',
+
+            'يونيو'
+
+        ],
+
+        datasets: [{
+
+            label: 'المصروفات',
+
+            data: [
+
+                12000,
+
+                18000,
+
+                15000,
+
+                24000,
+
+                22000,
+
+                28000
+
+            ],
+
+            backgroundColor: '#2563eb',
+
+            borderRadius: 8
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+
+                display: false
+
+            }
+
+        },
+
+        scales: {
+
+            y: {
+
+                beginAtZero: true
+
+            }
+
+        }
+
+    }
+
+});
+
+function animateCounter(id,target){
+
+let obj=document.getElementById(id);
+
+let current=0;
+
+let speed=target/60;
+
+let timer=setInterval(()=>{
+
+current+=speed;
+
+if(current>=target){
+
+current=target;
+
+clearInterval(timer);
+
+}
+
+obj.innerHTML=Math.floor(current).toLocaleString();
+
+},20);
+
+}
+
+animateCounter("totalInvoices",152);
+
+animateCounter("totalPaid",1250000);
+
+animateCounter("totalDue",345000);
+
+animateCounter("totalSuppliers",38);
+
+animateCounter("todayInvoices",12);
+
+animateCounter("todayPayments",5);
+
+animateCounter("weekDue",8);
+
+document.getElementById("progress").innerHTML="76%";
+</script>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
