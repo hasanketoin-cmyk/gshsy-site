@@ -1,1 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>K GROUP ERP | الفواتير</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<h2>K GROUP</h2>
+
+<p>ERP Financial System</p>
+
+</div>
+
+<ul>
+
+<li>
+<a href="dashboard.html">
+<i class="fa-solid fa-chart-line"></i>
+لوحة التحكم
+</a>
+</li>
+
+<li>
+<a class="active" href="invoices.html">
+<i class="fa-solid fa-file-invoice-dollar"></i>
+الفواتير
+</a>
+</li>
+
+<li>
+<a href="suppliers.html">
+<i class="fa-solid fa-building"></i>
+الموردون
+</a>
+</li>
+
+<li>
+<a href="payments.html">
+<i class="fa-solid fa-money-bill-transfer"></i>
+الدفعات
+</a>
+</li>
+
+<li>
+<a href="dues.html">
+<i class="fa-solid fa-clock"></i>
+المستحقات
+</a>
+</li>
+
+<li>
+<a href="reports.html">
+<i class="fa-solid fa-chart-column"></i>
+التقارير
+</a>
+</li>
+
+<li>
+<a href="users.html">
+<i class="fa-solid fa-users"></i>
+المستخدمون
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<!-- Topbar -->
+
+<div class="topbar">
+
+<div class="search-box">
+
+<i class="fa-solid fa-search"></i>
+
+<input
+type="text"
+placeholder="ابحث عن فاتورة..."
+>
+
+</div>
+
+<div class="user-box">
+
+<div>
+
+<h6>مدير النظام</h6>
+
+<span>مشروع العباسيين</span>
+
+</div>
+
+<img src="https://i.pravatar.cc/100?img=12">
+
+</div>
+
+</div>
+
+<!-- عنوان الصفحة -->
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<div>
+
+<h2 class="fw-bold">
+
+<i class="fa-solid fa-file-invoice-dollar text-primary"></i>
+
+إدارة الفواتير
+
+</h2>
+
+<p class="text-muted">
+
+إضافة وإدارة وتتبع جميع فواتير المشروع
+
+</p>
+
+</div>
+
+<button class="btn btn-primary">
+
+<i class="fa-solid fa-plus"></i>
+
+فاتورة جديدة
+
+</button>
+
+</div>
+
+<!-- بطاقة إضافة فاتورة -->
+
+<div class="table-card">
+
+<h4 class="mb-4">
+
+بيانات الفاتورة
+
+</h4>
+
+<div class="row">
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label">رقم الفاتورة</label>
+
+<input type="text" class="form-control" id="invoiceNumber">
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label">التاريخ</label>
+
+<input type="date" class="form-control" id="invoiceDate">
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label">المورد</label>
+
+<select class="form-select" id="supplier">
+
+<option>اختر المورد</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label">القسم</label>
+
+<select class="form-select">
+
+<option>الإنشاءات</option>
+
+<option>الكهرباء</option>
+
+<option>الميكانيك</option>
+
+<option>التشطيبات</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label">العملة</label>
+
+<select class="form-select">
+
+<option>USD</option>
+
+<option>SYP</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label">المبلغ</label>
+
+<input type="number" class="form-control">
+
+</div>
