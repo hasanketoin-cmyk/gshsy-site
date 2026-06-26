@@ -1,649 +1,507 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>German Smart Home</title>
-    <!-- Favicon using a small inline PNG (42×42) -->
-  <link rel="icon" type="image/png" href="data:image/png;base64,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" />
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Custom primary and accent colors defined as CSS variables */
-    :root {
-      --color-primary: #FF6A00;
-      --color-accent: #00AEEF;
-    }
- 
-    /* Hide the old inline logo */
-  header img {
-    display: none;
-  }
-  /* New logo styles */
-  .logo {
-background-image: url('logo.png');
-    background-size: cover;
-    background-position: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 0 1px rgba(255,106,0,0.2);
-      transform: scale(1.5);
 
-  }
-</style>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abbaseen ERP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
 </head>
-<body class="bg-white text-gray-800 font-sans">
-  <!-- Header -->
-  <header class="bg-white shadow sticky top-0 z-50" role="banner">
-    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <!-- Inline small logo image (32×32) -->
-        
-              <div class="logo"></div>
-<img src="data:image/png;base64,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" alt="شعار German Smart Home" class="h-10 w-10 rounded" />
+
+<body>
+
+<div id="app">
+
+   <aside id="sidebar">
+
+    <!-- Logo -->
+
+    <div class="logo">
+
+        <img src="assets/logo.png" alt="Logo">
+
         <div>
-          <h1 class="text-lg font-semibold text-gray-900">German Smart Home</h1>
-          <p class="text-xs text-gray-500">نحو منزل أذكى وأجمل</p>
-        </div>
-      </div>
-      <!-- Navigation links for medium screens and above -->
-      <nav class="hidden md:flex gap-6 text-sm" aria-label="روابط التنقل">
-        <a href="#services" class="hover:text-[var(--color-primary)]">خدماتنا</a>
-        <a href="#products" class="hover:text-[var(--color-primary)]">المنتجات</a>
-        <a href="#solutions" class="hover:text-[var(--color-primary)]">الحلول</a>
-        <a href="#process" class="hover:text-[var(--color-primary)]">خطوات العمل</a>
-        <a href="#pricing" class="hover:text-[var(--color-primary)]">الباقات</a>
-        
-             
-<a href="#projects" class="hover:text-[var(--color-primary)]">المشاريع</a>
-        <a href="#about" class="hover:text-[var(--color-primary)]">من نحن</a>
-        <a href="#partners" class="hover:text-[var(--color-primary)]">شركاؤنا</a>
-        <a href="#faq" class="hover:text-[var(--color-primary)]">الأسئلة</a>
-        <a href="#contact" class="hover:text-[var(--color-primary)]">تواصل</a>
-      </nav>
-      <div class="flex items-center gap-2">
-        <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-xl text-xs hidden sm:inline-block">وكيل SONOFF في سوريا</span>
-        <a href="#contact" class="bg-[var(--color-primary)] text-white px-4 py-2 rounded-xl text-sm hover:bg-orange-700">احجز زيارة مجانية</a>
-   
 
-                <a href="index-en.html" class="bg-[var(--color-accent)] text-white px-3 py-2 rounded-xl text-sm ml-2">EN</a>
-       </div>
-        
-        
-    </div>
-  </header>
+            <h2>نادي العباسيين</h2>
 
-  <!-- Hero Section -->
-  <section id="hero" class="bg-gradient-to-b from-gray-50 to-white py-20" aria-label="البداية">
-    <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
-      <div class="flex-1">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900">
-          حوِّل منزلك إلى <span class="text-[var(--color-primary)]">منزل ذكي</span>
-        </h2>
-        <p class="mt-4 text-gray-600 text-lg leading-relaxed">
-          حلول متكاملة للإضاءة، الأقفال، التكييف، الأمان، والطاقة—بتجهيزات SONOFF وشركاء موثوقين.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-xl text-xs">تصميم مجاني للمخطط الكهربائي</span>
-          <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-xl text-xs">تركيب وبرمجة احترافية</span>
-          <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-xl text-xs">دعم وخدمة ما بعد البيع</span>
-        </div>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#contact" class="bg-[var(--color-primary)] text-white px-6 py-3 rounded-2xl text-base hover:bg-orange-700">ابدأ الآن</a>
-          <a href="#projects" class="border border-[var(--color-accent)] text-[var(--color-accent)] px-6 py-3 rounded-2xl text-base hover:bg-[var(--color-accent)]/10">شاهد مشاريعنا</a>
-          </div>
-        <div class="relative">
-          <div class="aspect-[4/3] w-full rounded-3xl bg-gradient-to-tr from-slate-100 to-[#FFF4EC] shadow-xl ring-1 ring-[#FF6A00]/30 p-4">
-            <div class="grid grid-cols-3 gap-4 h-full">
-              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
-                <span class="text-2xl">💡</span>
-                <span class="mt-2 text-sm font-medium text-slate-700">Lighting</span>
-              </div>
-              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
-                <span class="text-2xl">🔒</span>
-                <span class="mt-2 text-sm font-medium text-slate-700">Locks</span>
-              </div>
-              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
-                <span class="text-2xl">❄️</span>
-                <span class="mt-2 text-sm font-medium text-slate-700">HVAC</span>
-              </div>
-              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
-                <span class="text-2xl">📷</span>
-                <span class="mt-2 text-sm font-medium text-slate-700">Cameras</span>
-              </div>
-              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
-                <span class="text-2xl">📦</span>
-                <span class="mt-2 text-sm font-medium text-slate-700">Curtains</span>
-              </div>
-              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
-                <span class="text-2xl">🔌</span>
-                <span class="mt-2 text-sm font-medium text-slate-700">Outlets</span>
-              </div>
-              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
-                <span class="text-2xl">🎯</span>
-                <span class="mt-2 text-sm font-medium text-slate-700">Sensors</span>
-              </div>
-              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
-                <span class="text-2xl">🎞️</span>
-                <span class="mt-2 text-sm font-medium text-slate-700">Scenes</span>
-              </div>
-              <div class="rounded-2xl bg-white/80 backdrop-blur border border-[#FF6A00]/20 flex flex-col items-center justify-center text-center p-3 shadow-sm">
-                <span class="text-2xl">🔊</span>
-                <span class="mt-2 text-sm font-medium text-slate-700">Audio</span>
-              </div>
-        </div>
-        <div class="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-lg ring-1 ring-[var(--color-primary)]/20 px-4 py-3 text-sm">
-          <div class="font-semibold text-[var(--color-primary)]">تكامل مع SONOFF</div>
-          <div class="text-gray-500">Zigbee | Wi‑Fi | RF</div>
-        </div>
-      </div>
-    </div>
-  </section>
+            <span>ERP Financial System</span>
 
-  <!-- Services Section -->
-  <section id="services" class="py-20" aria-label="الخدمات">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">خدماتنا</h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6 hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-xl">💡</span>
-            </div>
-            <div class="font-semibold text-lg">إضاءة ذكية</div>
-          </div>
-          <p class="text-gray-600 text-sm">تحكم بالمشاهد والسطوع والجدولة من التطبيق أو بالأوامر الصوتية.</p>
         </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6 hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-xl">🔒</span>
-            </div>
-            <div class="font-semibold text-lg">أقفال وأبواب</div>
-          </div>
-          <p class="text-gray-600 text-sm">دخول بلا مفاتيح، أكواد مؤقتة، وسجل وصول آمن.</p>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6 hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-xl">❄️</span>
-            </div>
-            <div class="font-semibold text-lg">تكييف وحرارة</div>
-          </div>
-          <p class="text-gray-600 text-sm">ترموستات ذكي يوفر الطاقة ويحافظ على الراحة.</p>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6 hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-xl">🛡️</span>
-            </div>
-            <div class="font-semibold text-lg">أمن ومراقبة</div>
-          </div>
-          <p class="text-gray-600 text-sm">حساسات حركة، إنذارات، وتنبيهات فورية للهاتف.</p>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6 hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-xl">📱</span>
-            </div>
-            <div class="font-semibold text-lg">تحكم عبر الجوال</div>
-          </div>
-          <p class="text-gray-600 text-sm">كل المنزل في تطبيق واحد: داخل البيت وخارجه.</p>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6 hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-xl">🔌</span>
-            </div>
-            <div class="font-semibold text-lg">طاقة ومقابس</div>
-          </div>
-          <p class="text-gray-600 text-sm">مقابس ومرحّلات ذكية، قياس استهلاك الطاقة وجدولتها.</p>
-        </div>
-      </div>
+
     </div>
-  </section>
-<div class="flex justify-center my-8">
-  <img src="ChatGPT Image 12 سبتمبر 2025، 01_55_10 م.png" alt="متوافق مع المنصات الذكية الرائدة" class="max-w-full h-auto">
+
+    <!-- User -->
+
+    <div class="userBox">
+
+        <img src="assets/images/user.png">
+
+        <div>
+
+            <h3>مدير النظام</h3>
+
+            <p>Administrator</p>
+
+        </div>
+
+    </div>
+
+    <!-- Menu -->
+
+    <ul class="menu">
+
+        <li class="active">
+            <a href="#">
+                <i class="fa-solid fa-chart-line"></i>
+                لوحة التحكم
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-building"></i>
+                المشاريع
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-users"></i>
+                الموردون
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-file-signature"></i>
+                العقود
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-money-bill-wave"></i>
+                المصروفات
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-wallet"></i>
+                الدفعات
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-sack-dollar"></i>
+                الإيرادات
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-warehouse"></i>
+                المستودعات
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                الأصناف
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-truck"></i>
+                المشتريات
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-user-tie"></i>
+                الموظفون
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-chart-pie"></i>
+                التقارير
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-gear"></i>
+                الإعدادات
+            </a>
+        </li>
+
+    </ul>
+    style.css
+
+</aside>
+
+
+    <main id="mainContent">
+
+        <header id="topbar">
+
+        </header>
+
+        <section id="dashboard">
+
+        </section>
+
+    </main>
+
 </div>
 
-  <!-- Products Section -->
-  <section id="products" class="py-20 bg-gradient-to-b from-[var(--color-primary)]/5 to-white" aria-label="المنتجات">
-    <div class="container mx-auto px-4">
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">المنتجات الرئيسية (SONOFF)</h2>
-        <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-xl text-xs">ضمان وتركيب</span>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-4">
-          <div class="font-semibold text-base mb-1">Wi‑Fi Switches</div>
-          <div class="text-sm text-gray-600">مفاتيح جدارية و Relay</div>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-4">
-          <div class="font-semibold text-base mb-1">Zigbee Hubs</div>
-          <div class="text-sm text-gray-600">بوابة تحكم وأتمتة</div>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-4">
-          <div class="font-semibold text-base mb-1">Smart Plugs</div>
-          <div class="text-sm text-gray-600">مقابس طاقة ذكية</div>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-4">
-          <div class="font-semibold text-base mb-1">Sensors</div>
-          <div class="text-sm text-gray-600">أبواب/حركة/حرارة</div>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-4">
-          <div class="font-semibold text-base mb-1">Curtain & Blind</div>
-          <div class="text-sm text-gray-600">ستائر وموتورات</div>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-4">
-          <div class="font-semibold text-base mb-1">RF & Remote</div>
-          <div class="text-sm text-gray-600">تحكم لاسلكي متعدد</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<script type="module" src="js/app.js"></script>
 
-  <!-- Solutions Section -->
-  <section id="solutions" class="py-20" aria-label="الحلول">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">حلولنا حسب نوع المشروع</h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-lg">🏠</span>
-            </div>
-            <div class="font-semibold">شقة سكنية</div>
-          </div>
-          <ul class="text-sm text-gray-600 space-y-2 list-disc pr-5">
-            <li>سيناريوهات ذكية مخصصة</li>
-            <li>مخططات كهربائية وتنظيم توزيع الأحمال</li>
-            <li>لوحة تحكم واحدة للمستخدم</li>
-          </ul>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-lg">🏠</span>
-            </div>
-            <div class="font-semibold">فيلا وحديقة</div>
-          </div>
-          <ul class="text-sm text-gray-600 space-y-2 list-disc pr-5">
-            <li>سيناريوهات ذكية مخصصة</li>
-            <li>مخططات كهربائية وتنظيم توزيع الأحمال</li>
-            <li>لوحة تحكم واحدة للمستخدم</li>
-          </ul>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-lg">⚙️</span>
-            </div>
-            <div class="font-semibold">مكتب وشركات</div>
-          </div>
-          <ul class="text-sm text-gray-600 space-y-2 list-disc pr-5">
-            <li>سيناريوهات ذكية مخصصة</li>
-            <li>مخططات كهربائية وتنظيم توزيع الأحمال</li>
-            <li>لوحة تحكم واحدة للمستخدم</li>
-          </ul>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-lg">⚙️</span>
-            </div>
-            <div class="font-semibold">مطاعم وكافيهات</div>
-          </div>
-          <ul class="text-sm text-gray-600 space-y-2 list-disc pr-5">
-            <li>سيناريوهات ذكية مخصصة</li>
-            <li>مخططات كهربائية وتنظيم توزيع الأحمال</li>
-            <li>لوحة تحكم واحدة للمستخدم</li>
-          </ul>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-lg">⚙️</span>
-            </div>
-            <div class="font-semibold">فنادق وشقق فندقية</div>
-          </div>
-          <ul class="text-sm text-gray-600 space-y-2 list-disc pr-5">
-            <li>سيناريوهات ذكية مخصصة</li>
-            <li>مخططات كهربائية وتنظيم توزيع الأحمال</li>
-            <li>لوحة تحكم واحدة للمستخدم</li>
-          </ul>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="h-10 w-10 flex items-center justify-center bg-[var(--color-primary)]/10 rounded-xl">
-              <span class="text-[var(--color-primary)] text-lg">⚙️</span>
-            </div>
-            <div class="font-semibold">مشاريع قيد الإعمار</div>
-          </div>
-          <ul class="text-sm text-gray-600 space-y-2 list-disc pr-5">
-            <li>سيناريوهات ذكية مخصصة</li>
-            <li>مخططات كهربائية وتنظيم توزيع الأحمال</li>
-            <li>لوحة تحكم واحدة للمستخدم</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Section -->
-  <section id="process" class="py-20 bg-gradient-to-b from-white to-[var(--color-primary)]/5" aria-label="خطوات العمل">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">كيف نعمل؟</h2>
-      <div class="grid lg:grid-cols-5 sm:grid-cols-2 gap-6">
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6">
-          <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-full text-sm">1</span>
-          <h3 class="mt-2 font-semibold">اتصال واستشارة</h3>
-          <p class="text-sm text-gray-600 mt-1">نفهم احتياجك ونقترح حلولًا مبدئية.</p>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6">
-          <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-full text-sm">2</span>
-          <h3 class="mt-2 font-semibold">زيارة ومسح</h3>
-          <p class="text-sm text-gray-600 mt-1">معاينة الموقع وقياس النقاط والأحمال.</p>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6">
-          <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-full text-sm">3</span>
-          <h3 class="mt-2 font-semibold">عرض فني ومالي</h3>
-          <p class="text-sm text-gray-600 mt-1">مخطط كهربائي + قائمة الأجهزة + التكلفة.</p>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6">
-          <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-full text-sm">4</span>
-          <h3 class="mt-2 font-semibold">تنفيذ وبرمجة</h3>
-          <p class="text-sm text-gray-600 mt-1">تركيب محترف، ربط، اختبار، وتدريب.</p>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6">
-          <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-full text-sm">5</span>
-          <h3 class="mt-2 font-semibold">تسليم وضمان</h3>
-          <p class="text-sm text-gray-600 mt-1">شرح استخدام وتفعيل الضمان والدعم.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Section -->
-  <section id="pricing" class="py-20" aria-label="الباقات">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">باقات مبدئية (قابلة للتخصيص)</h2>
-      <div class="grid lg:grid-cols-3 gap-6">
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xl font-semibold">Starter</h3>
-          </div>
-          <div class="text-[var(--color-primary)] font-semibold mt-1 mb-3">حسب المواصفات</div>
-          <ul class="space-y-2 text-sm text-gray-700 mb-4">
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>منطقة/غرفة واحدة</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>مفتاح ذكي + حساس</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>ربط تطبيق ومشاهد أساسية</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>زيارة فنية مجانية</span></li>
-          </ul>
-          <a href="#contact" class="block w-full bg-[var(--color-primary)] text-white py-2 rounded-2xl text-center hover:bg-orange-700">اطلب تسعير</a>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6 ring-2 ring-[var(--color-primary)]/30">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xl font-semibold">Pro</h3>
-            <span class="bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-xl text-xs">الأكثر طلبًا</span>
-          </div>
-          <div class="text-[var(--color-primary)] font-semibold mt-1 mb-3">حسب المواصفات</div>
-          <ul class="space-y-2 text-sm text-gray-700 mb-4">
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>شقة كاملة (2–3 غرف)</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>مفاتيح + حساسات + ستائر</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>لوحات أتمتة ومشاهد متقدمة</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>ضمان 12 شهر</span></li>
-          </ul>
-          <a href="#contact" class="block w-full bg-[var(--color-primary)] text-white py-2 rounded-2xl text-center hover:bg-orange-700">اطلب تسعير</a>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 p-6">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xl font-semibold">Elite</h3>
-          </div>
-          <div class="text-[var(--color-primary)] font-semibold mt-1 mb-3">حسب المواصفات</div>
-          <ul class="space-y-2 text-sm text-gray-700 mb-4">
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>فيلا/مكتب كبير</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>إدارة طاقة ومراقبة</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>تكامل صوتي وتطبيق متعدد المستخدمين</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--color-primary)]">✔️</span><span>عقد صيانة ودعم دوري</span></li>
-          </ul>
-          <a href="#contact" class="block w-full bg-[var(--color-primary)] text-white py-2 rounded-2xl text-center hover:bg-orange-700">اطلب تسعير</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- About Section -->
-  <section id="about" class="py-20" aria-label="عن الشركة">
-    <div class="container mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-10 items-start">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">من نحن</h2>
-          <p class="text-gray-600 leading-relaxed">
-            German Smart Home شركة ألمانية رائدة متخصصة في أنظمة المنازل الذكية ، نوفر أجهزة SONOFF وبروتوكولات Zigbee وWi Fi مع تصميم مخطط كهربائي متطور مجاني، تركيب وبرمجة احترافية متقدّمة، وضمان ودعم ما بعد البيع ونقدّم حلولًا متكاملة تشمل :
-مفاتيح وأقفال ذكية
-أنظمة إضاءة متطورة
-حساسات أمان وراحة
-أنظمة توفير الطاقة
-أنظمة حماية قوية متطورة
-.
- <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4"> رؤيتنا </h2>
-أن نكون الاسم الأبرز في التحول الرقمي للمنازل والمشاريع السكنية والفندقية، من خلال توفير تقنيات آمنة وموثوقة ومستدامة.
-
-ما يميزنا
-
-جودة ألمانية مضمونة مع شهادات معايير عالمية
-
-خدمة عملاء استثنائية ودعم ما بعد البيع
-
-تصاميم أنيقة وعصرية تلائم جميع المساحات
-
-حلول قابلة للتطوير تناسب المشاريع السكنية والتجارية والفندقية
-          
-          <ul class="mt-4 space-y-2 text-sm text-gray-700">
-            <li class="flex items-center gap-2"><span class="text-[var(--color-primary)]">🎖️</span> ضمان على التركيب والبرمجة</li>
-            <li class="flex items-center gap-2"><span class="text-[var(--color-primary)]">🏢</span> حلول للشقق والفلل والمكاتب والمنشآت التجارية</li>
-            <li class="flex items-center gap-2"><span class="text-[var(--color-primary)]">🛡️</span> أمان وتنبيهات فورية على جوالك</li>
-          </ul>
-        </div>
-        <div class="rounded-3xl bg-white ring-1 ring-[var(--color-primary)]/20 p-6">
-          <div class="grid grid-cols-2 gap-4 text-center">
-            <div class="p-4 rounded-2xl bg-[var(--color-primary)]/10">
-              <div class="text-2xl font-bold text-[var(--color-primary)]">+2</div>
-              <div class="text-sm text-gray-600">مشروع منفذ</div>
-            </div>
-            <div class="p-4 rounded-2xl bg-[var(--color-primary)]/10">
-              <div class="text-2xl font-bold text-[var(--color-primary)]">+6</div>
-              <div class="text-sm text-gray-600">سنوات خبرة</div>
-            </div>
-            <div class="p-4 rounded-2xl bg-[var(--color-primary)]/10">
-              <div class="text-2xl font-bold text-[var(--color-primary)]">24/7</div>
-              <div class="text-sm text-gray-600">دعم فني</div>
-            </div>
-            <div class="p-4 rounded-2xl bg-[var(--color-primary)]/10">
-              <div class="text-2xl font-bold text-[var(--color-primary)]">SONOFF</div>
-              <div class="text-sm text-gray-600">شريك معتمد</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Partners Section -->
-  <section id="partners" class="py-20 bg-gradient-to-b from-[var(--color-primary)]/5 to-white" aria-label="شركاؤنا">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">شركاؤنا</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div class="h-20 rounded-2xl bg-white ring-1 ring-[var(--color-primary)]/20 flex items-center justify-center text-gray-500">SONOFF</div>
-        <div class="h-20 rounded-2xl bg-white ring-1 ring-[var(--color-primary)]/20 flex items-center justify-center text-gray-500">Zigbee</div>
-        <div class="h-20 rounded-2xl bg-white ring-1 ring-[var(--color-primary)]/20 flex items-center justify-center text-gray-500">Philips</div>
-        <div class="h-20 rounded-2xl bg-white ring-1 ring-[var(--color-primary)]/20 flex items-center justify-center text-gray-500">Bosch</div>
-        <div class="h-20 rounded-2xl bg-white ring-1 ring-[var(--color-primary)]/20 flex items-center justify-center text-gray-500">Tuya</div>
-        <div class="h-20 rounded-2xl bg-white ring-1 ring-[var(--color-primary)]/20 flex items-center justify-center text-gray-500">Matter</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Banner -->
-  <section class="bg-[var(--color-primary)]/10 py-12" aria-label="دعوة لاتخاذ إجراء">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="text-lg font-semibold text-gray-900">جاهز لتبدأ مشروعك الذكي؟ احجز زيارة مجانية الآن.</div>
-      <div class="flex gap-3">
-        <a href="#contact" class="bg-[var(--color-primary)] text-white px-6 py-3 rounded-2xl hover:bg-orange-700">احجز الزيارة</a>
-        <a href="javascript:void(0)" id="cta-wa" class="border border-[var(--color-accent)] text-[var(--color-accent)] px-6 py-3 rounded-2xl hover:bg-[var(--color-accent)]/10">راسلنا واتساب</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section id="faq" class="py-20" aria-label="الأسئلة الشائعة">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">الأسئلة الشائعة</h2>
-      <div class="grid lg:grid-cols-2 gap-6">
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6">
-          <div class="font-semibold mb-2">هل أستطيع التحكّم بدون إنترنت؟</div>
-          <div class="text-sm text-gray-600 leading-relaxed">نعم—التحكم المحلي عبر شبكتك المنزلية متاح لبعض الأجهزة. الوصول من خارج المنزل يحتاج إنترنت.</div>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6">
-          <div class="font-semibold mb-2">هل النظام يعمل مع سونوف؟</div>
-          <div class="text-sm text-gray-600 leading-relaxed">ندعم عائلة SONOFF رسميًا إضافةً إلى بروتوكولات مثل Zigbee وWi‑Fi حسب الحاجة.</div>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6">
-          <div class="font-semibold mb-2">هل يلزم تعديل التمديدات؟</div>
-          <div class="text-sm text-gray-600 leading-relaxed">غالبًا لا. في العديد من الحالات نستبدل المفاتيح التقليدية بأخرى ذكية وتبقى التمديدات كما هي.</div>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6">
-          <div class="font-semibold mb-2">كم يستغرق التنفيذ؟</div>
-          <div class="text-sm text-gray-600 leading-relaxed">من 1 إلى 5 أيام للمشاريع المنزلية الاعتيادية. المشاريع الكبيرة قد تحتاج مدة أطول وفق المخطط.</div>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white p-6">
-          <div class="font-semibold mb-2">هل تقدمون ضمانًا؟</div>
-          <div class="text-sm text-gray-600 leading-relaxed">نعم، ضمان على التركيب والبرمجة مع خدمة ما بعد البيع ودعم فني.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-[var(--color-primary)]/10" aria-label="التواصل">
-    <div class="container mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-10 items-start">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">تواصل معنا</h2>
-          <p class="mt-3 text-gray-600">استشارة مجانية لتقييم منزلك ووضع خطة ذكية مناسبة لميزانيتك.</p>
-          <div class="mt-6 space-y-3 text-gray-700" aria-label="وسائل الاتصال">
-            <!-- Phone numbers list; update numbers accordingly -->
-            <div class="flex items-center gap-2">
-              <span class="text-[var(--color-primary)]">📞</span>
-              <a href="tel:00963961102030" class="underline decoration-[var(--color-accent)] underline-offset-4">00963961102030</a>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-[var(--color-primary)]">📞</span>
-              <a href="tel:00961984077258" class="underline decoration-[var(--color-accent)] underline-offset-4">00961984077258</a>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-[var(--color-primary)]">📞</span>
-              <a href="tel:00961984077259" class="underline decoration-[var(--color-accent)] underline-offset-4">00961984077259</a>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-[var(--color-primary)]">💬</span>
-              <a href="javascript:void(0)" id="contact-wa" class="underline decoration-[var(--color-accent)] underline-offset-4">واتساب مباشر</a>
-            </div>
-            <div class="flex items-center gap-2"><span class="text-[var(--color-primary)]">✉️</span> <span>g.smarthome.sy@gmail.com</span></div>
-            <div class="flex items-center gap-2"><span class="text-[var(--color-primary)]">📍</span> <span>دمشق – سوريا</span></div>
-          </div>
-        </div>
-        <div class="rounded-2xl border border-[var(--color-primary)]/20 bg-white">
-          <div class="p-6">
-            <h3 class="text-lg font-semibold mb-4">احجز زيارتك</h3>
-            <form id="visit-form" class="space-y-4">
-              <div>
-                <label class="block text-sm mb-1 text-gray-700">الاسم</label>
-                <input type="text" id="visit-name" required class="w-full rounded-xl border border-[var(--color-primary)]/30 bg-white p-3 outline-none focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="اكتب اسمك" />
-              </div>
-              <div>
-                <label class="block text-sm mb-1 text-gray-700">الهاتف</label>
-                <input type="tel" id="visit-phone" required class="w-full rounded-xl border border-[var(--color-primary)]/30 bg-white p-3 outline-none focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="09XXXXXXXX" />
-              </div>
-              <div>
-                <label class="block text-sm mb-1 text-gray-700">الرسالة</label>
-                <textarea id="visit-message" rows="4" class="w-full rounded-xl border border-[var(--color-primary)]/30 bg-white p-3 outline-none focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="صف لنا مشروعك أو طلبك"></textarea>
-              </div>
-              <label class="flex items-center gap-2 text-sm text-gray-600">
-                <input type="checkbox" id="visit-agree" class="form-checkbox" />
-                أوافق على <a class="underline decoration-[var(--color-accent)] underline-offset-4" href="#privacy">سياسة الخصوصية</a>
-              </label>
-              <div class="flex gap-3">
-                <button type="submit" class="rounded-2xl bg-[var(--color-primary)] text-white px-6 py-2 hover:bg-orange-700">إرسال بالبريد</button>
-                <button type="button" id="form-wa" class="rounded-2xl border border-[var(--color-accent)] text-[var(--color-accent)] px-6 py-2 hover:bg-[var(--color-accent)]/10">إرسال واتساب</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="border-t border-[var(--color-primary)]/20" role="contentinfo">
-    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-4 items-center justify-between text-sm">
-      <div class="text-gray-600">© <span id="year"></span> German Smart Home. جميع الحقوق محفوظة.</div>
-      <div class="flex items-center gap-4 text-gray-500">
-        <a id="privacy" class="hover:text-[var(--color-primary)]" href="#">سياسة الخصوصية</a>
-        <a class="hover:text-[var(--color-primary)]" href="#">الشروط والأحكام</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Floating WhatsApp Button -->
-  <button id="floating-wa" class="fixed bottom-6 left-6 h-12 px-4 rounded-full bg-[var(--color-primary)] text-white shadow-lg flex items-center gap-2 hover:bg-orange-700" aria-label="WhatsApp">
-    <span>💬</span> تواصل واتساب
-  </button>
-
-  <!-- JavaScript to handle form submission and WhatsApp links -->
-  <script>
-    // Update current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Helper: open WhatsApp with prefilled text
-    function openWhatsApp() {
-      var message = encodeURIComponent('مرحبًا، أود استشارة لتركيب نظام سمارت هوم من German Smart Home.');
-      // Remove leading 00 from phone number for WhatsApp
-      var whatsapp = '491793477320';
-      var url = 'https://wa.me/' + whatsapp + '?text=' + message;
-      window.open(url, '_blank');
-    }
-
-    // Attach handlers
-    document.getElementById('floating-wa').addEventListener('click', openWhatsApp);
-    document.getElementById('cta-wa').addEventListener('click', openWhatsApp);
-    document.getElementById('contact-wa').addEventListener('click', openWhatsApp);
-
-    // Form submission handler
-    document.getElementById('visit-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var agree = document.getElementById('visit-agree').checked;
-      if (!agree) {
-        alert('يرجى الموافقة على سياسة الخصوصية.');
-        return;
-      }
-      var name = document.getElementById('visit-name').value;
-      var phone = document.getElementById('visit-phone').value;
-      var message = document.getElementById('visit-message').value;
-      var body = encodeURIComponent('الاسم: ' + name + '\nالهاتف: ' + phone + '\n\nالرسالة:\n' + message);
-      var subject = encodeURIComponent('استشارة تركيب سمارت هوم');
-      var mailto = 'mailto:' + 'g.smarthome.sy@gmail.com' + '?subject=' + subject + '&body=' + body;
-      window.location.href = mailto;
-    });
-    // Form WhatsApp button
-    document.getElementById('form-wa').addEventListener('click', function () {
-      var name = document.getElementById('visit-name').value;
-      var phone = document.getElementById('visit-phone').value;
-      var message = document.getElementById('visit-message').value;
-      var text = encodeURIComponent('الاسم: ' + name + '\nالهاتف: ' + phone + '\n' + message);
-      var url = 'https://wa.me/' + '491793477320' + '?text=' + text;
-      window.open(url, '_blank');
-    });
-  </script>
 </body>
+
 </html>
+/*==================================================
+            ABBASEEN ERP V1
+            Developed By ChatGPT
+==================================================*/
+
+/*========== GOOGLE FONT ==========*/
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+
+/*========== ROOT ==========*/
+
+:root{
+
+--primary:#2563eb;
+--primary-light:#3b82f6;
+--primary-dark:#1d4ed8;
+
+--success:#16a34a;
+--warning:#f59e0b;
+--danger:#dc2626;
+--info:#06b6d4;
+
+--bg:#f4f7fc;
+--card:#ffffff;
+
+--sidebar:#111827;
+
+--sidebar-hover:#1f2937;
+
+--text:#1f2937;
+
+--text-light:#6b7280;
+
+--border:#e5e7eb;
+
+--shadow:0 10px 35px rgba(0,0,0,.08);
+
+--radius:18px;
+
+--transition:.30s ease;
+
+}
+
+/*========== RESET ==========*/
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:'Cairo',sans-serif;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+background:var(--bg);
+
+color:var(--text);
+
+overflow-x:hidden;
+
+}
+
+/*========== LINKS ==========*/
+
+a{
+
+text-decoration:none;
+
+color:inherit;
+
+}
+
+/*========== BUTTON ==========*/
+
+button{
+
+border:none;
+
+outline:none;
+
+cursor:pointer;
+
+transition:var(--transition);
+
+}
+
+/*========== INPUTS ==========*/
+
+input,
+
+select,
+
+textarea{
+
+outline:none;
+
+border:1px solid var(--border);
+
+border-radius:12px;
+
+padding:12px;
+
+transition:.3s;
+
+font-size:15px;
+
+}
+
+input:focus,
+
+select:focus,
+
+textarea:focus{
+
+border-color:var(--primary);
+
+box-shadow:0 0 0 4px rgba(37,99,235,.15);
+
+}
+
+/*========== SCROLLBAR ==========*/
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#cbd5e1;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#94a3b8;
+
+}
+/*=========================================
+            APP LAYOUT
+=========================================*/
+
+#app{
+
+display:flex;
+
+width:100%;
+
+min-height:100vh;
+
+}
+
+/*========== SIDEBAR ==========*/
+
+#sidebar{
+
+width:280px;
+
+background:var(--sidebar);
+
+color:white;
+
+min-height:100vh;
+
+position:fixed;
+
+right:0;
+
+top:0;
+
+overflow:auto;
+
+transition:.35s;
+
+z-index:999;
+
+box-shadow:-5px 0 30px rgba(0,0,0,.15);
+
+}
+
+/*========== MAIN ==========*/
+
+#mainContent{
+
+width:calc(100% - 280px);
+
+margin-right:280px;
+
+padding:30px;
+
+transition:.35s;
+
+}
+
+/*========== TOPBAR ==========*/
+
+#topbar{
+
+height:80px;
+
+background:white;
+
+border-radius:18px;
+
+box-shadow:var(--shadow);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:0 25px;
+
+margin-bottom:30px;
+
+}
+
+/*========== DASHBOARD ==========*/
+
+#dashboard{
+
+width:100%;
+
+}
+/*=========================================
+                CARDS
+=========================================*/
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:20px;
+
+margin-bottom:30px;
+
+}
+
+.cardBox{
+
+background:white;
+
+border-radius:20px;
+
+padding:25px;
+
+box-shadow:var(--shadow);
+
+transition:.35s;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.cardBox:hover{
+
+transform:translateY(-8px);
+
+}
+
+.cardIcon{
+
+width:65px;
+
+height:65px;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:26px;
+
+color:white;
+
+margin-bottom:20px;
+
+}
+
+.cardTitle{
+
+font-size:15px;
+
+color:var(--text-light);
+
+margin-bottom:8px;
+
+}
+
+.cardNumber{
+
+font-size:32px;
+
+font-weight:800;
+
+}
+
+.cardFooter{
+
+margin-top:18px;
+
+font-size:14px;
+
+color:#888;
+
+}
