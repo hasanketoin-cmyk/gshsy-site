@@ -745,3 +745,82 @@ transform:translateY(-3px);
 transition:.3s;
 
 }
+/* ===========================================
+   Responsive
+=========================================== */
+
+@media (max-width:992px){
+
+.sidebar{
+
+width:90px;
+
+}
+
+.sidebar .logo p,
+.sidebar .logo h2,
+.sidebar a{
+
+font-size:0;
+
+}
+
+.sidebar a i{
+
+font-size:20px;
+
+margin:auto;
+
+}
+
+.main{
+
+margin-right:90px;
+
+padding:20px;
+
+}
+
+.search-box{
+
+width:100%;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.main{
+
+margin-right:0;
+
+padding:15px;
+
+}
+
+.sidebar{
+
+position:relative;
+
+width:100%;
+
+height:auto;
+
+}
+
+.topbar{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.dashboard-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
