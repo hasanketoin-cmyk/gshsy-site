@@ -347,8 +347,7 @@ placeholder="ابحث عن فاتورة أو مورد..."
 
 </div>
 
-<canvas id="expensesChart" height="90"></canvas>
-
+<canvas id="expensesChart"></canvas>
 </div>
 <!-- ================= Main Tables ================= -->
 
@@ -672,7 +671,11 @@ placeholder="ابحث عن فاتورة أو مورد..."
 
 <script>
 
-const ctx = document.getElementById('expensesChart');
+const canvas = document.getElementById("expensesChart");
+
+if(canvas){
+
+const ctx = canvas.getContext("2d");
 
 new Chart(ctx, {
 
@@ -700,6 +703,8 @@ options:{
 
 responsive:true,
 
+maintainAspectRatio:false,
+
 plugins:{
 
 legend:{display:false}
@@ -715,6 +720,8 @@ y:{beginAtZero:true}
 }
 
 });
+
+}
 
 function animateCounter(id,target){
 
