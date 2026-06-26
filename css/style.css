@@ -570,6 +570,15 @@ box-shadow:var(--shadow);
 
 margin-bottom:30px;
 
+min-height:420px;
+
+}
+.chart-card canvas{
+
+width:100% !important;
+
+height:320px !important;
+
 }
 
 /* ===========================================
