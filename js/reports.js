@@ -37,7 +37,11 @@ const summarySuppliers = document.getElementById("summarySuppliers");
 
 const searchReport = document.getElementById("searchReport");
 const resetReport = document.getElementById("resetReport");
+const excelReport = document.getElementById("excelReport");
 
+const pdfReport = document.getElementById("pdfReport");
+
+const printReport = document.getElementById("printReport");
 // =========================
 // Start
 // =========================
@@ -48,8 +52,13 @@ loadReports();
 
 searchReport.addEventListener("click", loadReports);
 
-resetReport.addEventListener("click", () => {
+excelReport.addEventListener("click", exportExcel);
 
+pdfReport.addEventListener("click", exportPDF);
+
+printReport.addEventListener("click", printTable);
+
+resetReport.addEventListener("click", () => {
     supplierFilter.value = "";
     statusFilter.value = "";
     fromDate.value = "";
@@ -309,5 +318,52 @@ async function drawChart() {
         }
 
     });
+
+}
+function exportExcel() {
+
+    const table = document.querySelector("table");
+
+    const workbook = XLSX.utils.table_to_book(table, {
+
+        sheet: "Reports"
+
+    });
+
+    XLSX.writeFile(workbook, "Financial_Report.xlsx");
+
+}
+function printTable() {
+
+    window.print();
+
+}
+async function exportPDF() {
+
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF("l", "mm", "a4");
+
+    pdf.setFontSize(18);
+
+    pdf.text("K GROUP ERP REPORT", 14, 15);
+
+    pdf.autoTable({
+
+        html: "table",
+
+        startY: 25,
+
+        theme: "grid",
+
+        styles: {
+
+            fontSize: 9
+
+        }
+
+    });
+
+    pdf.save("Financial_Report.pdf");
 
 }
