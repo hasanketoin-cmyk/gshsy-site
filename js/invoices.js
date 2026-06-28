@@ -56,8 +56,7 @@ async function loadSuppliers() {
 
     try {
 
-        const q = query(suppliersRef, orderBy("company"));
-
+const q = query(suppliersRef, orderBy("company"));
         const snapshot = await getDocs(q);
 
         snapshot.forEach((docSnap) => {
@@ -66,14 +65,13 @@ async function loadSuppliers() {
 
             supplier.innerHTML += `
 
-            <option value="${data.company}">
+<option value="${docSnap.id}">
 
-                ${data.company}
+${data.name}
 
-            </option>
+</option>
 
-            `;
-
+`;
         });
 
     }
