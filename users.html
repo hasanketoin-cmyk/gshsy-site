@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>K GROUP ERP | تسجيل الدخول</title>
+<title>K GROUP ERP | المستخدمون</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -15,122 +15,187 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
-}
-
-body{
-
-background:linear-gradient(135deg,#0d47a1,#1565c0);
-
-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-}
-
-.login-card{
-
-width:430px;
-
-background:#fff;
-
-padding:40px;
-
-border-radius:20px;
-
-box-shadow:0 20px 60px rgba(0,0,0,.25);
-
-}
-
-.logo{
-
-text-align:center;
-
-margin-bottom:35px;
-
-}
-
-.logo h1{
-
-font-size:38px;
-
-font-weight:800;
-
-color:#0d47a1;
-
-margin-bottom:5px;
-
-}
-
-.logo p{
-
-color:#777;
-
-font-size:15px;
-
-}
-
-.form-label{
-
-font-weight:700;
-
-}
-
-.form-control{
-
-height:55px;
-
-border-radius:12px;
-
-}
-
-.btn-login{
-
-height:55px;
-
-font-size:18px;
-
-font-weight:bold;
-
-border-radius:12px;
-
-}
-
-#errorMessage{
-
-display:none;
-
-}
-
-#loading{
-
-display:none;
-
-}
-
-</style>
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-<div class="login-card">
+<div class="sidebar">
 
 <div class="logo">
 
-<h1>K GROUP</h1>
+<h2>K GROUP</h2>
 
 <p>ERP Financial System</p>
+
+</div>
+
+<ul>
+
+<li><a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> لوحة التحكم</a></li>
+
+<li><a href="invoices.html"><i class="fa-solid fa-file-invoice-dollar"></i> الفواتير</a></li>
+
+<li><a href="suppliers.html"><i class="fa-solid fa-building"></i> الموردون</a></li>
+
+<li><a href="payments.html"><i class="fa-solid fa-money-bill-transfer"></i> الدفعات</a></li>
+
+<li><a href="dues.html"><i class="fa-solid fa-clock"></i> المستحقات</a></li>
+
+<li><a href="reports.html"><i class="fa-solid fa-chart-column"></i> التقارير</a></li>
+
+<li><a class="active" href="users.html"><i class="fa-solid fa-users"></i> المستخدمون</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h3>إدارة المستخدمين</h3>
+
+<button
+class="btn btn-primary"
+data-bs-toggle="modal"
+data-bs-target="#userModal">
+
+<i class="fa-solid fa-user-plus"></i>
+
+إضافة مستخدم
+
+</button>
+
+</div>
+
+<div class="row mt-4">
+
+<div class="col-md-3">
+
+<div class="card p-3 text-center">
+
+<h6>إجمالي المستخدمين</h6>
+
+<h3 id="usersCount">0</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3 text-center">
+
+<h6>المدراء</h6>
+
+<h3 id="adminsCount">0</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3 text-center">
+
+<h6>المحاسبون</h6>
+
+<h3 id="accountantsCount">0</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3 text-center">
+
+<h6>المستخدمون النشطون</h6>
+
+<h3 id="activeUsers">0</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="table-card mt-4">
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle">
+
+<thead>
+
+<tr>
+
+<th>الاسم</th>
+
+<th>البريد الإلكتروني</th>
+
+<th>الدور</th>
+
+<th>الحالة</th>
+
+<th>الإجراءات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="usersTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ===================== -->
+<!-- User Modal -->
+<!-- ===================== -->
+
+<div class="modal fade" id="userModal" tabindex="-1">
+
+<div class="modal-dialog">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5 class="modal-title">
+
+إضافة مستخدم
+
+</h5>
+
+<button
+class="btn-close"
+data-bs-dismiss="modal">
+
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<div class="mb-3">
+
+<label class="form-label">
+
+الاسم
+
+</label>
+
+<input
+id="userName"
+class="form-control">
 
 </div>
 
@@ -143,14 +208,9 @@ display:none;
 </label>
 
 <input
-
 type="email"
-
-id="email"
-
-class="form-control"
-
-placeholder="example@email.com">
+id="userEmail"
+class="form-control">
 
 </div>
 
@@ -163,68 +223,100 @@ placeholder="example@email.com">
 </label>
 
 <input
-
 type="password"
-
-id="password"
-
-class="form-control"
-
-placeholder="********">
+id="userPassword"
+class="form-control">
 
 </div>
 
-<div
+<div class="mb-3">
 
-class="alert alert-danger"
+<label class="form-label">
 
-id="errorMessage">
+الدور
 
-بيانات الدخول غير صحيحة
+</label>
+
+<select
+id="userRole"
+class="form-select">
+
+<option value="admin">
+
+مدير
+
+</option>
+
+<option value="accountant">
+
+محاسب
+
+</option>
+
+<option value="viewer">
+
+موظف
+
+</option>
+
+</select>
 
 </div>
 
-<div
+<div class="mb-3">
 
-class="text-center"
+<label class="form-label">
 
-id="loading">
+الحالة
 
-<div class="spinner-border text-primary"></div>
+</label>
 
-<p class="mt-2">
+<select
+id="userStatus"
+class="form-select">
 
-جاري تسجيل الدخول...
+<option value="true">
 
-</p>
+نشط
+
+</option>
+
+<option value="false">
+
+موقوف
+
+</option>
+
+</select>
 
 </div>
+
+</div>
+
+<div class="modal-footer">
 
 <button
+class="btn btn-success"
+id="saveUser">
 
-class="btn btn-primary btn-login w-100"
-
-id="loginBtn">
-
-<i class="fa-solid fa-right-to-bracket"></i>
-
-تسجيل الدخول
+حفظ المستخدم
 
 </button>
-<div class="text-center mt-4">
-
-<small class="text-muted">
-
-© 2026 K GROUP ERP
-
-</small>
 
 </div>
 
 </div>
 
-<script type="module" src="js/auth.js"></script>
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="module" src="js/users.js"></script>
+
 <script type="module" src="js/guard.js"></script>
+
 </body>
 
 </html>
