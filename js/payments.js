@@ -1,41 +1,52 @@
-import { db } from "./firebase.js";
+// =======================
+// عناصر بيانات الفاتورة
+// =======================
 
-import {
-    collection,
-    getDocs,
-    query,
-    orderBy
-} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+const paymentSupplier = document.getElementById("paymentSupplier");
+const invoiceAmount = document.getElementById("invoiceAmount");
+const paidAmount = document.getElementById("paidAmount");
+const remainingAmount = document.getElementById("remainingAmount");
 
-const invoicesRef = collection(db, "invoices");
+// =======================
+// تحميل بيانات الفاتورة
+// =======================
 
-const invoiceSelect = document.getElementById("invoiceSelect");
+async function loadInvoiceData() {
 
-loadInvoices();
+    if (invoiceSelect.value === "") {
 
-async function loadInvoices() {
+        paymentSupplier.value = "";
+        invoiceAmount.value = "";
+        paidAmount.value = "";
+        remainingAmount.value = "";
 
-    invoiceSelect.innerHTML =
-        '<option value="">اختر الفاتورة</option>';
+        return;
+    }
 
-    const q = query(invoicesRef, orderBy("number"));
+    try {
 
-    const snapshot = await getDocs(q);
+        const invoiceRef = doc(db, "invoices", invoiceSelect.value);
 
-    snapshot.forEach((docSnap) => {
+        const invoiceSnap = await getDoc(invoiceRef);
 
-        const data = docSnap.data();
+        if (!invoiceSnap.exists()) return;
 
-        invoiceSelect.innerHTML += `
+        const data = invoiceSnap.data();
 
-        <option value="${docSnap.id}">
+        paymentSupplier.value = data.supplier || "";
 
-            ${data.number} | ${data.supplier}
+        invoiceAmount.value = data.amount || 0;
 
-        </option>
+        paidAmount.value = data.paid || 0;
 
-        `;
+        remainingAmount.value = data.remaining ?? data.amount;
 
-    });
+    } catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
 
 }
