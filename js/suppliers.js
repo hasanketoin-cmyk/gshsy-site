@@ -144,6 +144,8 @@ async function loadSuppliers() {
 
 async function deleteSupplier(id) {
 
+    console.log("Delete ID:", id);
+
     if (!confirm("هل تريد حذف المورد؟")) return;
 
     try {
@@ -156,7 +158,7 @@ async function deleteSupplier(id) {
 
     } catch (error) {
 
-        console.error(error);
+        console.error("Delete Error:", error);
 
         alert(error.message);
 
