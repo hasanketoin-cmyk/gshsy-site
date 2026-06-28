@@ -1,1 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>K Group ERP | الموردون</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<h2>K GROUP</h2>
+
+<p>ERP Financial System</p>
+
+</div>
+
+<ul>
+
+<li>
+<a href="dashboard.html">
+<i class="fa-solid fa-chart-line"></i>
+لوحة التحكم
+</a>
+</li>
+
+<li>
+<a href="invoices.html">
+<i class="fa-solid fa-file-invoice-dollar"></i>
+الفواتير
+</a>
+</li>
+
+<li>
+<a class="active" href="suppliers.html">
+<i class="fa-solid fa-building"></i>
+الموردون
+</a>
+</li>
+
+<li>
+<a href="payments.html">
+<i class="fa-solid fa-money-bill-transfer"></i>
+الدفعات
+</a>
+</li>
+
+<li>
+<a href="dues.html">
+<i class="fa-solid fa-clock"></i>
+المستحقات
+</a>
+</li>
+
+<li>
+<a href="reports.html">
+<i class="fa-solid fa-chart-column"></i>
+التقارير
+</a>
+</li>
+
+<li>
+<a href="users.html">
+<i class="fa-solid fa-users"></i>
+المستخدمون
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h3>إدارة الموردين</h3>
+
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#supplierModal">
+
+<i class="fa-solid fa-plus"></i>
+
+إضافة مورد
+
+</button>
+
+</div>
+
+<div class="table-card mt-4">
+
+<div class="row mb-3">
+
+<div class="col-md-4">
+
+<input
+type="text"
+id="searchSupplier"
+class="form-control"
+placeholder="بحث عن مورد..."
+>
+
+</div>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle">
+
+<thead>
+
+<tr>
+
+<th>المورد</th>
+<th>الهاتف</th>
+<th>العملة</th>
+<th>الحالة</th>
+<th width="150">الإجراءات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="suppliersTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Modal -->
+
+<div class="modal fade" id="supplierModal">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5 class="modal-title">
+
+إضافة مورد
+
+</h5>
+
+<button class="btn-close" data-bs-dismiss="modal"></button>
+
+</div>
+
+<div class="modal-body">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>اسم المورد</label>
+
+<input id="supplierName" class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>الهاتف</label>
+
+<input id="supplierPhone" class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>البريد الإلكتروني</label>
+
+<input id="supplierEmail" class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>العنوان</label>
+
+<input id="supplierAddress" class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>الرقم الضريبي</label>
+
+<input id="supplierTax" class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>العملة</label>
+
+<select id="supplierCurrency" class="form-select">
+
+<option>SYP</option>
+
+<option>USD</option>
+
+<option>EUR</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>الحالة</label>
+
+<select id="supplierStatus" class="form-select">
+
+<option>نشط</option>
+
+<option>موقوف</option>
+
+</select>
+
+</div>
+
+<div class="col-md-12">
+
+<label>ملاحظات</label>
+
+<textarea
+id="supplierNotes"
+class="form-control"
+rows="3"></textarea>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="modal-footer">
+
+<button class="btn btn-success" id="saveSupplier">
+
+حفظ
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="module" src="js/suppliers.js"></script>
+</body>
+
+</html>
