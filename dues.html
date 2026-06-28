@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>K Group ERP | المستحقات</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<h2>K GROUP</h2>
+
+<p>ERP Financial System</p>
+
+</div>
+
+<ul>
+
+<li><a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> لوحة التحكم</a></li>
+
+<li><a href="invoices.html"><i class="fa-solid fa-file-invoice-dollar"></i> الفواتير</a></li>
+
+<li><a href="suppliers.html"><i class="fa-solid fa-building"></i> الموردون</a></li>
+
+<li><a href="payments.html"><i class="fa-solid fa-money-bill-transfer"></i> الدفعات</a></li>
+
+<li><a class="active" href="dues.html"><i class="fa-solid fa-clock"></i> المستحقات</a></li>
+
+<li><a href="reports.html"><i class="fa-solid fa-chart-column"></i> التقارير</a></li>
+
+<li><a href="users.html"><i class="fa-solid fa-users"></i> المستخدمون</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h3>المستحقات</h3>
+
+</div>
+
+<div class="row mt-4">
+
+<div class="col-md-3">
+
+<div class="card p-3">
+
+<h6>إجمالي المستحقات</h6>
+
+<h3 id="totalRemaining">0</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3">
+
+<h6>عدد الفواتير</h6>
+
+<h3 id="totalInvoices">0</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3">
+
+<h6>المتأخرة</h6>
+
+<h3 id="lateInvoices">0</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3">
+
+<h6>هذا الأسبوع</h6>
+
+<h3 id="weekInvoices">0</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="table-card mt-4">
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle">
+
+<thead>
+
+<tr>
+
+<th>رقم الفاتورة</th>
+
+<th>المورد</th>
+
+<th>الإجمالي</th>
+
+<th>المدفوع</th>
+
+<th>المتبقي</th>
+
+<th>الاستحقاق</th>
+
+<th>الحالة</th>
+
+<th>الإجراءات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="duesTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="module" src="js/dues.js"></script>
+
+</body>
+
+</html>
