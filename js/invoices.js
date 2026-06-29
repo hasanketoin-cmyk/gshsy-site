@@ -89,6 +89,8 @@ async function generateInvoiceNumber(){
 
 async function loadSuppliers(){
 
+    console.log("loadSuppliers started");
+
     supplier.innerHTML =
     `<option value="">اختر المورد</option>`;
 
@@ -245,7 +247,7 @@ async function loadInvoices() {
     const q = query(invoicesRef, orderBy("createdAt", "desc"));
 
     const snapshot = await getDocs(q);
-
+console.log("Suppliers count:", snapshot.size);
     if (snapshot.empty) {
 
         invoiceTable.innerHTML = `
