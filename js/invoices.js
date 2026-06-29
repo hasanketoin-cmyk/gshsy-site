@@ -20,6 +20,7 @@ from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 const invoicesRef = collection(db,"invoices");
 const suppliersRef = collection(db,"suppliers");
+const sectionsRef = collection(db,"sections");
 
 // =========================
 // Elements
@@ -53,7 +54,8 @@ window.addEventListener("DOMContentLoaded",async()=>{
 invoiceDate.value=new Date().toISOString().split("T")[0];
 
 await loadSuppliers();
-
+await loadSections();
+  
 await generateInvoiceNumber();
 
 await loadInvoices();
@@ -106,6 +108,29 @@ ${data.name}
 });
 
 }
+// =========================
+// Load Sections
+// =========================
+
+async function loadSections(){
+
+const list=document.getElementById("sectionsList");
+
+list.innerHTML="";
+
+const snapshot=await getDocs(query(sectionsRef,orderBy("name")));
+
+snapshot.forEach(docSnap=>{
+
+const data=docSnap.data();
+
+list.innerHTML+=`
+<option value="${data.name}">
+`;
+
+});
+
+}
 
 // =========================
 // Clear
@@ -153,6 +178,38 @@ return;
 
 try{
 
+ const sectionName=section.value.trim();
+
+if(sectionName!=""){
+
+const sections=await getDocs(sectionsRef);
+
+let exists=false;
+
+sections.forEach(item=>{
+
+if(item.data().name===sectionName){
+
+exists=true;
+
+}
+
+});
+
+if(!exists){
+
+await addDoc(sectionsRef,{
+
+name:sectionName,
+
+createdAt:serverTimestamp()
+
+});
+
+}
+
+}
+  
 await addDoc(invoicesRef,{
 
 number:invoiceNumber.value,
