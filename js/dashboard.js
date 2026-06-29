@@ -28,14 +28,21 @@ if (settingsSnap.exists()) {
 
     const settings = settingsSnap.data();
 
-    document.getElementById("sidebarCompanyName").textContent =
-        settings.companyName || "K GROUP";
+   const companyNameEl = document.getElementById("sidebarCompanyName");
+const systemNameEl = document.getElementById("sidebarSystemName");
+const dashboardCompanyEl = document.getElementById("dashboardCompany");
 
-    document.getElementById("sidebarSystemName").textContent =
-        settings.systemName || "ERP Financial System";
+if (companyNameEl) {
+    companyNameEl.textContent = settings.companyName || "K GROUP";
+}
 
-    document.getElementById("dashboardCompany").textContent =
-        settings.companyName || "";
+if (systemNameEl) {
+    systemNameEl.textContent = settings.systemName || "ERP Financial System";
+}
+
+if (dashboardCompanyEl) {
+    dashboardCompanyEl.textContent = settings.companyName || "";
+}
 
 }
     // ======================
@@ -44,9 +51,11 @@ if (settingsSnap.exists()) {
 
 if (auth.currentUser) {
 
-    document.getElementById("dashboardUserName").textContent =
-        auth.currentUser.email;
+   const userEl = document.getElementById("dashboardUserName");
 
+if (userEl && auth.currentUser) {
+    userEl.textContent = auth.currentUser.email;
+}
 }
     animateCounter("totalInvoices", invoices.size);
 
