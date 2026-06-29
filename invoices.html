@@ -198,16 +198,14 @@ placeholder="ابحث عن فاتورة..."
 
 <label class="form-label">القسم</label>
 
-<select class="form-select" id="section">
-<option>الإنشاءات</option>
+<input
+type="text"
+class="form-control"
+id="section"
+list="sectionsList"
+placeholder="اكتب أو اختر القسم">
 
-<option>الكهرباء</option>
-
-<option>الميكانيك</option>
-
-<option>التشطيبات</option>
-
-</select>
+<datalist id="sectionsList"></datalist>
 
 </div>
 
