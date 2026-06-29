@@ -1,3 +1,8 @@
+async function loginUser() {
+
+    alert("تم الضغط على زر تسجيل الدخول");
+
+    errorMessage.style.display = "none";
 import { auth } from "./firebase.js";
 
 import {
