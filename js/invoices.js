@@ -212,30 +212,7 @@ function clearForm(){
     new Date().toISOString().split("T")[0];
 
 }
-// =====================================
-// Clear Form
-// =====================================
 
-function clearForm(){
-
-    selectedInvoiceId = null;
-
-    supplier.value = "";
-
-    section.selectedIndex = 0;
-
-    currency.value = "USD";
-
-    amount.value = "";
-
-    dueDate.value = "";
-
-    notes.value = "";
-
-    invoiceDate.value =
-    new Date().toISOString().split("T")[0];
-
-}
 // =====================================
 // Load Invoices
 // =====================================
