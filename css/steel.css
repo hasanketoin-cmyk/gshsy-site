@@ -1,1 +1,239 @@
+/* =======================================
+   K GROUP ERP - Steel Module
+======================================= */
 
+body{
+    background:#f4f7fb;
+}
+
+/* Dashboard Cards */
+
+.steel-card{
+
+    border-radius:18px;
+
+    padding:22px;
+
+    color:#fff;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:150px;
+
+}
+
+.steel-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.18);
+
+}
+
+.steel-card i{
+
+    font-size:38px;
+
+    opacity:.25;
+
+    position:absolute;
+
+    left:20px;
+
+    top:18px;
+
+}
+
+.steel-card h6{
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.steel-card h2{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin:0;
+
+}
+
+.steel-card span{
+
+    font-size:13px;
+
+    opacity:.9;
+
+}
+
+/* Colors */
+
+.blue{
+
+    background:linear-gradient(135deg,#1565C0,#42A5F5);
+
+}
+
+.dark{
+
+    background:linear-gradient(135deg,#263238,#546E7A);
+
+}
+
+.green{
+
+    background:linear-gradient(135deg,#2E7D32,#66BB6A);
+
+}
+
+.orange{
+
+    background:linear-gradient(135deg,#EF6C00,#FFA726);
+
+}
+
+.success{
+
+    background:linear-gradient(135deg,#00897B,#26A69A);
+
+}
+
+.primary{
+
+    background:linear-gradient(135deg,#3949AB,#5C6BC0);
+
+}
+
+.warning{
+
+    background:linear-gradient(135deg,#F9A825,#FDD835);
+
+    color:#222;
+
+}
+
+.info{
+
+    background:linear-gradient(135deg,#00838F,#26C6DA);
+
+}
+
+/* Tables */
+
+.table-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+}
+
+.table thead{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+}
+
+.table thead th{
+
+    background:#1f2937 !important;
+
+    color:#fff;
+
+    white-space:nowrap;
+
+    font-size:14px;
+
+}
+
+.table td{
+
+    white-space:nowrap;
+
+    vertical-align:middle;
+
+    font-size:14px;
+
+}
+
+/* Hover */
+
+.table tbody tr:hover{
+
+    background:#eef6ff;
+
+}
+
+/* Search */
+
+input[type=text]{
+
+    border-radius:12px;
+
+}
+
+/* Buttons */
+
+.btn{
+
+    border-radius:10px;
+
+}
+
+/* Status Colors */
+
+.status-paid{
+
+    background:#d4edda;
+
+    color:#155724;
+
+    font-weight:bold;
+
+}
+
+.status-partial{
+
+    background:#fff3cd;
+
+    color:#856404;
+
+    font-weight:bold;
+
+}
+
+.status-unpaid{
+
+    background:#f8d7da;
+
+    color:#721c24;
+
+    font-weight:bold;
+
+}
+
+/* Scroll */
+
+.table-responsive{
+
+    max-height:550px;
+
+}
