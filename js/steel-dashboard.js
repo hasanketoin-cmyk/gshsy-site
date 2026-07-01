@@ -39,3 +39,9 @@ newOperation.addEventListener("click", () => {
     modal.show();
 
 });
+// =====================================
+// Default Date
+// =====================================
+
+document.getElementById("operationDate").value =
+new Date().toISOString().split("T")[0];
