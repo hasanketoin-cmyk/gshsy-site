@@ -99,6 +99,8 @@ document.getElementById("saveOperation")
 
 async function saveOperation(){
 
+    alert("save clicked");
+
     try{
 
         const type =
@@ -167,5 +169,67 @@ async function saveOperation(){
         alert(error.message);
 
     }
+
+}
+// =====================================
+// Add Truck
+// =====================================
+
+const addTruckBtn = document.getElementById("addTruckRow");
+const truckTable = document.getElementById("truckItemsTable");
+
+addTruckBtn.addEventListener("click", addTruck);
+
+function addTruck() {
+
+    if (truckTable.innerHTML.includes("لا توجد سيارات")) {
+        truckTable.innerHTML = "";
+    }
+
+    const today = new Date().toISOString().split("T")[0];
+
+    truckTable.innerHTML += `
+    <tr>
+
+        <td>
+
+            <input
+            type="date"
+            class="form-control"
+            value="${today}">
+
+        </td>
+
+        <td>
+
+            <input
+            type="number"
+            class="form-control truckWeight"
+            step="0.001">
+
+        </td>
+
+        <td>
+
+            <input
+            type="file"
+            class="form-control"
+            accept="image/*">
+
+        </td>
+
+        <td>
+
+            <button
+            class="btn btn-danger removeTruck">
+
+            حذف
+
+            </button>
+
+        </td>
+
+    </tr>
+    `;
 
 }
