@@ -90,3 +90,82 @@ async function generateInvoiceNumber() {
 }
 document.getElementById("operationType")
 .addEventListener("change", generateInvoiceNumber);
+// ===============================
+// Save Operation
+// ===============================
+
+document.getElementById("saveOperation")
+.addEventListener("click", saveOperation);
+
+async function saveOperation(){
+
+    try{
+
+        const type =
+        document.getElementById("operationType").value;
+
+        const data = {
+
+            invoiceNumber:
+            document.getElementById("operationInvoice").value,
+
+            date:
+            document.getElementById("operationDate").value,
+
+            supplier:
+            document.getElementById("operationSupplier").value,
+
+            customer:
+            document.getElementById("operationCustomer").value,
+
+            pricePerTon:
+            Number(document.getElementById("pricePerTon").value),
+
+            transportCost:
+            Number(document.getElementById("transportCost").value),
+
+            supplierPayment:
+            Number(document.getElementById("supplierPayment").value),
+
+            customerPayment:
+            Number(document.getElementById("customerPayment").value),
+
+            customerWithdraw:
+            Number(document.getElementById("customerWithdraw").value),
+
+            status:
+            document.getElementById("operationStatus").value,
+
+            notes:
+            document.getElementById("operationNotes").value,
+
+            createdAt:
+            new Date()
+
+        };
+
+        if(type==="rebar"){
+
+            await addDoc(rebarRef,data);
+
+        }else{
+
+            await addDoc(billetRef,data);
+
+        }
+
+        alert("تم حفظ العملية بنجاح");
+
+        modal.hide();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+}
