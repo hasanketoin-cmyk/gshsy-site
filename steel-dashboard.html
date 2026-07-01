@@ -721,20 +721,6 @@ readonly>
   
 </div>
 
-<div class="col-md-3">
-
-<label>
-
-الكمية الإجمالية
-
-</label>
-
-<input
-type="number"
-class="form-control"
-id="operationQty">
-
-</div>
 
 <div class="col-md-3">
 
@@ -771,52 +757,106 @@ id="pricePerTon">
 </div>
 
   <hr>
+<hr>
 
-<div class="row">
+<h5 class="mb-3">
 
-<div class="col-md-3 mb-3">
+<i class="fa-solid fa-truck"></i>
 
-<label class="form-label">
+السيارات
 
-القيمة الإجمالية
+</h5>
 
-</label>
+<div class="d-flex justify-content-between mb-3">
 
-<input
-type="number"
-class="form-control"
-id="totalValue"
-readonly>
+<button
+type="button"
+class="btn btn-success"
+id="addTruck">
+
+<i class="fa-solid fa-plus"></i>
+
+إضافة سيارة
+
+</button>
+
+<div>
+
+<b>
+
+إجمالي الوزن :
+
+</b>
+
+<span id="totalWeight">
+
+0.000
+
+</span>
+
+طن
 
 </div>
 
-<div class="col-md-3 mb-3">
-
-<label class="form-label">
-
-عدد السيارات
-
-</label>
-
-<input
-type="number"
-class="form-control"
-id="truckCount">
-
 </div>
 
-<div class="col-md-3 mb-3">
+<div class="table-responsive">
 
-<label class="form-label">
+<table class="table table-bordered align-middle">
 
-وزن كل سيارة
+<thead>
 
-</label>
+<tr>
 
-<input
-type="number"
-class="form-control"
-id="truckWeight">
+<th width="60">
+
+#
+
+</th>
+
+<th>
+
+تاريخ الوصول
+
+</th>
+
+<th>
+
+الوزن (طن)
+
+</th>
+
+<th>
+
+كرت القبان
+
+</th>
+
+<th width="70">
+
+حذف
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="truckItemsTable">
+  
+<tr>
+
+<td colspan="5" class="text-center text-muted">
+
+لا توجد سيارات
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 </div>
 
@@ -924,7 +964,7 @@ rows="3"
 id="operationNotes"></textarea>
 
 </div>
-  <div class="modal-footer">
+<div class="modal-footer">
 
 <button
 class="btn btn-success"
@@ -946,6 +986,12 @@ data-bs-dismiss="modal">
 
 </div>
 
+</div>
+
+</div>
+
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="module" src="js/steel-dashboard.js"></script>
@@ -953,4 +999,5 @@ data-bs-dismiss="modal">
 <script type="module" src="js/guard.js"></script>
 
 </body>
+
 </html>
