@@ -551,6 +551,220 @@ id="addTruck">
 
 </div>
   </div>
+<!-- ========================================= -->
+<!-- Modal Add Operation -->
+<!-- ========================================= -->
+
+<div class="modal fade" id="operationModal" tabindex="-1">
+
+<div class="modal-dialog modal-xl modal-dialog-scrollable">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h3 class="modal-title">
+
+<i class="fa-solid fa-industry"></i>
+
+عملية جديدة
+
+</h3>
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<div class="row">
+
+<!-- نوع العملية -->
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+نوع العملية
+
+</label>
+
+<select
+class="form-select"
+id="operationType">
+
+<option value="rebar">
+
+حديد مبروم
+
+</option>
+
+<option value="billet">
+
+حديد بيليت
+
+</option>
+
+</select>
+
+</div>
+
+<!-- التاريخ -->
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+التاريخ
+
+</label>
+
+<input
+type="date"
+class="form-control"
+id="operationDate">
+
+</div>
+
+<!-- المورد -->
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+المورد
+
+</label>
+
+<div class="input-group">
+
+<select
+class="form-select"
+id="operationSupplier">
+
+<option value="">
+
+اختر المورد
+
+</option>
+
+</select>
+
+<button
+class="btn btn-success"
+id="newSupplier">
+
++
+
+</button>
+
+</div>
+
+</div>
+
+<!-- الزبون -->
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+الزبون
+
+</label>
+
+<div class="input-group">
+
+<select
+class="form-select"
+id="operationCustomer">
+
+<option value="">
+
+اختر الزبون
+
+</option>
+
+</select>
+
+<button
+class="btn btn-primary"
+id="newCustomer">
+
++
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<div class="row">
+
+<div class="col-md-3">
+
+<label>
+
+رقم الفاتورة
+
+</label>
+
+<input
+class="form-control"
+id="operationInvoice">
+
+</div>
+
+<div class="col-md-3">
+
+<label>
+
+الكمية الإجمالية
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="operationQty">
+
+</div>
+
+<div class="col-md-3">
+
+<label>
+
+الكمية المستلمة
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="receivedQty">
+
+</div>
+
+<div class="col-md-3">
+
+<label>
+
+سعر الطن
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="pricePerTon">
+
+</div>
+
+</div>
 
 <script type="module" src="js/steel-dashboard.js"></script>
 <script type="module" src="js/guard.js"></script>
