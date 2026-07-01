@@ -762,7 +762,185 @@ type="number"
 class="form-control"
 id="pricePerTon">
 
+  
 </div>
+  
+
+</div>
+
+  <hr>
+
+<div class="row">
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+القيمة الإجمالية
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="totalValue"
+readonly>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+عدد السيارات
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="truckCount">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+وزن كل سيارة
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="truckWeight">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+أجور النقل
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="transportCost">
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+دفعات المورد
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="supplierPayment">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+مدفوعات الزبون
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="customerPayment">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+مسحوبات الزبون
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="customerWithdraw">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+الحالة
+
+</label>
+
+<select
+class="form-select"
+id="operationStatus">
+
+<option>مفتوحة</option>
+
+<option>قيد التنفيذ</option>
+
+<option>مكتملة</option>
+
+<option>ملغاة</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+
+ملاحظات
+
+</label>
+
+<textarea
+class="form-control"
+rows="3"
+id="operationNotes"></textarea>
+
+</div>
+  <div class="modal-footer">
+
+<button
+class="btn btn-success"
+id="saveOperation">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+حفظ العملية
+
+</button>
+
+<button
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+إغلاق
+
+</button>
 
 </div>
 
