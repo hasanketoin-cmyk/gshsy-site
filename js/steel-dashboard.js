@@ -174,12 +174,19 @@ async function saveOperation(){
 // =====================================
 // Add Truck
 // =====================================
-
+addTruckBtn.addEventListener("click", addTruck);
 const addTruckBtn = document.getElementById("addTruckRow");
 const truckTable = document.getElementById("truckItemsTable");
 
-addTruckBtn.addEventListener("click", addTruck);
+if (addTruckBtn) {
 
+    addTruckBtn.addEventListener("click", addTruck);
+
+} else {
+
+    console.error("زر addTruckRow غير موجود");
+
+}
 function addTruck() {
 
     if (truckTable.innerHTML.includes("لا توجد سيارات")) {
