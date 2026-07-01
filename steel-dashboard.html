@@ -461,3 +461,99 @@ id="addBillet">
 </div>
 
 </div>
+  <!-- ===================================== -->
+<!-- جدول السيارات -->
+<!-- ===================================== -->
+
+<div class="table-card mt-5">
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+<h3>
+
+<i class="fa-solid fa-truck text-success"></i>
+
+جدول السيارات
+
+</h3>
+
+<div class="d-flex gap-2">
+
+<input
+type="text"
+class="form-control"
+id="searchTruck"
+placeholder="بحث...">
+
+<button
+class="btn btn-success"
+id="addTruck">
+
+<i class="fa-solid fa-plus"></i>
+
+إضافة سيارة
+
+</button>
+
+</div>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-hover align-middle text-center">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>التاريخ</th>
+
+<th>رقم الفاتورة</th>
+
+<th>المادة</th>
+
+<th>السائق</th>
+
+<th>رقم السيارة</th>
+
+<th>الوزن</th>
+
+<th>تكلفة النقل</th>
+
+<th>شركة النقل</th>
+
+<th>ملاحظات</th>
+
+<th>إجراءات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="truckTable">
+
+<tr>
+
+<td colspan="10" class="text-center text-muted">
+
+لا توجد سيارات حتى الآن
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+  </div>
+
+<script type="module" src="js/steel-dashboard.js"></script>
+<script type="module" src="js/guard.js"></script>
+
+</body>
+</html>
