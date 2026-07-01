@@ -34,7 +34,12 @@ new bootstrap.Modal(operationModal);
 // Open Modal
 // ===============================
 
-newOperation.addEventListener("click", () => {
+newOperation.addEventListener("click", async () => {
+
+    document.getElementById("operationDate").value =
+    new Date().toISOString().split("T")[0];
+
+    await generateInvoiceNumber();
 
     modal.show();
 
@@ -45,3 +50,43 @@ newOperation.addEventListener("click", () => {
 
 document.getElementById("operationDate").value =
 new Date().toISOString().split("T")[0];
+// =====================================
+// Generate Invoice Number
+// =====================================
+
+async function generateInvoiceNumber() {
+
+    const type =
+    document.getElementById("operationType").value;
+
+    let ref;
+
+    let prefix;
+
+    if (type === "rebar") {
+
+        ref = rebarRef;
+
+        prefix = "RB";
+
+    } else {
+
+        ref = billetRef;
+
+        prefix = "BL";
+
+    }
+
+    const snapshot = await getDocs(ref);
+
+    const number = snapshot.size + 1;
+
+    const year = new Date().getFullYear();
+
+    document.getElementById("operationInvoice").value =
+
+        `${prefix}-${year}-${String(number).padStart(5, "0")}`;
+
+}
+document.getElementById("operationType")
+.addEventListener("change", generateInvoiceNumber);
