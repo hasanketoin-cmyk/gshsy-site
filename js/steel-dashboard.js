@@ -4,8 +4,8 @@
 // Section 1
 // ======================================================
 
-import {
-    collection,
+import { db } from "./firebase.js";
+collection,
     addDoc,
     getDocs,
     query,
@@ -75,7 +75,12 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     await generateInvoiceNumber();
 
+    await loadOperations();
+
+    await loadDashboard();
+
 });
+
 
 // ======================================================
 // Open Modal
@@ -451,12 +456,15 @@ async function saveOperation(){
 
         alert("تم حفظ العملية بنجاح");
 
-        modal.hide();
+modal.hide();
 
-        clearOperationForm();
+clearOperationForm();
 
-        await generateInvoiceNumber();
+await generateInvoiceNumber();
 
+await loadOperations();
+
+await loadDashboard();
     }
 
     catch(error){
