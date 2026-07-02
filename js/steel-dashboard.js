@@ -1138,3 +1138,58 @@ function clearForm() {
     const status = document.getElementById("operationStatus");
     if (status) status.selectedIndex = 0;
 }
+async function loadSuppliers() {
+
+    const select = document.getElementById("operationSupplier");
+
+    select.innerHTML = `<option value="">اختر المورد</option>`;
+
+    const snapshot = await getDocs(suppliersRef);
+
+    snapshot.forEach(doc => {
+
+        const supplier = doc.data();
+
+        select.innerHTML += `
+            <option value="${supplier.name}">
+                ${supplier.name}
+            </option>
+        `;
+
+    });
+
+}
+async function loadCustomers() {
+
+    const select = document.getElementById("operationCustomer");
+
+    select.innerHTML = `<option value="">اختر الزبون</option>`;
+
+    const snapshot = await getDocs(customersRef);
+
+    snapshot.forEach(doc => {
+
+        const customer = doc.data();
+
+        select.innerHTML += `
+            <option value="${customer.name}">
+                ${customer.name}
+            </option>
+        `;
+
+    });
+
+}
+window.addEventListener("load", () => {
+
+    loadDashboard();
+
+    loadRebarTable();
+
+    loadBilletTable();
+
+    loadSuppliers();
+
+    loadCustomers();
+
+});
