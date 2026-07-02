@@ -499,25 +499,27 @@ function updateTruckNumbers(){
 
 function calculateTotals(){
 
-    let total=0;
+    let total = 0;
 
     document.querySelectorAll(".truckWeight").forEach(input=>{
 
-        total+=Number(input.value||0);
+        total += Number(input.value || 0);
 
     });
 
-    totalWeight.textContent=
+    totalWeight.textContent =
     total.toFixed(3);
 
-   totalValue.value=
+    const price =
+    Number(pricePerTon.value || 0);
+
+    totalValue.value =
+    (total * price).toFixed(2);
+
+    receivedQty.value =
+    total.toFixed(3);
 
 }
-
-pricePerTon.addEventListener(
-"input",
-calculateTotals
-);
 // ======================================================
 // Load Operations
 // ======================================================
