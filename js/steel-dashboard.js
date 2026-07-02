@@ -5,37 +5,32 @@ import {
     addDoc,
     getDocs,
     query,
-    orderBy,
-    where
+    orderBy
 }
 from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
-// ===============================
+// ======================================================
 // Collections
-// ===============================
+// ======================================================
 
 const rebarRef = collection(db, "steel_rebar");
 const billetRef = collection(db, "steel_billet");
 
-// ===============================
-// Elements
-// ===============================
+// ======================================================
+// Main Elements
+// ======================================================
 
-const newOperation =
-document.getElementById("newOperation");
+const newOperation = document.getElementById("newOperation");
+const operationModal = document.getElementById("operationModal");
 
-const operationModal =
-document.getElementById("operationModal");
-const totalValue =
-document.getElementById("totalValue");
+const modal = new bootstrap.Modal(operationModal);
 
-const pricePerTon =
-document.getElementById("pricePerTon");
-const rebarTable =
-document.getElementById("rebarTable");
+// Dashboard
 
-const billetTable =
-document.getElementById("billetTable");
+const rebarTable = document.getElementById("rebarTable");
+const billetTable = document.getElementById("billetTable");
+
+// Dashboard Cards
 
 const customerBalanceName =
 document.getElementById("customerBalanceName");
@@ -49,131 +44,234 @@ document.getElementById("customerDueName");
 const customerDueAmount =
 document.getElementById("customerDueAmount");
 
-// ===============================
-// Bootstrap Modal
-// ===============================
+// Operation Form
 
-const modal =
-new bootstrap.Modal(operationModal);
+const operationType =
+document.getElementById("operationType");
 
-// ===============================
-// Open Modal
-// ===============================
+const operationInvoice =
+document.getElementById("operationInvoice");
 
-newOperation.addEventListener("click", async () => {
+const operationDate =
+document.getElementById("operationDate");
 
-    document.getElementById("operationDate").value =
+const operationSupplier =
+document.getElementById("operationSupplier");
+
+const operationCustomer =
+document.getElementById("operationCustomer");
+
+const receivedQty =
+document.getElementById("receivedQty");
+
+const pricePerTon =
+document.getElementById("pricePerTon");
+
+const totalValue =
+document.getElementById("totalValue");
+
+const totalWeight =
+document.getElementById("totalWeight");
+
+const borderCrossing =
+document.getElementById("borderCrossing");
+
+const externalTransport =
+document.getElementById("externalTransport");
+
+const customsCost =
+document.getElementById("customsCost");
+
+const transferFees =
+document.getElementById("transferFees");
+
+const supplierPayment =
+document.getElementById("supplierPayment");
+
+const customerPayment =
+document.getElementById("customerPayment");
+
+const customerWithdraw =
+document.getElementById("customerWithdraw");
+
+const operationStatus =
+document.getElementById("operationStatus");
+
+const operationNotes =
+document.getElementById("operationNotes");
+
+// ======================================================
+// Page Start
+// ======================================================
+
+window.addEventListener("DOMContentLoaded", async()=>{
+
+    operationDate.value =
     new Date().toISOString().split("T")[0];
-    loadOperations();
+
+async function loadOperations(){
+
+    await loadRebar();
+
+    await loadBillet();
+
+    await loadCustomerDashboard();
+
+    await loadDashboard();
+
+}
+    await generateInvoiceNumber();
+
+});
+
+// ======================================================
+// Open New Operation
+// ======================================================
+
+newOperation.addEventListener("click",async()=>{
+
+    operationDate.value =
+    new Date().toISOString().split("T")[0];
 
     await generateInvoiceNumber();
 
     modal.show();
 
 });
-// =====================================
-// Default Date
-// =====================================
-
-document.getElementById("operationDate").value =
-new Date().toISOString().split("T")[0];
-// =====================================
+// ======================================================
 // Generate Invoice Number
-// =====================================
+// ======================================================
 
-async function generateInvoiceNumber() {
+async function generateInvoiceNumber(){
 
-    const type =
-    document.getElementById("operationType").value;
+    const ref =
+    operationType.value === "rebar"
+    ? rebarRef
+    : billetRef;
 
-    let ref;
+    const prefix =
+    operationType.value === "rebar"
+    ? "RB"
+    : "BL";
 
-    let prefix;
+    const snapshot =
+    await getDocs(ref);
 
-    if (type === "rebar") {
+    const number =
+    snapshot.size + 1;
 
-        ref = rebarRef;
+    const year =
+    new Date().getFullYear();
 
-        prefix = "RB";
+    operationInvoice.value =
+    `${prefix}-${year}-${String(number).padStart(5,"0")}`;
 
-    } else {
+}
 
-        ref = billetRef;
+operationType.addEventListener(
+"change",
+generateInvoiceNumber
+);
 
-        prefix = "BL";
+// ======================================================
+// Border Crossing
+// ======================================================
+
+borderCrossing.addEventListener("change",()=>{
+
+    switch(borderCrossing.value){
+
+        case "القائم":
+
+            externalTransport.value = 2900;
+
+            break;
+
+        case "التنف":
+
+            externalTransport.value = 2700;
+
+            break;
+
+        default:
+
+            externalTransport.value = "";
 
     }
 
-    const snapshot = await getDocs(ref);
+});
 
-    const number = snapshot.size + 1;
-
-    const year = new Date().getFullYear();
-
-    document.getElementById("operationInvoice").value =
-
-        `${prefix}-${year}-${String(number).padStart(5, "0")}`;
-
-}
-document.getElementById("operationType")
-.addEventListener("change", generateInvoiceNumber);
-// ===============================
+// ======================================================
 // Save Operation
-// ===============================
+// ======================================================
 
-document.getElementById("saveOperation")
-.addEventListener("click", saveOperation);
+document
+.getElementById("saveOperation")
+.addEventListener("click",saveOperation);
 
 async function saveOperation(){
 
-    alert("save clicked");
-
     try{
 
-        const type =
-        document.getElementById("operationType").value;
-
-        const data = {
+        const data={
 
             invoiceNumber:
-            document.getElementById("operationInvoice").value,
+            operationInvoice.value,
 
             date:
-            document.getElementById("operationDate").value,
+            operationDate.value,
 
             supplier:
-            document.getElementById("operationSupplier").value,
+            operationSupplier.value,
 
             customer:
-            document.getElementById("operationCustomer").value,
+            operationCustomer.value,
+
+            receivedQty:
+            Number(receivedQty.value||0),
+
+            totalWeight:
+            Number(totalWeight.textContent||0),
 
             pricePerTon:
-            Number(document.getElementById("pricePerTon").value),
+            Number(pricePerTon.value||0),
 
-            transportCost:
-            Number(document.getElementById("transportCost").value),
+            totalValue:
+            Number(totalValue.value||0),
+
+            borderCrossing:
+            borderCrossing.value,
+
+            externalTransport:
+            Number(externalTransport.value||0),
+
+            customsCost:
+            Number(customsCost.value||0),
+
+            transferFees:
+            Number(transferFees.value||0),
 
             supplierPayment:
-            Number(document.getElementById("supplierPayment").value),
+            Number(supplierPayment.value||0),
 
             customerPayment:
-            Number(document.getElementById("customerPayment").value),
+            Number(customerPayment.value||0),
 
             customerWithdraw:
-            Number(document.getElementById("customerWithdraw").value),
+            Number(customerWithdraw.value||0),
 
             status:
-            document.getElementById("operationStatus").value,
+            operationStatus.value,
 
             notes:
-            document.getElementById("operationNotes").value,
+            operationNotes.value,
 
             createdAt:
             new Date()
 
         };
 
-        if(type==="rebar"){
+        if(operationType.value==="rebar"){
 
             await addDoc(rebarRef,data);
 
@@ -183,13 +281,13 @@ async function saveOperation(){
 
         }
 
-alert("تم حفظ العملية بنجاح");
+        alert("تم حفظ العملية بنجاح");
 
-await loadOperations();
-
-modal.hide();
-        
         modal.hide();
+
+        await loadOperations();
+
+        await generateInvoiceNumber();
 
     }
 
@@ -202,263 +300,396 @@ modal.hide();
     }
 
 }
-// =====================================
+// ======================================================
+// Trucks
+// ======================================================
+
+const addTruckBtn =
+document.getElementById("addTruckRow");
+
+const truckTable =
+document.getElementById("truckItemsTable");
+
+let trucks = [];
+
+// ======================================================
 // Add Truck
-// =====================================
+// ======================================================
 
-const addTruckBtn = document.querySelector("#operationModal #addTruckRow");
-const truckTable = document.getElementById("truckItemsTable");
+addTruckBtn.addEventListener("click",addTruck);
 
-addTruckBtn.addEventListener("click", () => {
+function addTruck(){
 
-    if (truckTable.innerText.includes("لا توجد سيارات")) {
+    if(truckTable.innerText.includes("لا توجد سيارات")){
 
-        truckTable.innerHTML = "";
-
-    setTimeout(() => {
-
-    document.querySelectorAll(".truckWeight").forEach(input => {
-
-        input.oninput = calculateTotalValue;
-
-    });
-
-},100);
+        truckTable.innerHTML="";
 
     }
 
-    const today = new Date().toISOString().split("T")[0];
+    const row =
+    truckTable.rows.length + 1;
 
-    const row = truckTable.rows.length + 1;
+    const today =
+    new Date().toISOString().split("T")[0];
 
     truckTable.insertAdjacentHTML("beforeend",`
 
-<tr>
+    <tr>
 
-<td>${row}</td>
+        <td>${row}</td>
 
-<td>
+        <td>
 
-<input
-type="date"
-class="form-control"
-value="${today}">
+            <input
+            type="date"
+            class="form-control arrivalDate"
+            value="${today}">
 
-</td>
+        </td>
 
-<td>
+        <td>
 
-<input
-type="number"
-class="form-control truckWeight"
-step="0.001">
+            <input
+            type="number"
+            class="form-control truckWeight"
+            step="0.001"
+            value="0">
 
-</td>
+        </td>
 
-<td>
+        <td>
 
-<input
-type="file"
-class="form-control"
-accept="image/*">
+            <input
+            type="file"
+            class="form-control truckCard"
+            accept="image/*">
 
-</td>
+        </td>
 
-<td>
+        <td>
 
-<button
-type="button"
-class="btn btn-danger removeTruck">
+            <button
+            type="button"
+            class="btn btn-danger removeTruck">
 
-<i class="fa-solid fa-trash"></i>
+            <i class="fa-solid fa-trash"></i>
 
-</button>
+            </button>
 
-</td>
+        </td>
 
-</tr>
+    </tr>
 
-`);
+    `);
 
-});
+    bindTruckEvents();
+
+}
+// ======================================================
+// Truck Events
+// ======================================================
+
+function bindTruckEvents(){
+
+    document.querySelectorAll(".truckWeight").forEach(input=>{
+
+        input.removeEventListener("input",calculateTotals);
+
+        input.addEventListener("input",calculateTotals);
+
+    });
+
+}
+// ======================================================
+// Remove Truck
+// ======================================================
+
 truckTable.addEventListener("click",(e)=>{
 
-    if(e.target.closest(".removeTruck")){
+    if(!e.target.closest(".removeTruck")) return;
 
-        e.target.closest("tr").remove();
+    e.target.closest("tr").remove();
 
-    }
+    updateTruckNumbers();
+
+    calculateTotals();
 
 });
+// ======================================================
+// Update Numbers
+// ======================================================
 
-// =====================================
+function updateTruckNumbers(){
+
+    [...truckTable.rows].forEach((row,index)=>{
+
+        row.cells[0].textContent =
+        index + 1;
+
+    });
+
+}
+// ======================================================
+// Calculate Totals
+// ======================================================
+
+function calculateTotals(){
+
+    let total = 0;
+
+    document.querySelectorAll(".truckWeight").forEach(input=>{
+
+        total += Number(input.value || 0);
+
+    });
+
+    totalWeight.textContent =
+    total.toFixed(3);
+
+    totalValue.value =
+    (
+        total *
+        Number(pricePerTon.value || 0)
+    ).toFixed(2);
+
+}
+pricePerTon.addEventListener(
+"input",
+calculateTotals
+);
+// ======================================================
 // Load Operations
-// =====================================
+// ======================================================
 
 async function loadOperations(){
 
-    rebarTable.innerHTML = "";
-    billetTable.innerHTML = "";
+    await loadRebar();
 
-    const rebarSnapshot =
-    await getDocs(query(rebarRef,orderBy("createdAt","desc")));
+    await loadBillet();
 
-    if(rebarSnapshot.empty){
+    await loadCustomerDashboard();
 
-        rebarTable.innerHTML=`
-        <tr>
-            <td colspan="18" class="text-center">
-                لا توجد عمليات
-            </td>
-        </tr>
-        `;
-
-    }else{
-
-        rebarSnapshot.forEach(doc=>{
-
-            const d=doc.data();
-
-            rebarTable.innerHTML+=`
-
-            <tr>
-
-            <td>${d.date}</td>
-
-            <td>${d.supplier}</td>
-
-            <td>${d.customer}</td>
-
-            <td>${d.invoiceNumber}</td>
-
-            <td>-</td>
-
-            <td>-</td>
-
-            <td>${d.pricePerTon}</td>
-
-            <td>-</td>
-
-            <td>-</td>
-
-            <td>-</td>
-
-            <td>${d.supplierPayment}</td>
-
-            <td>${d.transportCost}</td>
-
-            <td>${d.customerPayment}</td>
-
-            <td>${d.customerWithdraw}</td>
-
-            <td>-</td>
-
-            <td>${d.status}</td>
-
-            <td>${d.notes}</td>
-
-            <td>
-
-            <button class="btn btn-warning btn-sm">
-
-            تعديل
-
-            </button>
-
-            </td>
-
-            </tr>
-
-            `;
-
-        });
-
-    }
-
-    const billetSnapshot =
-    await getDocs(query(billetRef,orderBy("createdAt","desc")));
-
-    if(billetSnapshot.empty){
-
-        billetTable.innerHTML=`
-        <tr>
-            <td colspan="18" class="text-center">
-                لا توجد عمليات
-            </td>
-        </tr>
-        `;
-
-    }else{
-
-        billetSnapshot.forEach(doc=>{
-
-            const d=doc.data();
-
-            billetTable.innerHTML+=`
-
-            <tr>
-
-            <td>${d.date}</td>
-
-            <td>${d.supplier}</td>
-
-            <td>${d.customer}</td>
-
-            <td>${d.invoiceNumber}</td>
-
-            <td>-</td>
-
-            <td>-</td>
-
-            <td>${d.pricePerTon}</td>
-
-            <td>-</td>
-
-            <td>-</td>
-
-            <td>-</td>
-
-            <td>${d.supplierPayment}</td>
-
-            <td>${d.transportCost}</td>
-
-            <td>${d.customerPayment}</td>
-
-            <td>${d.customerWithdraw}</td>
-
-            <td>-</td>
-
-            <td>${d.status}</td>
-
-            <td>${d.notes}</td>
-
-            <td>
-
-            <button class="btn btn-warning btn-sm">
-
-            تعديل
-
-            </button>
-
-            </td>
-
-            </tr>
-
-            `;
-
-        });
-
-    }
+    await loadExpensesDashboard();
 
 }
+// ======================================================
+// Load Rebar
+// ======================================================
 
-// =====================================
-// Customer Balance Dashboard
-// =====================================
+async function loadRebar(){
 
-async function loadCustomerDashboard(){
+    rebarTable.innerHTML="";
 
-    let customers = {};
+    const snapshot =
+    await getDocs(
+        query(
+            rebarRef,
+            orderBy("createdAt","desc")
+        )
+    );
+
+    if(snapshot.empty){
+
+        rebarTable.innerHTML=`
+
+        <tr>
+
+        <td colspan="18">
+
+        لا توجد عمليات
+
+        </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+    snapshot.forEach(doc=>{
+
+        const d=doc.data();
+
+        rebarTable.innerHTML+=`
+
+        <tr>
+
+        <td>${d.date}</td>
+
+        <td>${d.supplier}</td>
+
+        <td>${d.customer}</td>
+
+        <td>${d.invoiceNumber}</td>
+
+        <td>${Number(d.totalWeight||0).toFixed(3)}</td>
+
+        <td>${Number(d.receivedQty||0).toFixed(3)}</td>
+
+        <td>${Number(d.pricePerTon).toLocaleString()}</td>
+
+        <td>${Number(d.totalValue).toLocaleString()}</td>
+
+        <td>-</td>
+
+        <td>-</td>
+
+        <td>${Number(d.supplierPayment).toLocaleString()}</td>
+
+        <td>${Number(d.externalTransport).toLocaleString()}</td>
+
+        <td>${Number(d.customerPayment).toLocaleString()}</td>
+
+        <td>${Number(d.customerWithdraw).toLocaleString()}</td>
+
+        <td>-</td>
+
+        <td>${d.status}</td>
+
+        <td>${d.notes}</td>
+
+        <td>
+
+        <button
+        class="btn btn-warning btn-sm">
+
+        <i class="fa-solid fa-pen"></i>
+
+        </button>
+
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+// ======================================================
+// Load Billet
+// ======================================================
+
+async function loadBillet(){
+
+    billetTable.innerHTML="";
+
+    const snapshot =
+    await getDocs(
+        query(
+            billetRef,
+            orderBy("createdAt","desc")
+        )
+    );
+
+    if(snapshot.empty){
+
+        billetTable.innerHTML=`
+
+        <tr>
+
+        <td colspan="18">
+
+        لا توجد عمليات
+
+        </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+    snapshot.forEach(doc=>{
+
+        const d=doc.data();
+
+        billetTable.innerHTML+=`
+
+        <tr>
+
+        <td>${d.date}</td>
+
+        <td>${d.supplier}</td>
+
+        <td>${d.customer}</td>
+
+        <td>${d.invoiceNumber}</td>
+
+        <td>${Number(d.totalWeight||0).toFixed(3)}</td>
+
+        <td>${Number(d.receivedQty||0).toFixed(3)}</td>
+
+        <td>${Number(d.pricePerTon).toLocaleString()}</td>
+
+        <td>${Number(d.totalValue).toLocaleString()}</td>
+
+        <td>-</td>
+
+        <td>-</td>
+
+        <td>${Number(d.supplierPayment).toLocaleString()}</td>
+
+        <td>${Number(d.externalTransport).toLocaleString()}</td>
+
+        <td>${Number(d.customerPayment).toLocaleString()}</td>
+
+        <td>${Number(d.customerWithdraw).toLocaleString()}</td>
+
+        <td>-</td>
+
+        <td>${d.status}</td>
+
+        <td>${d.notes}</td>
+
+        <td>
+
+        <button
+        class="btn btn-warning btn-sm">
+
+        <i class="fa-solid fa-pen"></i>
+
+        </button>
+
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+// ======================================================
+// Dashboard
+// ======================================================
+
+async function loadDashboard(){
+
+    let rebarPurchase = 0;
+    let billetPurchase = 0;
+
+    let totalSales = 0;
+
+    let totalProfit = 0;
+
+    let totalSupplierPayments = 0;
+
+    let totalCustomerPayments = 0;
+
+    let totalExternalTransport = 0;
+
+    let totalCustoms = 0;
+
+    let totalTransfer = 0;
+
+    // ===========================
+    // Rebar
+    // ===========================
 
     const rebarSnapshot = await getDocs(rebarRef);
 
@@ -466,25 +697,30 @@ async function loadCustomerDashboard(){
 
         const d = doc.data();
 
-        if(!customers[d.customer]){
+        rebarPurchase += Number(d.totalValue||0);
 
-            customers[d.customer] = {
+        totalSales += Number(d.customerWithdraw||0);
 
-                sales:0,
+        totalSupplierPayments +=
+        Number(d.supplierPayment||0);
 
-                payments:0
+        totalCustomerPayments +=
+        Number(d.customerPayment||0);
 
-            };
+        totalExternalTransport +=
+        Number(d.externalTransport||0);
 
-        }
+        totalCustoms +=
+        Number(d.customsCost||0);
 
-        customers[d.customer].sales +=
-        Number(d.totalValue || 0);
-
-        customers[d.customer].payments +=
-        Number(d.customerPayment || 0);
+        totalTransfer +=
+        Number(d.transferFees||0);
 
     });
+
+    // ===========================
+    // Billet
+    // ===========================
 
     const billetSnapshot = await getDocs(billetRef);
 
@@ -492,111 +728,80 @@ async function loadCustomerDashboard(){
 
         const d = doc.data();
 
-        if(!customers[d.customer]){
+        billetPurchase += Number(d.totalValue||0);
 
-            customers[d.customer] = {
+        totalSales += Number(d.customerWithdraw||0);
 
-                sales:0,
+        totalSupplierPayments +=
+        Number(d.supplierPayment||0);
 
-                payments:0
+        totalCustomerPayments +=
+        Number(d.customerPayment||0);
 
-            };
+        totalExternalTransport +=
+        Number(d.externalTransport||0);
 
-        }
+        totalCustoms +=
+        Number(d.customsCost||0);
 
-        customers[d.customer].sales +=
-        Number(d.totalValue || 0);
-
-        customers[d.customer].payments +=
-        Number(d.customerPayment || 0);
-
-    });
-
-    let biggestCredit = {
-
-        name:"",
-
-        value:0
-
-    };
-
-    let biggestDue = {
-
-        name:"",
-
-        value:0
-
-    };
-
-    Object.keys(customers).forEach(name=>{
-
-        const balance =
-        customers[name].payments -
-        customers[name].sales;
-
-        if(balance>biggestCredit.value){
-
-            biggestCredit.name=name;
-
-            biggestCredit.value=balance;
-
-        }
-
-        if(balance<0){
-
-            if(Math.abs(balance)>
-            biggestDue.value){
-
-                biggestDue.name=name;
-
-                biggestDue.value=Math.abs(balance);
-
-            }
-
-        }
+        totalTransfer +=
+        Number(d.transferFees||0);
 
     });
 
-    customerBalanceName.textContent =
-    biggestCredit.name || "لا يوجد";
+    // ===========================
+    // Totals
+    // ===========================
 
-    customerBalanceAmount.textContent =
-    biggestCredit.value.toLocaleString()+" $";
+    const totalPurchases =
+    rebarPurchase +
+    billetPurchase;
 
-    customerDueName.textContent =
-    biggestDue.name || "لا يوجد";
+    const totalExpenses =
+    totalExternalTransport +
+    totalCustoms +
+    totalTransfer;
 
-    customerDueAmount.textContent =
-biggestDue.value.toLocaleString()+" $";
+    totalProfit =
+    totalSales -
+    totalPurchases -
+    totalExpenses;
 
-}
+    // ===========================
+    // Dashboard Cards
+    // ===========================
 
-// =====================================
-// Calculate Total Value
-// =====================================
+    document.getElementById("rebarPurchases").textContent =
+    rebarPurchase.toLocaleString();
 
-function calculateTotalValue(){
+    document.getElementById("billetPurchases").textContent =
+    billetPurchase.toLocaleString();
 
-    let totalWeight = 0;
+    document.getElementById("totalPurchases").textContent =
+    totalPurchases.toLocaleString();
 
-    document.querySelectorAll(".truckWeight").forEach(input=>{
+    document.getElementById("totalSales").textContent =
+    totalSales.toLocaleString();
 
-        totalWeight += Number(input.value || 0);
+    document.getElementById("totalProfit").textContent =
+    totalProfit.toLocaleString();
 
-    });
+    document.getElementById("cashBox").textContent =
+    totalCustomerPayments.toLocaleString();
 
-    document.getElementById("totalWeight").textContent =
-    totalWeight.toFixed(3);
-
-    totalValue.value =
+    document.getElementById("balance").textContent =
     (
-        totalWeight *
-        Number(pricePerTon.value || 0)
-    ).toFixed(2);
+        totalCustomerPayments -
+        totalSupplierPayments
+    ).toLocaleString();
+
+    document.getElementById("totalImportExpenses").textContent =
+    (
+        totalExternalTransport +
+        totalTransfer
+    ).toLocaleString();
+
+    document.getElementById("customsTransportCard").textContent =
+    totalCustoms.toLocaleString();
 
 }
-
-pricePerTon.addEventListener(
-"input",
-calculateTotalValue
-);
