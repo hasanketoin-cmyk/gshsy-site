@@ -284,56 +284,8 @@ function refreshTruckTable() {
 
         total += Number(truck.weight);
 
-        truckTable.innerHTML += `
+     oninput="updateTruckWeight(${index},this.value)">
 
-<tr>
-
-<td>${index+1}</td>
-
-<td>
-
-<input
-type="date"
-class="form-control"
-value="${truck.date}"
-onchange="truckItems[${index}].date=this.value">
-
-</td>
-
-<td>
-
-<input
-type="number"
-step="0.001"
-class="form-control"
-value="${truck.weight}"
-oninput="updateTruckWeight(${index},this.value)">
-
-</td>
-
-<td>
-
-<input
-type="file"
-class="form-control">
-
-</td>
-
-<td>
-
-<button
-class="btn btn-danger btn-sm"
-onclick="removeTruck(${index})">
-
-🗑
-
-</button>
-
-</td>
-
-</tr>
-
-`;
 
     });
 
@@ -390,7 +342,7 @@ addTruckRow.addEventListener("click", () => {
     refreshTruckTable();
 
 });
-});
+
 
 
 /* ============================================================
