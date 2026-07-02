@@ -100,29 +100,18 @@ document.getElementById("operationStatus");
 const operationNotes =
 document.getElementById("operationNotes");
 
+console.log("receivedQty:", receivedQty);
+console.log("borderCrossing:", borderCrossing);
+console.log("externalTransport:", externalTransport);
+console.log("customsCost:", customsCost);
+console.log("transferFees:", transferFees);
+console.log("totalValue:", totalValue);
+
 // ======================================================
 // Page Start
 // ======================================================
 
-window.addEventListener("DOMContentLoaded", async()=>{
-
-    operationDate.value =
-    new Date().toISOString().split("T")[0];
-
-async function loadOperations(){
-
-    await loadRebar();
-
-    await loadBillet();
-
-    await loadCustomerDashboard();
-
-    await loadDashboard();
-
-}
-    await generateInvoiceNumber();
-
-});
+DOMContentLoaded
 
 // ======================================================
 // Open New Operation
