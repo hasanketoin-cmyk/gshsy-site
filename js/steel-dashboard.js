@@ -184,19 +184,48 @@ if (addTruckBtn && truckTable) {
 
         if (truckTable.innerHTML.includes("لا توجد سيارات")) {
 
-            truckTable.innerHTML = "";
+            let rowNumber = truckTable.querySelectorAll("tr").length;
 
-        }
+if (truckTable.innerText.includes("لا توجد سيارات")) {
+    truckTable.innerHTML = "";
+    rowNumber = 0;
+}
 
-        const today = new Date().toISOString().split("T")[0];
+const today = new Date().toISOString().split("T")[0];
 
-        truckTable.insertAdjacentHTML("beforeend", `
-
+truckTable.insertAdjacentHTML("beforeend", `
 <tr>
 
-<td>
+<td>${rowNumber + 1}</td>
 
-<input type="date" class="form-control" value="${today}">
+<td>
+<input type="date"
+class="form-control"
+value="${today}">
+</td>
+
+<td>
+<input type="number"
+class="form-control truckWeight"
+step="0.001">
+</td>
+
+<td>
+<input type="file"
+class="form-control"
+accept="image/*">
+</td>
+
+<td>
+<button
+type="button"
+class="btn btn-danger removeTruck">
+🗑
+</button>
+</td>
+
+</tr>
+`);
 
 </td>
 
