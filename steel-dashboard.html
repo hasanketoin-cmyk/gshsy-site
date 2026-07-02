@@ -300,7 +300,109 @@
 <h2 id="bank">0</h2>
 
 <span>USD</span>
+<div class="row mt-3">
 
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card steel-card warning">
+
+<i class="fa-solid fa-road"></i>
+
+<h6>
+
+النقل الخارجي - القائم
+
+</h6>
+
+<h2 id="qaimTransport">
+
+0 $
+
+</h2>
+
+<span>
+
+2900$ / سيارة
+
+</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card steel-card primary">
+
+<i class="fa-solid fa-truck-ramp-box"></i>
+
+<h6>
+
+النقل الخارجي - التنف
+
+</h6>
+
+<h2 id="tanfTransport">
+
+0 $
+
+</h2>
+
+<span>
+
+2700$ / سيارة
+
+</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card steel-card danger">
+
+<i class="fa-solid fa-building-shield"></i>
+
+<h6>
+
+النقل والجمارك
+
+</h6>
+
+<h2 id="customsTransport">
+
+0 $
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card steel-card success">
+
+<i class="fa-solid fa-money-bill-transfer"></i>
+
+<h6>
+
+أجور التحويل
+
+</h6>
+
+<h2 id="transferFees">
+
+0 $
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
 </div>
 </div>
 
@@ -894,21 +996,88 @@ id="addTruckRow">
 
 </div>
 
+<div class="row mt-3">
+
 <div class="col-md-3 mb-3">
 
 <label class="form-label">
 
-أجور النقل
+المعبر
+
+</label>
+
+<select
+class="form-select"
+id="borderCrossing">
+
+<option value="">
+
+اختر المعبر
+
+</option>
+
+<option value="القائم">
+
+القائم
+
+</option>
+
+<option value="التنف">
+
+التنف
+
+</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+النقل الخارجي
 
 </label>
 
 <input
 type="number"
 class="form-control"
-id="transportCost">
+id="externalTransport">
 
 </div>
 
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+النقل والجمارك
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="customsCost">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+أجور التحويل
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="transferFees">
+
+</div>
+
+</div>
 </div>
 
 <div class="row">
