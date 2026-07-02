@@ -1086,33 +1086,35 @@ row.innerText.toLowerCase().includes(filter)
 
 function clearForm() {
 
-    // إعادة تعيين بيانات السيارات
     truckItems = [];
 
-    // تنظيف جدول السيارات
     if (typeof refreshTruckTable === "function") {
         refreshTruckTable();
     }
 
-    // إعادة تعيين الحقول
-    document.getElementById("operationSupplier").value = "";
-    document.getElementById("operationCustomer").value = "";
+    const ids = [
+        "operationSupplier",
+        "operationCustomer",
+        "receivedQty",
+        "pricePerTon",
+        "totalValue",
+        "supplierPayment",
+        "customerPayment",
+        "customerWithdraw",
+        "externalTransport",
+        "customsCost",
+        "transferFees",
+        "operationNotes"
+    ];
 
-    receivedQty.value = "";
-    pricePerTon.value = "";
-    totalValue.value = "";
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+    });
 
-    document.getElementById("supplierPayment").value = "";
-    document.getElementById("customerPayment").value = "";
-    document.getElementById("customerWithdraw").value = "";
+    const border = document.getElementById("borderCrossing");
+    if (border) border.selectedIndex = 0;
 
-    document.getElementById("externalTransport").value = "";
-    document.getElementById("customsCost").value = "";
-    document.getElementById("transferFees").value = "";
-
-    document.getElementById("borderCrossing").selectedIndex = 0;
-    document.getElementById("operationStatus").selectedIndex = 0;
-
-    document.getElementById("operationNotes").value = "";
-
+    const status = document.getElementById("operationStatus");
+    if (status) status.selectedIndex = 0;
 }
