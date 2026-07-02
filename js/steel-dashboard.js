@@ -26,6 +26,11 @@ document.getElementById("newOperation");
 
 const operationModal =
 document.getElementById("operationModal");
+const totalValue =
+document.getElementById("totalValue");
+
+const pricePerTon =
+document.getElementById("pricePerTon");
 const rebarTable =
 document.getElementById("rebarTable");
 
@@ -209,6 +214,16 @@ addTruckBtn.addEventListener("click", () => {
     if (truckTable.innerText.includes("لا توجد سيارات")) {
 
         truckTable.innerHTML = "";
+
+    setTimeout(() => {
+
+    document.querySelectorAll(".truckWeight").forEach(input => {
+
+        input.oninput = calculateTotalValue;
+
+    });
+
+},100);
 
     }
 
@@ -552,7 +567,36 @@ async function loadCustomerDashboard(){
     biggestDue.name || "لا يوجد";
 
     customerDueAmount.textContent =
-    biggestDue.value.toLocaleString()+" $";
+biggestDue.value.toLocaleString()+" $";
 
-    await loadCustomerDashboard();
 }
+
+// =====================================
+// Calculate Total Value
+// =====================================
+
+function calculateTotalValue(){
+
+    let totalWeight = 0;
+
+    document.querySelectorAll(".truckWeight").forEach(input=>{
+
+        totalWeight += Number(input.value || 0);
+
+    });
+
+    document.getElementById("totalWeight").textContent =
+    totalWeight.toFixed(3);
+
+    totalValue.value =
+    (
+        totalWeight *
+        Number(pricePerTon.value || 0)
+    ).toFixed(2);
+
+}
+
+pricePerTon.addEventListener(
+"input",
+calculateTotalValue
+);
