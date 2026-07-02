@@ -175,77 +175,61 @@ async function saveOperation(){
 // Add Truck
 // =====================================
 
-const addTruckBtn = document.getElementById("addTruckRow");
+const addTruckBtn = document.querySelector("#operationModal #addTruckRow");
 const truckTable = document.getElementById("truckItemsTable");
 
-if (addTruckBtn && truckTable) {
+addTruckBtn.addEventListener("click", () => {
 
-    addTruckBtn.addEventListener("click", function () {
+    if (truckTable.innerText.includes("لا توجد سيارات")) {
 
-        if (truckTable.innerHTML.includes("لا توجد سيارات")) {
+        truckTable.innerHTML = "";
 
-            let rowNumber = truckTable.querySelectorAll("tr").length;
+    }
 
-if (truckTable.innerText.includes("لا توجد سيارات")) {
-    truckTable.innerHTML = "";
-    rowNumber = 0;
-}
+    const today = new Date().toISOString().split("T")[0];
 
-const today = new Date().toISOString().split("T")[0];
+    const row = truckTable.rows.length + 1;
 
-truckTable.insertAdjacentHTML("beforeend", `
+    truckTable.insertAdjacentHTML("beforeend",`
+
 <tr>
 
-<td>${rowNumber + 1}</td>
+<td>${row}</td>
 
 <td>
-<input type="date"
+
+<input
+type="date"
 class="form-control"
 value="${today}">
+
 </td>
 
 <td>
-<input type="number"
+
+<input
+type="number"
 class="form-control truckWeight"
 step="0.001">
+
 </td>
 
 <td>
-<input type="file"
+
+<input
+type="file"
 class="form-control"
 accept="image/*">
+
 </td>
 
 <td>
+
 <button
 type="button"
 class="btn btn-danger removeTruck">
-🗑
-</button>
-</td>
 
-</tr>
-`);
-
-</td>
-
-<td>
-
-<input type="number" class="form-control truckWeight" step="0.001">
-
-</td>
-
-<td>
-
-<input type="file" class="form-control" accept="image/*">
-
-</td>
-
-<td>
-
-<button type="button" class="btn btn-danger removeTruck">
-
-🗑
+<i class="fa-solid fa-trash"></i>
 
 </button>
 
@@ -255,20 +239,13 @@ class="btn btn-danger removeTruck">
 
 `);
 
-    });
+});
+truckTable.addEventListener("click",(e)=>{
 
-    truckTable.addEventListener("click", function(e){
+    if(e.target.closest(".removeTruck")){
 
-        if(e.target.classList.contains("removeTruck")){
+        e.target.closest("tr").remove();
 
-            e.target.closest("tr").remove();
+    }
 
-        }
-
-    });
-
-} else {
-
-    console.error("لم يتم العثور على addTruckRow أو truckItemsTable");
-
-}
+});
