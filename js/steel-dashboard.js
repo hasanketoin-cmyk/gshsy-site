@@ -128,24 +128,23 @@ operationType.addEventListener(
 // Border Crossing
 // ======================================================
 
-borderCrossing.addEventListener("change", () => {
+borderCrossing.onchange = function () {
 
-    switch(borderCrossing.value){
+    if (this.value === "القائم") {
 
-        case "القائم":
-            externalTransport.value = 2900;
-            break;
+        externalTransport.value = 2900;
 
-        case "التنف":
-            externalTransport.value = 2700;
-            break;
+    } else if (this.value === "التنف") {
 
-        default:
-            externalTransport.value = "";
+        externalTransport.value = 2700;
+
+    } else {
+
+        externalTransport.value = "";
 
     }
 
-});
+};
 // ======================================================
 // Trucks
 // ======================================================
