@@ -1079,3 +1079,40 @@ row.innerText.toLowerCase().includes(filter)
 });
 
 });
+
+/* ============================================================
+   Clear Form
+============================================================ */
+
+function clearForm() {
+
+    // إعادة تعيين بيانات السيارات
+    truckItems = [];
+
+    // تنظيف جدول السيارات
+    if (typeof refreshTruckTable === "function") {
+        refreshTruckTable();
+    }
+
+    // إعادة تعيين الحقول
+    document.getElementById("operationSupplier").value = "";
+    document.getElementById("operationCustomer").value = "";
+
+    receivedQty.value = "";
+    pricePerTon.value = "";
+    totalValue.value = "";
+
+    document.getElementById("supplierPayment").value = "";
+    document.getElementById("customerPayment").value = "";
+    document.getElementById("customerWithdraw").value = "";
+
+    document.getElementById("externalTransport").value = "";
+    document.getElementById("customsCost").value = "";
+    document.getElementById("transferFees").value = "";
+
+    document.getElementById("borderCrossing").selectedIndex = 0;
+    document.getElementById("operationStatus").selectedIndex = 0;
+
+    document.getElementById("operationNotes").value = "";
+
+}
