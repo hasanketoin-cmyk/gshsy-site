@@ -267,58 +267,94 @@ function refreshTruckTable() {
     if (truckItems.length === 0) {
 
         truckTable.innerHTML = `
-            <tr>
-                <td colspan="5" class="text-center text-muted">
-                    لا توجد سيارات
-                </td>
-            </tr>
-        `;
+        <tr>
+            <td colspan="5" class="text-center">
+                لا توجد سيارات
+            </td>
+        </tr>`;
 
         totalWeight.textContent = "0.000";
+
         return;
     }
 
     let total = 0;
 
-    truckItems.forEach((truck, index) => {
+    truckItems.forEach((truck,index)=>{
 
         total += Number(truck.weight);
 
         truckTable.innerHTML += `
 
-        <tr>
+<tr>
 
-            <td>${index + 1}</td>
+<td>${index+1}</td>
 
-            <td>${truck.date}</td>
+<td>
 
-            <td>${Number(truck.weight).toFixed(3)}</td>
+<input
+type="date"
+class="form-control"
+value="${truck.date}"
+onchange="truckItems[${index}].date=this.value">
 
-            <td>${truck.scaleCard}</td>
+</td>
 
-            <td>
+<td>
 
-                <button
-                    class="btn btn-danger btn-sm"
-                    onclick="removeTruck(${index})">
+<input
+type="number"
+step="0.001"
+class="form-control"
+value="${truck.weight}"
+oninput="updateTruckWeight(${index},this.value)">
 
-                    <i class="fa-solid fa-trash"></i>
+</td>
 
-                </button>
+<td>
 
-            </td>
+<input
+type="file"
+class="form-control">
 
-        </tr>
+</td>
 
-        `;
+<td>
+
+<button
+class="btn btn-danger btn-sm"
+onclick="removeTruck(${index})">
+
+🗑
+
+</button>
+
+</td>
+
+</tr>
+
+`;
 
     });
 
     totalWeight.textContent = total.toFixed(3);
 
 }
+window.updateTruckWeight = function(index,value){
 
+    truckItems[index].weight = Number(value);
 
+    let total = 0;
+
+    truckItems.forEach(t=>{
+
+        total += Number(t.weight);
+
+    });
+
+    totalWeight.textContent = total.toFixed(3);
+
+}
 /* ============================================================
    Remove Truck
 ============================================================ */
@@ -341,60 +377,19 @@ window.removeTruck = function(index){
 
 addTruckRow.addEventListener("click", () => {
 
-    const tbody = document.getElementById("truckItemsTable");
+    truckItems.push({
 
-    // حذف رسالة "لا توجد سيارات"
-    if (tbody.querySelector("td[colspan='5']")) {
-        tbody.innerHTML = "";
-    }
+        date: today(),
 
-    const index = tbody.rows.length + 1;
+        weight: 0,
 
-    const today = new Date().toISOString().split("T")[0];
+        scaleCard: ""
 
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-        <td>${index}</td>
-
-        <td>
-            <input type="date"
-                   class="form-control truck-date"
-                   value="${today}">
-        </td>
-
-        <td>
-            <input type="number"
-                   class="form-control truck-weight"
-                   step="0.001"
-                   placeholder="الوزن">
-        </td>
-
-        <td>
-            <input type="file"
-                   class="form-control truck-scale"
-                   accept="image/*,.pdf">
-        </td>
-
-        <td>
-            <button type="button"
-                    class="btn btn-danger btn-sm removeTruck">
-                <i class="fa fa-trash"></i>
-            </button>
-        </td>
-    `;
-
-    tbody.appendChild(row);
-
-    // حذف الصف
-    row.querySelector(".removeTruck").addEventListener("click", () => {
-        row.remove();
-        calculateTruckWeight();
     });
 
-    // إعادة حساب الوزن عند التعديل
-    row.querySelector(".truck-weight").addEventListener("input", calculateTruckWeight);
+    refreshTruckTable();
 
+});
 });
 
 
