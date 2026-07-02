@@ -5,7 +5,8 @@ import {
     addDoc,
     getDocs,
     query,
-    orderBy
+    orderBy,
+    where
 }
 from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
@@ -30,6 +31,18 @@ document.getElementById("rebarTable");
 
 const billetTable =
 document.getElementById("billetTable");
+
+const customerBalanceName =
+document.getElementById("customerBalanceName");
+
+const customerBalanceAmount =
+document.getElementById("customerBalanceAmount");
+
+const customerDueName =
+document.getElementById("customerDueName");
+
+const customerDueAmount =
+document.getElementById("customerDueAmount");
 
 // ===============================
 // Bootstrap Modal
@@ -422,4 +435,124 @@ async function loadOperations(){
 
     }
 
+}
+
+// =====================================
+// Customer Balance Dashboard
+// =====================================
+
+async function loadCustomerDashboard(){
+
+    let customers = {};
+
+    const rebarSnapshot = await getDocs(rebarRef);
+
+    rebarSnapshot.forEach(doc=>{
+
+        const d = doc.data();
+
+        if(!customers[d.customer]){
+
+            customers[d.customer] = {
+
+                sales:0,
+
+                payments:0
+
+            };
+
+        }
+
+        customers[d.customer].sales +=
+        Number(d.totalValue || 0);
+
+        customers[d.customer].payments +=
+        Number(d.customerPayment || 0);
+
+    });
+
+    const billetSnapshot = await getDocs(billetRef);
+
+    billetSnapshot.forEach(doc=>{
+
+        const d = doc.data();
+
+        if(!customers[d.customer]){
+
+            customers[d.customer] = {
+
+                sales:0,
+
+                payments:0
+
+            };
+
+        }
+
+        customers[d.customer].sales +=
+        Number(d.totalValue || 0);
+
+        customers[d.customer].payments +=
+        Number(d.customerPayment || 0);
+
+    });
+
+    let biggestCredit = {
+
+        name:"",
+
+        value:0
+
+    };
+
+    let biggestDue = {
+
+        name:"",
+
+        value:0
+
+    };
+
+    Object.keys(customers).forEach(name=>{
+
+        const balance =
+        customers[name].payments -
+        customers[name].sales;
+
+        if(balance>biggestCredit.value){
+
+            biggestCredit.name=name;
+
+            biggestCredit.value=balance;
+
+        }
+
+        if(balance<0){
+
+            if(Math.abs(balance)>
+            biggestDue.value){
+
+                biggestDue.name=name;
+
+                biggestDue.value=Math.abs(balance);
+
+            }
+
+        }
+
+    });
+
+    customerBalanceName.textContent =
+    biggestCredit.name || "لا يوجد";
+
+    customerBalanceAmount.textContent =
+    biggestCredit.value.toLocaleString()+" $";
+
+    customerDueName.textContent =
+    biggestDue.name || "لا يوجد";
+
+    customerDueAmount.textContent =
+    biggestDue.value.toLocaleString()+" $";
+
+    await loadCustomerDashboard();
 }
