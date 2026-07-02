@@ -93,6 +93,38 @@ newOperation.addEventListener("click", async () => {
 });
 
 // ======================================================
+// Add Rebar Button
+// ======================================================
+
+document
+.getElementById("addRebar")
+.addEventListener("click", async () => {
+
+    operationType.value = "rebar";
+
+    await generateInvoiceNumber();
+
+    modal.show();
+
+});
+
+// ======================================================
+// Add Billet Button
+// ======================================================
+
+document
+.getElementById("addBillet")
+.addEventListener("click", async () => {
+
+    operationType.value = "billet";
+
+    await generateInvoiceNumber();
+
+    modal.show();
+
+});
+
+// ======================================================
 // Generate Invoice Number
 // ======================================================
 
