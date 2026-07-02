@@ -3,8 +3,11 @@ import { db } from "./firebase.js";
 import {
     collection,
     addDoc,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+    getDocs,
+    query,
+    orderBy
+}
+from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 // ===============================
 // Collections
@@ -22,6 +25,11 @@ document.getElementById("newOperation");
 
 const operationModal =
 document.getElementById("operationModal");
+const rebarTable =
+document.getElementById("rebarTable");
+
+const billetTable =
+document.getElementById("billetTable");
 
 // ===============================
 // Bootstrap Modal
@@ -38,6 +46,7 @@ newOperation.addEventListener("click", async () => {
 
     document.getElementById("operationDate").value =
     new Date().toISOString().split("T")[0];
+    loadOperations();
 
     await generateInvoiceNumber();
 
@@ -156,8 +165,12 @@ async function saveOperation(){
 
         }
 
-        alert("تم حفظ العملية بنجاح");
+alert("تم حفظ العملية بنجاح");
 
+await loadOperations();
+
+modal.hide();
+        
         modal.hide();
 
     }
@@ -249,3 +262,164 @@ truckTable.addEventListener("click",(e)=>{
     }
 
 });
+
+// =====================================
+// Load Operations
+// =====================================
+
+async function loadOperations(){
+
+    rebarTable.innerHTML = "";
+    billetTable.innerHTML = "";
+
+    const rebarSnapshot =
+    await getDocs(query(rebarRef,orderBy("createdAt","desc")));
+
+    if(rebarSnapshot.empty){
+
+        rebarTable.innerHTML=`
+        <tr>
+            <td colspan="18" class="text-center">
+                لا توجد عمليات
+            </td>
+        </tr>
+        `;
+
+    }else{
+
+        rebarSnapshot.forEach(doc=>{
+
+            const d=doc.data();
+
+            rebarTable.innerHTML+=`
+
+            <tr>
+
+            <td>${d.date}</td>
+
+            <td>${d.supplier}</td>
+
+            <td>${d.customer}</td>
+
+            <td>${d.invoiceNumber}</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>${d.pricePerTon}</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>${d.supplierPayment}</td>
+
+            <td>${d.transportCost}</td>
+
+            <td>${d.customerPayment}</td>
+
+            <td>${d.customerWithdraw}</td>
+
+            <td>-</td>
+
+            <td>${d.status}</td>
+
+            <td>${d.notes}</td>
+
+            <td>
+
+            <button class="btn btn-warning btn-sm">
+
+            تعديل
+
+            </button>
+
+            </td>
+
+            </tr>
+
+            `;
+
+        });
+
+    }
+
+    const billetSnapshot =
+    await getDocs(query(billetRef,orderBy("createdAt","desc")));
+
+    if(billetSnapshot.empty){
+
+        billetTable.innerHTML=`
+        <tr>
+            <td colspan="18" class="text-center">
+                لا توجد عمليات
+            </td>
+        </tr>
+        `;
+
+    }else{
+
+        billetSnapshot.forEach(doc=>{
+
+            const d=doc.data();
+
+            billetTable.innerHTML+=`
+
+            <tr>
+
+            <td>${d.date}</td>
+
+            <td>${d.supplier}</td>
+
+            <td>${d.customer}</td>
+
+            <td>${d.invoiceNumber}</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>${d.pricePerTon}</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>${d.supplierPayment}</td>
+
+            <td>${d.transportCost}</td>
+
+            <td>${d.customerPayment}</td>
+
+            <td>${d.customerWithdraw}</td>
+
+            <td>-</td>
+
+            <td>${d.status}</td>
+
+            <td>${d.notes}</td>
+
+            <td>
+
+            <button class="btn btn-warning btn-sm">
+
+            تعديل
+
+            </button>
+
+            </td>
+
+            </tr>
+
+            `;
+
+        });
+
+    }
+
+}
