@@ -262,33 +262,70 @@ function calculateTotal() {
 
 function refreshTruckTable() {
 
-    truckTable.innerHTML = "";
+  const row = document.createElement("tr");
 
-    if (truckItems.length === 0) {
+row.innerHTML = `
+<td>${index + 1}</td>
 
-        truckTable.innerHTML = `
-        <tr>
-            <td colspan="5" class="text-center">
-                لا توجد سيارات
-            </td>
-        </tr>`;
+<td>
+    <input
+        type="date"
+        class="form-control truck-date"
+        value="${truck.date}">
+</td>
 
-        totalWeight.textContent = "0.000";
+<td>
+    <input
+        type="number"
+        class="form-control truck-weight"
+        step="0.001"
+        value="${truck.weight}">
+</td>
 
-        return;
-    }
+<td>
+    <input
+        type="file"
+        class="form-control truck-scale"
+        accept="image/*,.pdf">
+</td>
+
+<td>
+    <button class="btn btn-danger btn-sm removeTruck">
+        🗑
+    </button>
+</td>
+`;
+
+truckTable.appendChild(row);
+   const dateInput = row.querySelector(".truck-date");
+const weightInput = row.querySelector(".truck-weight");
+const removeBtn = row.querySelector(".removeTruck");
+
+dateInput.addEventListener("change", () => {
+    truckItems[index].date = dateInput.value;
+});
+
+weightInput.addEventListener("input", () => {
+
+    truckItems[index].weight = Number(weightInput.value) || 0;
 
     let total = 0;
 
-    truckItems.forEach((truck,index)=>{
-
-        total += Number(truck.weight);
-
-     oninput="updateTruckWeight(${index},this.value)">
-
-
+    truckItems.forEach(t => {
+        total += Number(t.weight);
     });
 
+    totalWeight.textContent = total.toFixed(3);
+
+});
+
+removeBtn.addEventListener("click", () => {
+
+    truckItems.splice(index, 1);
+
+    refreshTruckTable();
+
+});
     totalWeight.textContent = total.toFixed(3);
 
 }
