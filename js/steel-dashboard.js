@@ -5,14 +5,14 @@
 // ======================================================
 
 import { db } from "./firebase.js";
-collection,
+
+import {
+    collection,
     addDoc,
     getDocs,
     query,
     orderBy
-}
-from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 // ======================================================
 // Firestore Collections
 // ======================================================
