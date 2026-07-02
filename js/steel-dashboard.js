@@ -339,36 +339,61 @@ window.removeTruck = function(index){
    Add Truck
 ============================================================ */
 
-addTruckRow.addEventListener("click",()=>{
+addTruckRow.addEventListener("click", () => {
 
-    const date = prompt("تاريخ وصول السيارة");
+    const tbody = document.getElementById("truckItemsTable");
 
-    if(date===null)
-        return;
+    // حذف رسالة "لا توجد سيارات"
+    if (tbody.querySelector("td[colspan='5']")) {
+        tbody.innerHTML = "";
+    }
 
-    const weight = prompt("وزن السيارة بالطن");
+    const index = tbody.rows.length + 1;
 
-    if(weight===null)
-        return;
+    const today = new Date().toISOString().split("T")[0];
 
-    const scaleCard = prompt("رقم كرت القبان");
+    const row = document.createElement("tr");
 
-    if(scaleCard===null)
-        return;
+    row.innerHTML = `
+        <td>${index}</td>
 
-    truckItems.push({
+        <td>
+            <input type="date"
+                   class="form-control truck-date"
+                   value="${today}">
+        </td>
 
-        id:Date.now(),
+        <td>
+            <input type="number"
+                   class="form-control truck-weight"
+                   step="0.001"
+                   placeholder="الوزن">
+        </td>
 
-        date,
+        <td>
+            <input type="file"
+                   class="form-control truck-scale"
+                   accept="image/*,.pdf">
+        </td>
 
-        weight:Number(weight),
+        <td>
+            <button type="button"
+                    class="btn btn-danger btn-sm removeTruck">
+                <i class="fa fa-trash"></i>
+            </button>
+        </td>
+    `;
 
-        scaleCard
+    tbody.appendChild(row);
 
+    // حذف الصف
+    row.querySelector(".removeTruck").addEventListener("click", () => {
+        row.remove();
+        calculateTruckWeight();
     });
 
-    refreshTruckTable();
+    // إعادة حساب الوزن عند التعديل
+    row.querySelector(".truck-weight").addEventListener("input", calculateTruckWeight);
 
 });
 
