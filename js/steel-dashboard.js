@@ -367,20 +367,14 @@ window.removeTruck = function(index){
 addTruckRow.addEventListener("click", () => {
 
     truckItems.push({
-
         date: today(),
-
         weight: 0,
-
         scaleCard: ""
-
     });
 
     refreshTruckTable();
 
 });
-
-
 
 /* ============================================================
    Validate Truck Weight
