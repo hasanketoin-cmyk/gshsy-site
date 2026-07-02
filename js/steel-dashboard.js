@@ -200,10 +200,29 @@ document
 
 async function saveOperation(){
 
+    console.log({
+        operationInvoice,
+        operationDate,
+        operationSupplier,
+        operationCustomer,
+        receivedQty,
+        totalWeight,
+        pricePerTon,
+        totalValue,
+        borderCrossing,
+        externalTransport,
+        customsCost,
+        transferFees,
+        supplierPayment,
+        customerPayment,
+        customerWithdraw,
+        operationStatus,
+        operationNotes
+    });
+
     try{
 
         const data={
-
             invoiceNumber:
             operationInvoice.value,
 
