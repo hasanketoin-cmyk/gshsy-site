@@ -1,3 +1,9 @@
+// ======================================================
+// K GROUP ERP
+// Steel Dashboard v2.0
+// Section 1
+// ======================================================
+
 import { db } from "./firebase.js";
 
 import {
@@ -10,41 +16,31 @@ import {
 from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 // ======================================================
-// Collections
+// Firestore Collections
 // ======================================================
 
-const rebarRef = collection(db, "steel_rebar");
-const billetRef = collection(db, "steel_billet");
+const rebarRef =
+collection(db,"steel_rebar");
+
+const billetRef =
+collection(db,"steel_billet");
 
 // ======================================================
 // Main Elements
 // ======================================================
 
-const newOperation = document.getElementById("newOperation");
-const operationModal = document.getElementById("operationModal");
+const newOperation =
+document.getElementById("newOperation");
 
-const modal = new bootstrap.Modal(operationModal);
+const operationModal =
+document.getElementById("operationModal");
 
-// Dashboard
+const modal =
+new bootstrap.Modal(operationModal);
 
-const rebarTable = document.getElementById("rebarTable");
-const billetTable = document.getElementById("billetTable");
-
-// Dashboard Cards
-
-const customerBalanceName =
-document.getElementById("customerBalanceName");
-
-const customerBalanceAmount =
-document.getElementById("customerBalanceAmount");
-
-const customerDueName =
-document.getElementById("customerDueName");
-
-const customerDueAmount =
-document.getElementById("customerDueAmount");
-
-// Operation Form
+// ======================================================
+// Form Elements
+// ======================================================
 
 const operationType =
 document.getElementById("operationType");
@@ -100,21 +96,79 @@ document.getElementById("operationStatus");
 const operationNotes =
 document.getElementById("operationNotes");
 
-console.log("receivedQty:", receivedQty);
-console.log("borderCrossing:", borderCrossing);
-console.log("externalTransport:", externalTransport);
-console.log("customsCost:", customsCost);
-console.log("transferFees:", transferFees);
-console.log("totalValue:", totalValue);
+// ======================================================
+// Tables
+// ======================================================
+
+const rebarTable =
+document.getElementById("rebarTable");
+
+const billetTable =
+document.getElementById("billetTable");
+
+const truckItemsTable =
+document.getElementById("truckItemsTable");
+
+// ======================================================
+// Dashboard Cards
+// ======================================================
+
+const rebarPurchases =
+document.getElementById("rebarPurchases");
+
+const billetPurchases =
+document.getElementById("billetPurchases");
+
+const totalPurchases =
+document.getElementById("totalPurchases");
+
+const totalSales =
+document.getElementById("totalSales");
+
+const totalProfit =
+document.getElementById("totalProfit");
+
+const balance =
+document.getElementById("balance");
+
+const cashBox =
+document.getElementById("cashBox");
+
+const customerBalanceName =
+document.getElementById("customerBalanceName");
+
+const customerBalanceAmount =
+document.getElementById("customerBalanceAmount");
+
+const customerDueName =
+document.getElementById("customerDueName");
+
+const customerDueAmount =
+document.getElementById("customerDueAmount");
+
+const totalImportExpenses =
+document.getElementById("totalImportExpenses");
+
+const customsTransportCard =
+document.getElementById("customsTransportCard");
 
 // ======================================================
 // Page Start
 // ======================================================
 
-DOMContentLoaded
+window.addEventListener("DOMContentLoaded", async()=>{
+
+    operationDate.value =
+    new Date().toISOString().split("T")[0];
+
+    await generateInvoiceNumber();
+
+    await loadOperations();
+
+});
 
 // ======================================================
-// Open New Operation
+// New Operation
 // ======================================================
 
 newOperation.addEventListener("click",async()=>{
@@ -127,33 +181,28 @@ newOperation.addEventListener("click",async()=>{
     modal.show();
 
 });
+
 // ======================================================
-// Generate Invoice Number
+// Invoice Number
 // ======================================================
 
 async function generateInvoiceNumber(){
 
     const ref =
-    operationType.value === "rebar"
+    operationType.value==="rebar"
     ? rebarRef
     : billetRef;
 
     const prefix =
-    operationType.value === "rebar"
+    operationType.value==="rebar"
     ? "RB"
     : "BL";
 
     const snapshot =
     await getDocs(ref);
 
-    const number =
-    snapshot.size + 1;
-
-    const year =
-    new Date().getFullYear();
-
     operationInvoice.value =
-    `${prefix}-${year}-${String(number).padStart(5,"0")}`;
+    `${prefix}-${new Date().getFullYear()}-${String(snapshot.size+1).padStart(5,"0")}`;
 
 }
 
@@ -189,7 +238,6 @@ borderCrossing.addEventListener("change",()=>{
     }
 
 });
-
 // ======================================================
 // Save Operation
 // ======================================================
@@ -200,29 +248,31 @@ document
 
 async function saveOperation(){
 
-    console.log({
-        operationInvoice,
-        operationDate,
-        operationSupplier,
-        operationCustomer,
-        receivedQty,
-        totalWeight,
-        pricePerTon,
-        totalValue,
-        borderCrossing,
-        externalTransport,
-        customsCost,
-        transferFees,
-        supplierPayment,
-        customerPayment,
-        customerWithdraw,
-        operationStatus,
-        operationNotes
-    });
-
     try{
 
+        const trucks=[];
+
+        document.querySelectorAll("#truckItemsTable tr").forEach(row=>{
+
+            const weight=
+            row.querySelector(".truckWeight");
+
+            if(!weight) return;
+
+            trucks.push({
+
+                arrivalDate:
+                row.querySelector(".arrivalDate").value,
+
+                weight:
+                Number(weight.value||0)
+
+            });
+
+        });
+
         const data={
+
             invoiceNumber:
             operationInvoice.value,
 
@@ -274,6 +324,8 @@ async function saveOperation(){
             notes:
             operationNotes.value,
 
+            trucks,
+
             createdAt:
             new Date()
 
@@ -291,11 +343,27 @@ async function saveOperation(){
 
         alert("تم حفظ العملية بنجاح");
 
-        modal.hide();
+modal.hide();
 
-        await loadOperations();
+await generateInvoiceNumber();
 
-        await generateInvoiceNumber();
+await loadOperations();
+
+truckItemsTable.innerHTML = `
+<tr>
+<td colspan="5" class="text-center text-muted">
+لا توجد سيارات
+</td>
+</tr>
+`;
+
+totalWeight.textContent = "0.000";
+
+totalValue.value = "";
+
+receivedQty.value = "";
+
+pricePerTon.value = "";
 
     }
 
@@ -308,6 +376,7 @@ async function saveOperation(){
     }
 
 }
+
 // ======================================================
 // Trucks
 // ======================================================
@@ -315,84 +384,79 @@ async function saveOperation(){
 const addTruckBtn =
 document.getElementById("addTruckRow");
 
-const truckTable =
-document.getElementById("truckItemsTable");
-
-let trucks = [];
-
-// ======================================================
-// Add Truck
-// ======================================================
-
-addTruckBtn.addEventListener("click",addTruck);
+addTruckBtn.addEventListener(
+"click",
+addTruck
+);
 
 function addTruck(){
 
-    if(truckTable.innerText.includes("لا توجد سيارات")){
+    if(truckItemsTable.innerText.includes("لا توجد سيارات")){
 
-        truckTable.innerHTML="";
+        truckItemsTable.innerHTML="";
 
     }
 
-    const row =
-    truckTable.rows.length + 1;
-
-    const today =
+    const today=
     new Date().toISOString().split("T")[0];
 
-    truckTable.insertAdjacentHTML("beforeend",`
+    const rowNumber=
+    truckItemsTable.rows.length+1;
 
-    <tr>
+    truckItemsTable.insertAdjacentHTML("beforeend",`
 
-        <td>${row}</td>
+<tr>
 
-        <td>
+<td>${rowNumber}</td>
 
-            <input
-            type="date"
-            class="form-control arrivalDate"
-            value="${today}">
+<td>
 
-        </td>
+<input
+type="date"
+class="form-control arrivalDate"
+value="${today}">
 
-        <td>
+</td>
 
-            <input
-            type="number"
-            class="form-control truckWeight"
-            step="0.001"
-            value="0">
+<td>
 
-        </td>
+<input
+type="number"
+class="form-control truckWeight"
+step="0.001"
+value="0">
 
-        <td>
+</td>
 
-            <input
-            type="file"
-            class="form-control truckCard"
-            accept="image/*">
+<td>
 
-        </td>
+<input
+type="file"
+class="form-control truckCard"
+accept="image/*">
 
-        <td>
+</td>
 
-            <button
-            type="button"
-            class="btn btn-danger removeTruck">
+<td>
 
-            <i class="fa-solid fa-trash"></i>
+<button
+type="button"
+class="btn btn-danger removeTruck">
 
-            </button>
+<i class="fa-solid fa-trash"></i>
 
-        </td>
+</button>
 
-    </tr>
+</td>
 
-    `);
+</tr>
+
+`);
 
     bindTruckEvents();
 
 }
+
 // ======================================================
 // Truck Events
 // ======================================================
@@ -401,18 +465,13 @@ function bindTruckEvents(){
 
     document.querySelectorAll(".truckWeight").forEach(input=>{
 
-        input.removeEventListener("input",calculateTotals);
-
-        input.addEventListener("input",calculateTotals);
+        input.oninput=calculateTotals;
 
     });
 
 }
-// ======================================================
-// Remove Truck
-// ======================================================
 
-truckTable.addEventListener("click",(e)=>{
+truckItemsTable.addEventListener("click",(e)=>{
 
     if(!e.target.closest(".removeTruck")) return;
 
@@ -423,44 +482,38 @@ truckTable.addEventListener("click",(e)=>{
     calculateTotals();
 
 });
-// ======================================================
-// Update Numbers
-// ======================================================
 
 function updateTruckNumbers(){
 
-    [...truckTable.rows].forEach((row,index)=>{
+    [...truckItemsTable.rows].forEach((row,index)=>{
 
-        row.cells[0].textContent =
-        index + 1;
+        row.cells[0].textContent=index+1;
 
     });
 
 }
+
 // ======================================================
 // Calculate Totals
 // ======================================================
 
 function calculateTotals(){
 
-    let total = 0;
+    let total=0;
 
     document.querySelectorAll(".truckWeight").forEach(input=>{
 
-        total += Number(input.value || 0);
+        total+=Number(input.value||0);
 
     });
 
-    totalWeight.textContent =
+    totalWeight.textContent=
     total.toFixed(3);
 
-    totalValue.value =
-    (
-        total *
-        Number(pricePerTon.value || 0)
-    ).toFixed(2);
+   totalValue.value=
 
 }
+
 pricePerTon.addEventListener(
 "input",
 calculateTotals
@@ -475,11 +528,10 @@ async function loadOperations(){
 
     await loadBillet();
 
-    await loadCustomerDashboard();
-
-    await loadExpensesDashboard();
+    await loadDashboard();
 
 }
+
 // ======================================================
 // Load Rebar
 // ======================================================
@@ -499,17 +551,11 @@ async function loadRebar(){
     if(snapshot.empty){
 
         rebarTable.innerHTML=`
-
         <tr>
-
-        <td colspan="18">
-
-        لا توجد عمليات
-
-        </td>
-
+            <td colspan="18" class="text-center">
+                لا توجد عمليات
+            </td>
         </tr>
-
         `;
 
         return;
@@ -524,50 +570,54 @@ async function loadRebar(){
 
         <tr>
 
-        <td>${d.date}</td>
+            <td>${d.date}</td>
 
-        <td>${d.supplier}</td>
+            <td>${d.supplier}</td>
 
-        <td>${d.customer}</td>
+            <td>${d.customer}</td>
 
-        <td>${d.invoiceNumber}</td>
+            <td>${d.invoiceNumber}</td>
 
-        <td>${Number(d.totalWeight||0).toFixed(3)}</td>
+            <td>${Number(d.totalWeight||0).toFixed(3)}</td>
 
-        <td>${Number(d.receivedQty||0).toFixed(3)}</td>
+            <td>${Number(d.receivedQty||0).toFixed(3)}</td>
 
-        <td>${Number(d.pricePerTon).toLocaleString()}</td>
+            <td>${Number(d.pricePerTon||0).toLocaleString()}</td>
 
-        <td>${Number(d.totalValue).toLocaleString()}</td>
+            <td>${Number(d.totalValue||0).toLocaleString()}</td>
 
-        <td>-</td>
+            <td>${d.trucks ? d.trucks.length : 0}</td>
 
-        <td>-</td>
+            <td>${Number(d.totalWeight||0).toFixed(3)}</td>
 
-        <td>${Number(d.supplierPayment).toLocaleString()}</td>
+            <td>${Number(d.supplierPayment||0).toLocaleString()}</td>
 
-        <td>${Number(d.externalTransport).toLocaleString()}</td>
+            <td>${Number(d.externalTransport||0).toLocaleString()}</td>
 
-        <td>${Number(d.customerPayment).toLocaleString()}</td>
+            <td>${Number(d.customerPayment||0).toLocaleString()}</td>
 
-        <td>${Number(d.customerWithdraw).toLocaleString()}</td>
+            <td>${Number(d.customerWithdraw||0).toLocaleString()}</td>
 
-        <td>-</td>
+            <td>${(
+                Number(d.customerPayment||0)
+                -
+                Number(d.customerWithdraw||0)
+            ).toLocaleString()}</td>
 
-        <td>${d.status}</td>
+            <td>${d.status}</td>
 
-        <td>${d.notes}</td>
+            <td>${d.notes||""}</td>
 
-        <td>
+            <td>
 
-        <button
-        class="btn btn-warning btn-sm">
+                <button
+                class="btn btn-warning btn-sm">
 
-        <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-pen"></i>
 
-        </button>
+                </button>
 
-        </td>
+            </td>
 
         </tr>
 
@@ -576,6 +626,7 @@ async function loadRebar(){
     });
 
 }
+
 // ======================================================
 // Load Billet
 // ======================================================
@@ -595,17 +646,11 @@ async function loadBillet(){
     if(snapshot.empty){
 
         billetTable.innerHTML=`
-
         <tr>
-
-        <td colspan="18">
-
-        لا توجد عمليات
-
-        </td>
-
+            <td colspan="18" class="text-center">
+                لا توجد عمليات
+            </td>
         </tr>
-
         `;
 
         return;
@@ -620,50 +665,54 @@ async function loadBillet(){
 
         <tr>
 
-        <td>${d.date}</td>
+            <td>${d.date}</td>
 
-        <td>${d.supplier}</td>
+            <td>${d.supplier}</td>
 
-        <td>${d.customer}</td>
+            <td>${d.customer}</td>
 
-        <td>${d.invoiceNumber}</td>
+            <td>${d.invoiceNumber}</td>
 
-        <td>${Number(d.totalWeight||0).toFixed(3)}</td>
+            <td>${Number(d.totalWeight||0).toFixed(3)}</td>
 
-        <td>${Number(d.receivedQty||0).toFixed(3)}</td>
+            <td>${Number(d.receivedQty||0).toFixed(3)}</td>
 
-        <td>${Number(d.pricePerTon).toLocaleString()}</td>
+            <td>${Number(d.pricePerTon||0).toLocaleString()}</td>
 
-        <td>${Number(d.totalValue).toLocaleString()}</td>
+            <td>${Number(d.totalValue||0).toLocaleString()}</td>
 
-        <td>-</td>
+            <td>${d.trucks ? d.trucks.length : 0}</td>
 
-        <td>-</td>
+            <td>${Number(d.totalWeight||0).toFixed(3)}</td>
 
-        <td>${Number(d.supplierPayment).toLocaleString()}</td>
+            <td>${Number(d.supplierPayment||0).toLocaleString()}</td>
 
-        <td>${Number(d.externalTransport).toLocaleString()}</td>
+            <td>${Number(d.externalTransport||0).toLocaleString()}</td>
 
-        <td>${Number(d.customerPayment).toLocaleString()}</td>
+            <td>${Number(d.customerPayment||0).toLocaleString()}</td>
 
-        <td>${Number(d.customerWithdraw).toLocaleString()}</td>
+            <td>${Number(d.customerWithdraw||0).toLocaleString()}</td>
 
-        <td>-</td>
+            <td>${(
+                Number(d.customerPayment||0)
+                -
+                Number(d.customerWithdraw||0)
+            ).toLocaleString()}</td>
 
-        <td>${d.status}</td>
+            <td>${d.status}</td>
 
-        <td>${d.notes}</td>
+            <td>${d.notes||""}</td>
 
-        <td>
+            <td>
 
-        <button
-        class="btn btn-warning btn-sm">
+                <button
+                class="btn btn-warning btn-sm">
 
-        <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-pen"></i>
 
-        </button>
+                </button>
 
-        </td>
+            </td>
 
         </tr>
 
@@ -672,144 +721,98 @@ async function loadBillet(){
     });
 
 }
+
 // ======================================================
 // Dashboard
 // ======================================================
 
 async function loadDashboard(){
 
-    let rebarPurchase = 0;
-    let billetPurchase = 0;
+    let rebarTotal=0;
+    let billetTotal=0;
+    let sales=0;
+    let supplierPayments=0;
+    let customerPayments=0;
+    let transport=0;
+    let customs=0;
+    let transfer=0;
 
-    let totalSales = 0;
+    const rebarSnap=await getDocs(rebarRef);
 
-    let totalProfit = 0;
+    rebarSnap.forEach(doc=>{
 
-    let totalSupplierPayments = 0;
+        const d=doc.data();
 
-    let totalCustomerPayments = 0;
-
-    let totalExternalTransport = 0;
-
-    let totalCustoms = 0;
-
-    let totalTransfer = 0;
-
-    // ===========================
-    // Rebar
-    // ===========================
-
-    const rebarSnapshot = await getDocs(rebarRef);
-
-    rebarSnapshot.forEach(doc=>{
-
-        const d = doc.data();
-
-        rebarPurchase += Number(d.totalValue||0);
-
-        totalSales += Number(d.customerWithdraw||0);
-
-        totalSupplierPayments +=
-        Number(d.supplierPayment||0);
-
-        totalCustomerPayments +=
-        Number(d.customerPayment||0);
-
-        totalExternalTransport +=
-        Number(d.externalTransport||0);
-
-        totalCustoms +=
-        Number(d.customsCost||0);
-
-        totalTransfer +=
-        Number(d.transferFees||0);
+        rebarTotal+=Number(d.totalValue||0);
+        sales+=Number(d.customerWithdraw||0);
+        supplierPayments+=Number(d.supplierPayment||0);
+        customerPayments+=Number(d.customerPayment||0);
+        transport+=Number(d.externalTransport||0);
+        customs+=Number(d.customsCost||0);
+        transfer+=Number(d.transferFees||0);
 
     });
 
-    // ===========================
-    // Billet
-    // ===========================
+    const billetSnap=await getDocs(billetRef);
 
-    const billetSnapshot = await getDocs(billetRef);
+    billetSnap.forEach(doc=>{
 
-    billetSnapshot.forEach(doc=>{
+        const d=doc.data();
 
-        const d = doc.data();
-
-        billetPurchase += Number(d.totalValue||0);
-
-        totalSales += Number(d.customerWithdraw||0);
-
-        totalSupplierPayments +=
-        Number(d.supplierPayment||0);
-
-        totalCustomerPayments +=
-        Number(d.customerPayment||0);
-
-        totalExternalTransport +=
-        Number(d.externalTransport||0);
-
-        totalCustoms +=
-        Number(d.customsCost||0);
-
-        totalTransfer +=
-        Number(d.transferFees||0);
+        billetTotal+=Number(d.totalValue||0);
+        sales+=Number(d.customerWithdraw||0);
+        supplierPayments+=Number(d.supplierPayment||0);
+        customerPayments+=Number(d.customerPayment||0);
+        transport+=Number(d.externalTransport||0);
+        customs+=Number(d.customsCost||0);
+        transfer+=Number(d.transferFees||0);
 
     });
 
-    // ===========================
-    // Totals
-    // ===========================
+    rebarPurchases.textContent =
+    rebarTotal.toLocaleString();
 
-    const totalPurchases =
-    rebarPurchase +
-    billetPurchase;
+    billetPurchases.textContent =
+    billetTotal.toLocaleString();
 
-    const totalExpenses =
-    totalExternalTransport +
-    totalCustoms +
-    totalTransfer;
+    totalPurchases.textContent =
+    (rebarTotal+billetTotal).toLocaleString();
 
-    totalProfit =
-    totalSales -
-    totalPurchases -
-    totalExpenses;
+    totalSales.textContent =
+    sales.toLocaleString();
 
-    // ===========================
-    // Dashboard Cards
-    // ===========================
-
-    document.getElementById("rebarPurchases").textContent =
-    rebarPurchase.toLocaleString();
-
-    document.getElementById("billetPurchases").textContent =
-    billetPurchase.toLocaleString();
-
-    document.getElementById("totalPurchases").textContent =
-    totalPurchases.toLocaleString();
-
-    document.getElementById("totalSales").textContent =
-    totalSales.toLocaleString();
-
-    document.getElementById("totalProfit").textContent =
-    totalProfit.toLocaleString();
-
-    document.getElementById("cashBox").textContent =
-    totalCustomerPayments.toLocaleString();
-
-    document.getElementById("balance").textContent =
+    totalProfit.textContent =
     (
-        totalCustomerPayments -
-        totalSupplierPayments
+        sales
+        -
+        rebarTotal
+        -
+        billetTotal
+        -
+        transport
+        -
+        customs
+        -
+        transfer
     ).toLocaleString();
 
-    document.getElementById("totalImportExpenses").textContent =
+    balance.textContent =
     (
-        totalExternalTransport +
-        totalTransfer
+        customerPayments
+        -
+        supplierPayments
     ).toLocaleString();
 
-    document.getElementById("customsTransportCard").textContent =
-    totalCustoms.toLocaleString();
+    cashBox.textContent =
+    customerPayments.toLocaleString();
+
+    totalImportExpenses.textContent =
+    (
+        transport +
+        transfer
+    ).toLocaleString();
+
+    customsTransportCard.textContent =
+    customs.toLocaleString();
 
 }
