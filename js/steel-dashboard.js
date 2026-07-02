@@ -174,7 +174,6 @@ async function saveOperation(){
 // =====================================
 // Add Truck
 // =====================================
-addTruckBtn.addEventListener("click", addTruck);
 const addTruckBtn = document.getElementById("addTruckRow");
 const truckTable = document.getElementById("truckItemsTable");
 
