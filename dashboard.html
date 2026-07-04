@@ -150,53 +150,101 @@ src="https://ui-avatars.com/api/?name=K&background=2563eb&color=fff">
 </div>
 <!-- ================= Dashboard Cards ================= -->
 
-<div class="dashboard-grid fade-up">
+<div class="row g-4 mb-4">
 
-    <div class="stat-card">
+    <div class="col-xl-3 col-md-6">
 
-        <div class="stat-icon bg-blue">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
+        <div class="dashboard-card bg-primary">
+
+            <div class="card-icon">
+
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+
+            </div>
+
+            <div class="card-content">
+
+                <h6>إجمالي الفواتير</h6>
+
+                <h2 id="totalInvoices">0</h2>
+
+                <span>فاتورة</span>
+
+            </div>
+
         </div>
-
-        <div class="stat-number" id="totalInvoices">0</div>
-
-        <div class="stat-title">إجمالي الفواتير</div>
 
     </div>
 
-    <div class="stat-card">
+    <div class="col-xl-3 col-md-6">
 
-        <div class="stat-icon bg-green">
-            <i class="fa-solid fa-money-bill-wave"></i>
+        <div class="dashboard-card bg-success">
+
+            <div class="card-icon">
+
+                <i class="fa-solid fa-money-bill-wave"></i>
+
+            </div>
+
+            <div class="card-content">
+
+                <h6>إجمالي المدفوع</h6>
+
+                <h2 id="totalPaid">0</h2>
+
+                <span>USD</span>
+
+            </div>
+
         </div>
-
-        <div class="stat-number" id="totalPaid">0</div>
-
-        <div class="stat-title">إجمالي المدفوع</div>
 
     </div>
 
-    <div class="stat-card">
+    <div class="col-xl-3 col-md-6">
 
-        <div class="stat-icon bg-orange">
-            <i class="fa-solid fa-clock"></i>
+        <div class="dashboard-card bg-warning">
+
+            <div class="card-icon">
+
+                <i class="fa-solid fa-clock"></i>
+
+            </div>
+
+            <div class="card-content">
+
+                <h6>إجمالي المستحق</h6>
+
+                <h2 id="totalDue">0</h2>
+
+                <span>USD</span>
+
+            </div>
+
         </div>
-
-        <div class="stat-number" id="totalDue">0</div>
-
-        <div class="stat-title">إجمالي المستحق</div>
 
     </div>
 
-    <div class="stat-card">
+    <div class="col-xl-3 col-md-6">
 
-        <div class="stat-icon bg-red">
-            <i class="fa-solid fa-building"></i>
+        <div class="dashboard-card bg-danger">
+
+            <div class="card-icon">
+
+                <i class="fa-solid fa-building"></i>
+
+            </div>
+
+            <div class="card-content">
+
+                <h6>عدد الموردين</h6>
+
+                <h2 id="totalSuppliers">0</h2>
+
+                <span>مورد</span>
+
+            </div>
+
         </div>
-
-        <div class="stat-number" id="totalSuppliers">0</div>
-
-        <div class="stat-title">عدد الموردين</div>
 
     </div>
 
