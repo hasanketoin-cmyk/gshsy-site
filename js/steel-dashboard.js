@@ -77,7 +77,7 @@ const trucksRef = collection(db, "steel_trucks");
 
 const suppliersRef = collection(db, "suppliers");
 
-const customersRef = collection(db, "customers");
+const customersRef = collection(db, "steel_customers");
 
 const financeRef = collection(db, "finance");
 
