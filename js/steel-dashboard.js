@@ -1144,15 +1144,21 @@ async function loadSuppliers() {
 
     const snapshot = await getDocs(suppliersRef);
 
-    snapshot.forEach(doc => {
+    console.log("Suppliers Count:", snapshot.size);
 
-        const supplier = doc.data();
+    snapshot.forEach(docSnap => {
 
-        select.innerHTML += `
-            <option value="${supplier.name}">
-                ${supplier.name}
-            </option>
-        `;
+        const supplier = docSnap.data();
+
+        console.log(supplier);
+
+        const option = document.createElement("option");
+
+        option.value = supplier.name;
+
+        option.textContent = supplier.name;
+
+        select.appendChild(option);
 
     });
 
