@@ -507,8 +507,11 @@ async function saveOperation() {
 ============================================================ */
 
 function validateForm() {
-
-    if (document.getElementById("operationSupplier").value === "") {
+   
+console.log(document.getElementById("operationSupplier"));
+console.log(document.getElementById("operationSupplier").value);
+   
+   if (document.getElementById("operationSupplier").value === "") {
 
         alert("اختر المورد");
 
