@@ -432,125 +432,113 @@ color:#888;
    DASHBOARD CARDS
 =========================================== */
 
-.dashboard-grid{
+.dashboard-card{
 
-display:grid;
+    position:relative;
 
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    overflow:hidden;
 
-gap:25px;
+    border-radius:22px;
 
-margin-bottom:30px;
+    padding:30px;
 
-}
+    min-height:170px;
 
-.stat-card{
+    color:#fff;
 
-background:linear-gradient(145deg,#ffffff,#f7faff);
+    display:flex;
 
-border-radius:20px;
+    justify-content:space-between;
 
-padding:25px;
+    align-items:flex-start;
 
-box-shadow:0 15px 35px rgba(0,0,0,.08);
+    transition:.35s;
 
-position:relative;
-
-overflow:hidden;
-
-transition:.35s;
-
-cursor:pointer;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
 
 }
 
-.stat-card:hover{
+.dashboard-card:hover{
 
-transform:translateY(-8px);
-
-box-shadow:0 20px 40px rgba(0,0,0,.12);
+    transform:translateY(-8px);
 
 }
 
-.stat-card::before{
+.card-icon{
 
-content:"";
+    width:70px;
 
-position:absolute;
+    height:70px;
 
-top:0;
+    border-radius:18px;
 
-left:0;
+    background:rgba(255,255,255,.15);
 
-width:6px;
+    display:flex;
 
-height:100%;
+    justify-content:center;
 
-background:var(--primary);
+    align-items:center;
 
-}
-
-.stat-icon{
-
-width:70px;
-
-height:70px;
-
-border-radius:18px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:30px;
-
-color:white;
-
-margin-bottom:18px;
+    font-size:30px;
 
 }
 
-.bg-blue{
+.card-content{
 
-background:#2563eb;
-
-}
-
-.bg-green{
-
-background:#10b981;
+    text-align:right;
 
 }
 
-.bg-orange{
+.card-content h6{
 
-background:#f59e0b;
+    font-size:19px;
 
-}
+    margin-bottom:18px;
 
-.bg-red{
-
-background:#ef4444;
+    font-weight:700;
 
 }
 
-.stat-number{
+.card-content h2{
 
-font-size:34px;
+    font-size:45px;
 
-font-weight:800;
+    font-weight:800;
 
-margin-bottom:8px;
+    margin:0;
 
 }
 
-.stat-title{
+.card-content span{
 
-font-size:15px;
+    opacity:.9;
 
-color:#666;
+    font-size:15px;
+
+}
+
+.bg-primary{
+
+background:linear-gradient(135deg,#2D8CFF,#1865F2);
+
+}
+
+.bg-success{
+
+background:linear-gradient(135deg,#2DBE72,#0E9F5C);
+
+}
+
+.bg-warning{
+
+background:linear-gradient(135deg,#F7B733,#FC8E28);
+
+}
+
+.bg-danger{
+
+background:linear-gradient(135deg,#EF5350,#C62828);
 
 }
 
