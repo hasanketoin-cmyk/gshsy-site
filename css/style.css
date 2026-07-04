@@ -438,19 +438,13 @@ color:#888;
 
     overflow:hidden;
 
-    border-radius:22px;
+    border-radius:20px;
 
-    padding:30px;
+    padding:25px;
 
     min-height:170px;
 
     color:#fff;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:flex-start;
 
     transition:.35s;
 
@@ -464,45 +458,33 @@ color:#888;
 
 }
 
-.card-icon{
+.dashboard-card i{
 
-    width:70px;
+    font-size:42px;
 
-    height:70px;
+    opacity:.25;
 
-    border-radius:18px;
+    position:absolute;
 
-    background:rgba(255,255,255,.15);
+    left:20px;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:30px;
+    top:20px;
 
 }
 
-.card-content{
+.dashboard-card h6{
 
-    text-align:right;
-
-}
-
-.card-content h6{
-
-    font-size:19px;
-
-    margin-bottom:18px;
+    font-size:20px;
 
     font-weight:700;
 
+    margin-bottom:20px;
+
 }
 
-.card-content h2{
+.dashboard-card h2{
 
-    font-size:45px;
+    font-size:46px;
 
     font-weight:800;
 
@@ -510,38 +492,45 @@ color:#888;
 
 }
 
-.card-content span{
-
-    opacity:.9;
+.dashboard-card span{
 
     font-size:15px;
 
-}
-
-.bg-primary{
-
-background:linear-gradient(135deg,#2D8CFF,#1865F2);
+    opacity:.9;
 
 }
 
-.bg-success{
-
-background:linear-gradient(135deg,#2DBE72,#0E9F5C);
-
+.steel-card.blue{
+background:linear-gradient(135deg,#3B82F6,#2563EB);
 }
 
-.bg-warning{
-
-background:linear-gradient(135deg,#F7B733,#FC8E28);
-
+.steel-card.dark{
+background:linear-gradient(135deg,#4B5563,#374151);
 }
 
-.bg-danger{
-
-background:linear-gradient(135deg,#EF5350,#C62828);
-
+.steel-card.green{
+background:linear-gradient(135deg,#22C55E,#16A34A);
 }
 
+.steel-card.orange{
+background:linear-gradient(135deg,#F59E0B,#EA580C);
+}
+
+.steel-card.success{
+background:linear-gradient(135deg,#14B8A6,#0F766E);
+}
+
+.steel-card.primary{
+background:linear-gradient(135deg,#6366F1,#4338CA);
+}
+
+.steel-card.warning{
+background:linear-gradient(135deg,#FBBF24,#F59E0B);
+}
+
+.steel-card.info{
+background:linear-gradient(135deg,#06B6D4,#0891B2);
+}
 /* ===========================================
    CHART
 =========================================== */
