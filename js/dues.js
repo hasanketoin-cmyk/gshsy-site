@@ -38,7 +38,8 @@ async function loadDues() {
 
     duesTable.innerHTML = "";
 
-    let remainingTotal = 0;
+let remainingTotalUSD = 0;
+let remainingTotalSYP = 0;
     let invoiceCount = 0;
     let lateCount = 0;
     let weekCount = 0;
@@ -61,7 +62,15 @@ async function loadDues() {
 
         invoiceCount++;
 
-        remainingTotal += remaining;
+        if (data.currency === "USD") {
+
+    remainingTotalUSD += remaining;
+
+} else if (data.currency === "SYP") {
+
+    remainingTotalSYP += remaining;
+
+}
 
         let status = "مستحقة";
 
@@ -88,49 +97,53 @@ async function loadDues() {
         }
 
         duesTable.innerHTML += `
+<tr>
 
-        <tr>
+    <td>${data.number}</td>
 
-            <td>${data.number}</td>
+    <td>${data.supplier}</td>
 
-            <td>${data.supplier}</td>
+    <td>${data.currency || "USD"}</td>
 
-            <td>${total.toLocaleString()}</td>
+    <td>${total.toLocaleString()}</td>
 
-            <td>${paid.toLocaleString()}</td>
+    <td>${paid.toLocaleString()}</td>
 
-            <td>${remaining.toLocaleString()}</td>
+    <td>${remaining.toLocaleString()}</td>
 
-            <td>${data.dueDate || "-"}</td>
+    <td>${data.dueDate || "-"}</td>
 
-            <td>
+    <td>
 
-                <span class="badge ${status === "متأخرة" ? "bg-danger" : "bg-warning"}">
+        <span class="badge ${status === "متأخرة" ? "bg-danger" : "bg-warning"}">
 
-                    ${status}
+            ${status}
 
-                </span>
+        </span>
 
-            </td>
+    </td>
 
-            <td>
+    <td>
 
-                <a href="payments.html" class="btn btn-success btn-sm">
+        <a href="payments.html?invoice=${docSnap.id}" class="btn btn-success btn-sm">
 
-                    دفع
+            دفع
 
-                </a>
+        </a>
 
-            </td>
+    </td>
 
-        </tr>
-
-        `;
+</tr>
+`;
 
     });
 
-    totalRemaining.innerHTML = remainingTotal.toLocaleString();
+document.getElementById("totalRemainingUSD").innerHTML =
+    remainingTotalUSD.toLocaleString();
 
+document.getElementById("totalRemainingSYP").innerHTML =
+    remainingTotalSYP.toLocaleString();
+    
     totalInvoices.innerHTML = invoiceCount;
 
     lateInvoices.innerHTML = lateCount;
