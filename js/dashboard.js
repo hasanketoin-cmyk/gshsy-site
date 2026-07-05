@@ -157,6 +157,14 @@ else if (invoice.currency === "SYP") {
 
 });
 
+    console.log("==========");
+console.log("USD Paid:", totalPaid);
+console.log("USD Due:", totalDue);
+
+console.log("SYP Paid:", totalPaidSYP);
+console.log("SYP Due:", totalDueSYP);
+console.log("==========");
+    
 // ======================
 // Payments
 // ======================
