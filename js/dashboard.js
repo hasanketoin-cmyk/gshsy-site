@@ -71,11 +71,9 @@ if (userEl && auth.currentUser) {
 let totalPaid = 0;
 let totalDue = 0;
 
-let totalPaidSYP = 0;
-let totalDueSYP = 0;
-
 let todayInvoices = 0;
 let todayPayments = 0;
+let todayPaymentsSYP = 0;
 let weekDue = 0;
 
 let paidInvoices = 0;
@@ -102,19 +100,9 @@ invoices.forEach(docSnap=>{
 
     const remaining = Number(invoice.remaining || 0);
 
-    if (invoice.currency === "USD") {
-
     totalPaid += paid;
+
     totalDue += remaining;
-
-}
-
-else if (invoice.currency === "SYP") {
-
-    totalPaidSYP += paid;
-    totalDueSYP += remaining;
-
-}
 
     if(remaining<=0 && amount>0){
 
@@ -172,8 +160,18 @@ payments.forEach(docSnap=>{
 
         if(paymentDate.getTime()===today.getTime()){
 
-            todayPayments += Number(payment.paymentAmount || 0);
+const amount = Number(payment.paymentAmount || 0);
 
+if(payment.currency === "USD"){
+
+    todayPayments += amount;
+
+}
+else if(payment.currency === "SYP"){
+
+    todayPaymentsSYP += amount;
+
+}
         }
 
     }
@@ -188,13 +186,15 @@ animateCounter("totalInvoices", invoices.size);
 
 animateCounter("totalSuppliers", suppliers.size);
 
-animateCounter("totalPaidSYP", totalPaidSYP);
+animateCounter("totalPaid", totalPaid);
 
-animateCounter("totalDueSYP", totalDueSYP);
-    
+animateCounter("totalDue", totalDue);
+
 animateCounter("todayInvoices", todayInvoices);
 
 animateCounter("todayPayments", todayPayments);
+
+animateCounter("todayPaymentsSYP", todayPaymentsSYP);
 
 animateCounter("weekDue", weekDue);
 
