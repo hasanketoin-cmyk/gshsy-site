@@ -306,7 +306,10 @@ window.deletePayment = async function(id){
 
         if(!paymentSnap.exists()) return;
 
-        const payment = paymentSnap.data();
+const payment = paymentSnap.data();
+
+console.log("Payment Document:", payment);
+console.log("invoiceId =", payment.invoiceId);
         if (!payment.invoiceId) {
 
     await deleteDoc(paymentRef);
