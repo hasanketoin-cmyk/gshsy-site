@@ -152,21 +152,8 @@ src="https://ui-avatars.com/api/?name=K&background=2563eb&color=fff">
 
 <div class="row mt-4">
 
-    <div class="col-lg-3 col-md-6 mb-4">
-        <div class="dashboard-card steel-card blue">
-
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-
-            <h6>إجمالي الفواتير</h6>
-
-            <h2 id="totalInvoices">0</h2>
-
-            <span>فاتورة</span>
-
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6 mb-4">
+    <!-- إجمالي المدفوع USD -->
+    <div class="col-lg-20 col-md-6 mb-4">
         <div class="dashboard-card steel-card green">
 
             <i class="fa-solid fa-money-bill-wave"></i>
@@ -180,7 +167,8 @@ src="https://ui-avatars.com/api/?name=K&background=2563eb&color=fff">
         </div>
     </div>
 
-    <div class="col-lg-3 col-md-6 mb-4">
+    <!-- إجمالي المستحق USD -->
+    <div class="col-lg-20 col-md-6 mb-4">
         <div class="dashboard-card steel-card orange">
 
             <i class="fa-solid fa-clock"></i>
@@ -194,38 +182,56 @@ src="https://ui-avatars.com/api/?name=K&background=2563eb&color=fff">
         </div>
     </div>
 
-   <div class="col-lg-3 col-md-6 mb-4">
+    <!-- إجمالي الفواتير (في المنتصف) -->
+    <div class="col-lg-20 col-md-6 mb-4">
+        <div class="dashboard-card steel-card blue">
 
-    <div class="dashboard-card purple-card">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
 
-        <i class="fa-solid fa-money-bill-wave"></i>
+            <h6>إجمالي الفواتير</h6>
 
-        <h6>إجمالي المدفوع</h6>
+            <h2 id="totalInvoices">0</h2>
 
-        <h2 id="totalPaidSYP">0</h2>
+            <span>فاتورة</span>
 
-        <span>SYP</span>
+        </div>
+    </div>
 
+    <!-- إجمالي المدفوع SYP -->
+    <div class="col-lg-20 col-md-6 mb-4">
+        <div class="dashboard-card purple-card">
+
+            <i class="fa-solid fa-money-bill-wave"></i>
+
+            <h6>إجمالي المدفوع</h6>
+
+            <h2 id="totalPaidSYP">0</h2>
+
+            <span>SYP</span>
+
+        </div>
+    </div>
+
+    <!-- إجمالي المستحق SYP -->
+    <div class="col-lg-20 col-md-6 mb-4">
+        <div class="dashboard-card red-card">
+
+            <i class="fa-solid fa-coins"></i>
+
+            <h6>إجمالي المستحق</h6>
+
+            <h2 id="totalDueSYP">0</h2>
+
+            <span>SYP</span>
+
+        </div>
     </div>
 
 </div>
 
-<div class="col-lg-3 col-md-6 mb-4">
+<div class="row">
 
-    <div class="dashboard-card red-card">
-
-        <i class="fa-solid fa-coins"></i>
-
-        <h6>إجمالي المستحق</h6>
-
-        <h2 id="totalDueSYP">0</h2>
-
-        <span>SYP</span>
-
-    </div>
-
-</div>
-
+    <!-- عدد الموردين -->
     <div class="col-lg-3 col-md-6 mb-4">
         <div class="dashboard-card steel-card dark">
 
@@ -240,10 +246,7 @@ src="https://ui-avatars.com/api/?name=K&background=2563eb&color=fff">
         </div>
     </div>
 
-</div>
-
-<div class="row">
-
+    <!-- فواتير اليوم -->
     <div class="col-lg-3 col-md-6 mb-4">
         <div class="dashboard-card steel-card success">
 
@@ -258,6 +261,7 @@ src="https://ui-avatars.com/api/?name=K&background=2563eb&color=fff">
         </div>
     </div>
 
+    <!-- دفعات اليوم -->
     <div class="col-lg-3 col-md-6 mb-4">
         <div class="dashboard-card steel-card primary">
 
@@ -272,6 +276,7 @@ src="https://ui-avatars.com/api/?name=K&background=2563eb&color=fff">
         </div>
     </div>
 
+    <!-- مستحقات الأسبوع -->
     <div class="col-lg-3 col-md-6 mb-4">
         <div class="dashboard-card steel-card warning">
 
@@ -286,6 +291,7 @@ src="https://ui-avatars.com/api/?name=K&background=2563eb&color=fff">
         </div>
     </div>
 
+    <!-- نسبة الإنجاز -->
     <div class="col-lg-3 col-md-6 mb-4">
         <div class="dashboard-card steel-card info">
 
