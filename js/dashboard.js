@@ -99,14 +99,23 @@ invoices.forEach(docSnap=>{
 
     const amount = Number(invoice.amount || 0);
 
-    const paid = Number(invoice.paid || 0);
+  const paid = Number(invoice.paid || 0);
 
-    const remaining = Number(invoice.remaining || 0);
+const remaining = Number(invoice.remaining || 0);
+
+if (invoice.currency === "USD") {
 
     totalPaid += paid;
-
     totalDue += remaining;
 
+}
+
+else if (invoice.currency === "SYP") {
+
+    totalPaidSYP += paid;
+    totalDueSYP += remaining;
+
+}
     if(remaining<=0 && amount>0){
 
         paidInvoices++;
