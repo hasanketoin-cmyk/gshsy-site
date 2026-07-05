@@ -199,6 +199,7 @@ document.getElementById("progress").innerHTML=
 
 progress+"%";
     
+}  
 function animateCounter(id, target) {
 
     let obj = document.getElementById(id);
