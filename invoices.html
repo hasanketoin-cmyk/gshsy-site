@@ -233,6 +233,78 @@ placeholder="اكتب أو اختر القسم">
 
 <input type="number" class="form-control" id="amount">
 </div>
+<div class="col-md-4 mb-3">
+
+<label class="form-label">
+
+حالة الدفع
+
+</label>
+
+<select class="form-select" id="paymentStatus">
+
+<option value="unpaid">غير مدفوعة</option>
+
+<option value="paid">مدفوعة بالكامل</option>
+
+<option value="partial">مدفوعة جزئياً</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4 mb-3" id="firstPaymentBox" style="display:none;">
+
+<label class="form-label">
+
+مبلغ الدفعة
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="firstPayment"
+value="0">
+
+</div>
+
+<div class="col-md-4 mb-3" id="paymentDateBox" style="display:none;">
+
+<label class="form-label">
+
+تاريخ الدفع
+
+</label>
+
+<input
+type="date"
+class="form-control"
+id="paymentDate">
+
+</div>
+
+<div class="col-md-4 mb-3" id="paymentMethodBox" style="display:none;">
+
+<label class="form-label">
+
+طريقة الدفع
+
+</label>
+
+<select
+class="form-select"
+id="paymentMethod">
+
+<option value="نقداً">نقداً</option>
+
+<option value="تحويل بنكي">تحويل بنكي</option>
+
+<option value="شيك">شيك</option>
+
+</select>
+
+</div>
 <!-- تاريخ الاستحقاق -->
 
 <div class="col-md-4 mb-3">
