@@ -96,6 +96,7 @@ nextWeek.setDate(nextWeek.getDate()+7);
 invoices.forEach(docSnap=>{
 
     const invoice = docSnap.data();
+    console.log("Currency:", invoice.currency, "Paid:", invoice.paid);
 
     const amount = Number(invoice.amount || 0);
 
