@@ -557,6 +557,21 @@ width:100% !important;
 height:320px !important;
 
 }
+.purple-card{
+
+background:linear-gradient(135deg,#7c3aed,#5b21b6);
+
+color:#fff;
+
+}
+
+.red-card{
+
+background:linear-gradient(135deg,#ef4444,#b91c1c);
+
+color:#fff;
+
+}
 
 /* ===========================================
    TABLE CARD
