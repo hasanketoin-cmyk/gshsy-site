@@ -14,6 +14,8 @@ serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
+const paymentsRef = collection(db,"payments");
+
 // =========================
 // Collections
 // =========================
@@ -34,6 +36,14 @@ const currency=document.getElementById("currency");
 const amount=document.getElementById("amount");
 const dueDate=document.getElementById("dueDate");
 const notes=document.getElementById("notes");
+const paymentStatus=document.getElementById("paymentStatus");
+const firstPayment=document.getElementById("firstPayment");
+const paymentDate=document.getElementById("paymentDate");
+const paymentMethod=document.getElementById("paymentMethod");
+
+const firstPaymentBox=document.getElementById("firstPaymentBox");
+const paymentDateBox=document.getElementById("paymentDateBox");
+const paymentMethodBox=document.getElementById("paymentMethodBox");
 
 const saveInvoice=document.getElementById("saveInvoice");
 const newInvoice=document.getElementById("newInvoice");
@@ -63,6 +73,28 @@ await loadInvoices();
 });
 
 saveInvoice.addEventListener("click",saveInvoiceData);
+paymentStatus.addEventListener("change",()=>{
+
+firstPaymentBox.style.display="none";
+paymentDateBox.style.display="none";
+paymentMethodBox.style.display="none";
+
+if(paymentStatus.value==="paid"){
+
+paymentDateBox.style.display="block";
+paymentMethodBox.style.display="block";
+
+}
+
+if(paymentStatus.value==="partial"){
+
+firstPaymentBox.style.display="block";
+paymentDateBox.style.display="block";
+paymentMethodBox.style.display="block";
+
+}
+
+});
 
 newInvoice.addEventListener("click",()=>{
 
