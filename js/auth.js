@@ -1,8 +1,3 @@
-async function loginUser() {
-
-    alert("تم الضغط على زر تسجيل الدخول");
-
-    errorMessage.style.display = "none";
 import { auth } from "./firebase.js";
 
 import {
@@ -16,27 +11,20 @@ const errorMessage = document.getElementById("errorMessage");
 const loading = document.getElementById("loading");
 
 if (loginBtn) {
-
     loginBtn.addEventListener("click", loginUser);
-
 }
 
 async function loginUser() {
 
     errorMessage.style.display = "none";
-
     loading.style.display = "block";
 
     try {
 
         await signInWithEmailAndPassword(
-
             auth,
-
-            email.value,
-
+            email.value.trim(),
             password.value
-
         );
 
         window.location.href = "dashboard.html";
@@ -46,7 +34,6 @@ async function loginUser() {
     catch (error) {
 
         loading.style.display = "none";
-
         errorMessage.style.display = "block";
 
         console.error(error);
