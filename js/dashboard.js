@@ -74,12 +74,14 @@ let totalDue = 0;
 let totalPaidSYP = 0;
 let totalDueSYP = 0;
 
+let todayInvoices = 0;
+
 let todayPayments = 0;
 let todayPaymentsSYP = 0;
-    
+
 let weekDue = 0;
 
-let paidInvoices = 0;
+let paidInvoices = 0;;
 
 const today = new Date();
 
