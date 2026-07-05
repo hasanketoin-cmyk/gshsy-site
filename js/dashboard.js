@@ -71,9 +71,12 @@ if (userEl && auth.currentUser) {
 let totalPaid = 0;
 let totalDue = 0;
 
-let todayInvoices = 0;
+let totalPaidSYP = 0;
+let totalDueSYP = 0;
+
 let todayPayments = 0;
 let todayPaymentsSYP = 0;
+    
 let weekDue = 0;
 
 let paidInvoices = 0;
@@ -160,24 +163,23 @@ payments.forEach(docSnap=>{
 
         if(paymentDate.getTime()===today.getTime()){
 
-const amount = Number(payment.paymentAmount || 0);
+            if(payment.currency === "USD"){
 
-if(payment.currency === "USD"){
+                todayPayments += Number(payment.paymentAmount || 0);
 
-    todayPayments += amount;
+            }
 
-}
-else if(payment.currency === "SYP"){
+            else if(payment.currency === "SYP"){
 
-    todayPaymentsSYP += amount;
+                todayPaymentsSYP += Number(payment.paymentAmount || 0);
 
-}
+            }
+
         }
 
     }
 
 });
-
 // ======================
 // Cards
 // ======================
@@ -187,15 +189,14 @@ animateCounter("totalInvoices", invoices.size);
 animateCounter("totalSuppliers", suppliers.size);
 
 animateCounter("totalPaid", totalPaid);
-
 animateCounter("totalDue", totalDue);
 
-animateCounter("todayInvoices", todayInvoices);
+animateCounter("totalPaidSYP", totalPaidSYP);
+animateCounter("totalDueSYP", totalDueSYP);
 
 animateCounter("todayPayments", todayPayments);
-
 animateCounter("todayPaymentsSYP", todayPaymentsSYP);
-
+    
 animateCounter("weekDue", weekDue);
 
 const progress = invoices.size===0
