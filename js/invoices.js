@@ -192,7 +192,6 @@ notes.value="";
 // =========================
 
 async function saveInvoiceData(){
-async function saveInvoiceData(){
 
 if(invoiceNumber.value.trim()==""){
 alert("أدخل رقم الفاتورة");
@@ -550,7 +549,7 @@ invoiceTable.querySelectorAll("tr").forEach(row=>{
 row.style.display=row.innerText.toLowerCase().includes(value)
 ? ""
 : "none";
-
+}
 });
 
 });
