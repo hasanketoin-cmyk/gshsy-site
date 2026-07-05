@@ -4,12 +4,14 @@ import {
     collection,
     getDocs,
     doc,
-    getDoc
+    getDoc,
+    query,
+    orderBy
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-
 import { auth } from "./firebase.js";
 const invoicesRef = collection(db, "invoices");
 const suppliersRef = collection(db, "suppliers");
+const paymentsRef = collection(db, "payments");
 const settingsRef = doc(db, "settings", "company");
 
 loadDashboard();
@@ -17,8 +19,13 @@ loadDashboard();
 async function loadDashboard() {
 
     const invoices = await getDocs(invoicesRef);
-    const suppliers = await getDocs(suppliersRef);
-// ======================
+const suppliers = await getDocs(
+    query(suppliersRef, orderBy("name"))
+);
+
+const payments = await getDocs(
+    query(paymentsRef, orderBy("createdAt", "desc"))
+);// ======================
 // Company Settings
 // ======================
 
@@ -57,24 +64,141 @@ if (userEl && auth.currentUser) {
     userEl.textContent = auth.currentUser.email;
 }
 }
-    animateCounter("totalInvoices", invoices.size);
+    // ======================
+// Dashboard Statistics
+// ======================
 
-    animateCounter("totalSuppliers", suppliers.size);
+let totalPaid = 0;
+let totalDue = 0;
 
-    animateCounter("totalPaid", 0);
+let todayInvoices = 0;
+let todayPayments = 0;
+let weekDue = 0;
 
-    animateCounter("totalDue", 0);
+let paidInvoices = 0;
 
-    animateCounter("todayInvoices", 0);
+const today = new Date();
 
-    animateCounter("todayPayments", 0);
+today.setHours(0,0,0,0);
 
-    animateCounter("weekDue", 0);
+const nextWeek = new Date();
 
-    document.getElementById("progress").innerHTML = "0%";
+nextWeek.setDate(nextWeek.getDate()+7);
 
-}
+// ======================
+// Invoices
+// ======================
 
+invoices.forEach(docSnap=>{
+
+    const invoice = docSnap.data();
+
+    const amount = Number(invoice.amount || 0);
+
+    const paid = Number(invoice.paid || 0);
+
+    const remaining = Number(invoice.remaining || 0);
+
+    totalPaid += paid;
+
+    totalDue += remaining;
+
+    if(remaining<=0 && amount>0){
+
+        paidInvoices++;
+
+    }
+
+    if(invoice.date){
+
+        const invoiceDate = new Date(invoice.date);
+
+        invoiceDate.setHours(0,0,0,0);
+
+        if(invoiceDate.getTime()===today.getTime()){
+
+            todayInvoices++;
+
+        }
+
+    }
+
+    if(invoice.dueDate){
+
+        const due = new Date(invoice.dueDate);
+
+        if(
+
+            due>=today &&
+            due<=nextWeek &&
+            remaining>0
+
+        ){
+
+            weekDue += remaining;
+
+        }
+
+    }
+
+});
+
+// ======================
+// Payments
+// ======================
+
+payments.forEach(docSnap=>{
+
+    const payment = docSnap.data();
+
+    if(payment.paymentDate){
+
+        const paymentDate = new Date(payment.paymentDate);
+
+        paymentDate.setHours(0,0,0,0);
+
+        if(paymentDate.getTime()===today.getTime()){
+
+            todayPayments += Number(payment.paymentAmount || 0);
+
+        }
+
+    }
+
+});
+
+// ======================
+// Cards
+// ======================
+
+animateCounter("totalInvoices", invoices.size);
+
+animateCounter("totalSuppliers", suppliers.size);
+
+animateCounter("totalPaid", totalPaid);
+
+animateCounter("totalDue", totalDue);
+
+animateCounter("todayInvoices", todayInvoices);
+
+animateCounter("todayPayments", todayPayments);
+
+animateCounter("weekDue", weekDue);
+
+const progress = invoices.size===0
+
+?0
+
+:Math.round(
+
+(paidInvoices/invoices.size)*100
+
+);
+
+document.getElementById("progress").innerHTML=
+
+progress+"%";
+    
 function animateCounter(id, target) {
 
     let obj = document.getElementById(id);
