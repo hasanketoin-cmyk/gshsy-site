@@ -307,6 +307,17 @@ window.deletePayment = async function(id){
         if(!paymentSnap.exists()) return;
 
         const payment = paymentSnap.data();
+        if (!payment.invoiceId) {
+
+    await deleteDoc(paymentRef);
+
+    alert("تم حذف الدفعة");
+
+    loadPayments();
+
+    return;
+
+}
 
         const invoiceRef = doc(db,"invoices",payment.invoiceId);
 
