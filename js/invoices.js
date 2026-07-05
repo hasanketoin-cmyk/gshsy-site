@@ -192,6 +192,7 @@ notes.value="";
 // =========================
 
 async function saveInvoiceData(){
+async function saveInvoiceData(){
 
 if(invoiceNumber.value.trim()==""){
 alert("أدخل رقم الفاتورة");
@@ -210,7 +211,7 @@ return;
 
 try{
 
- const sectionName=section.value.trim();
+const sectionName=section.value.trim();
 
 if(sectionName!=""){
 
@@ -241,8 +242,42 @@ createdAt:serverTimestamp()
 }
 
 }
-  
-await addDoc(invoicesRef,{
+
+const totalAmount=Number(amount.value);
+
+let paid=0;
+let remaining=totalAmount;
+let status="غير مدفوعة";
+
+if(paymentStatus.value==="paid"){
+
+paid=totalAmount;
+remaining=0;
+status="مدفوعة";
+
+}
+
+if(paymentStatus.value==="partial"){
+
+paid=Number(firstPayment.value||0);
+
+if(paid>totalAmount){
+
+alert("مبلغ الدفعة أكبر من قيمة الفاتورة");
+
+return;
+
+}
+
+remaining=totalAmount-paid;
+
+status=remaining===0
+? "مدفوعة"
+: "مدفوعة جزئياً";
+
+}
+
+const invoiceDoc=await addDoc(invoicesRef,{
 
 number:invoiceNumber.value,
 
@@ -254,21 +289,47 @@ section:section.value,
 
 currency:currency.value,
 
-amount:Number(amount.value),
+amount:totalAmount,
 
-paid:0,
+paid:paid,
 
-remaining:Number(amount.value),
+remaining:remaining,
 
 dueDate:dueDate.value,
 
 notes:notes.value,
 
-status:"غير مدفوعة",
+status:status,
 
 createdAt:serverTimestamp()
 
 });
+
+if(paymentStatus.value!=="unpaid"){
+
+await addDoc(paymentsRef,{
+
+invoiceId:invoiceDoc.id,
+
+invoiceNumber:invoiceNumber.value,
+
+supplier:supplier.value,
+
+paymentAmount:paid,
+
+invoiceAmount:totalAmount,
+
+paymentMethod:paymentMethod.value,
+
+paymentDate:paymentDate.value,
+
+notes:"دفعة تلقائية عند إنشاء الفاتورة",
+
+createdAt:serverTimestamp()
+
+});
+
+}
 
 alert("تم حفظ الفاتورة");
 
