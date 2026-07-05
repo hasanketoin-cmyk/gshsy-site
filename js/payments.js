@@ -170,6 +170,8 @@ async function savePaymentData() {
             invoiceNumber: invoice.number,
 
             supplier: invoice.supplier,
+            
+            currency: invoice.currency,
 
             paymentAmount: newPayment,
 
