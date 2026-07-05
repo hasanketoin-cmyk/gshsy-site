@@ -9,7 +9,9 @@ import {
     orderBy,
     doc,
     updateDoc,
+    deleteDoc,
     Timestamp
+}
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 // ===========================
@@ -245,15 +247,17 @@ async function loadPayments() {
 
             <td>تم الدفع</td>
 
-            <td>
+           <td>
 
-                <button class="btn btn-danger btn-sm">
+<button
+class="btn btn-danger btn-sm"
+onclick="deletePayment('${docSnap.id}')">
 
-                    حذف
+<i class="fa-solid fa-trash"></i>
 
-                </button>
+</button>
 
-            </td>
+</td>
 
         </tr>
 
@@ -284,5 +288,90 @@ function clearPaymentForm() {
     paymentMethod.value = "نقداً";
 
     paymentNotes.value = "";
+
+}
+// ===========================
+// Delete Payment
+// ===========================
+
+window.deletePayment = async function(id){
+
+    if(!confirm("هل تريد حذف هذه الدفعة؟")) return;
+
+    try{
+
+        const paymentRef = doc(db,"payments",id);
+
+        const paymentSnap = await getDoc(paymentRef);
+
+        if(!paymentSnap.exists()) return;
+
+        const payment = paymentSnap.data();
+
+        const invoiceRef = doc(db,"invoices",payment.invoiceId);
+
+        const invoiceSnap = await getDoc(invoiceRef);
+
+        if(invoiceSnap.exists()){
+
+            const invoice = invoiceSnap.data();
+
+            const newPaid =
+                Number(invoice.paid||0)
+                -
+                Number(payment.paymentAmount||0);
+
+            const remaining =
+                Number(invoice.amount||0)
+                -
+                newPaid;
+
+            let status="غير مدفوعة";
+
+            if(newPaid<=0){
+
+                status="غير مدفوعة";
+
+            }
+            else if(remaining<=0){
+
+                status="مدفوعة";
+
+            }
+            else{
+
+                status="مدفوعة جزئياً";
+
+            }
+
+            await updateDoc(invoiceRef,{
+
+                paid:newPaid,
+
+                remaining:remaining,
+
+                status:status
+
+            });
+
+        }
+
+        await deleteDoc(paymentRef);
+
+        alert("تم حذف الدفعة");
+
+        loadPayments();
+
+        loadInvoiceData();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
 
 }
