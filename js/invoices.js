@@ -230,17 +230,14 @@ exists=true;
 
 if(!exists){
 
-await addDoc(sectionsRef,{
+    await addDoc(sectionsRef,{
+        name:sectionName,
+        createdAt:serverTimestamp()
+    });
 
-name:sectionName,
+}   // إغلاق if(!exists)
 
-createdAt:serverTimestamp()
-
-});
-
-}
-
-}
+}   // إغلاق if(sectionName!="")
 
 const totalAmount=Number(amount.value);
 
@@ -540,16 +537,17 @@ alert(error.message);
 // Search
 // =========================
 
-searchInvoice.addEventListener("keyup",function(){
+searchInvoice.addEventListener("keyup", function () {
 
-const value=this.value.toLowerCase();
+    const value = this.value.toLowerCase();
 
-invoiceTable.querySelectorAll("tr").forEach(row=>{
+    invoiceTable.querySelectorAll("tr").forEach(row => {
 
-row.style.display=row.innerText.toLowerCase().includes(value)
-? ""
-: "none";
-}
-});
+        row.style.display =
+            row.innerText.toLowerCase().includes(value)
+                ? ""
+                : "none";
+
+    });
 
 });
