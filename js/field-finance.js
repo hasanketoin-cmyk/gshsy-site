@@ -30,7 +30,6 @@ const currency = document.getElementById("currency");
 const grossIncome = document.getElementById("grossIncome");
 const discount = document.getElementById("discount");
 const netIncome = document.getElementById("netIncome");
-const hours = document.getElementById("hours");
 const notes = document.getElementById("notes");
 
 const saveIncome = document.getElementById("saveIncome");
@@ -87,14 +86,6 @@ async function saveIncomeData(){
     if(grossIncome.value==""){
 
         alert("أدخل الإيراد");
-
-        return;
-
-    }
-
-    if(hours.value==""){
-
-        alert("أدخل ساعات التشغيل");
 
         return;
 
