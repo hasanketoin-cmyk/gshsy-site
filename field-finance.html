@@ -158,15 +158,15 @@ id="incomeDate">
 
 <label class="form-label">الملعب</label>
 
-<select
-class="form-select"
-id="field">
+<label class="form-label">
+🏟️ إيراد الملعبين
+</label>
 
-<option value="ملعب 1">ملعب 1</option>
-
-<option value="ملعب 2">ملعب 2</option>
-
-</select>
+<input
+type="text"
+class="form-control"
+value="الملعبان"
+readonly>
 
 </div>
 
@@ -300,76 +300,156 @@ id="newIncome">
 </div>
 
 <!-- ===========================
-لوحة الإحصائيات
+إحصائيات الدولار
 =========================== -->
 
 <div class="row mt-4">
 
-<div class="col-lg-2 col-md-4 mb-4">
+<div class="col-lg-3 col-md-6 mb-4">
 
 <div class="dashboard-card steel-card green">
 
-<i class="fa-solid fa-money-bill-wave"></i>
+<i class="fa-solid fa-dollar-sign"></i>
 
-<h6>إيراد اليوم</h6>
+<h6>إيراد اليوم (USD)</h6>
 
-<h2 id="todayIncome">0</h2>
+<h2 id="todayIncomeUSD">0</h2>
 
-<span>SYP / USD</span>
-
-</div>
+<span>USD</span>
 
 </div>
 
-<div class="col-lg-2 col-md-4 mb-4">
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
 
 <div class="dashboard-card steel-card blue">
 
 <i class="fa-solid fa-calendar-week"></i>
 
-<h6>إيراد الأسبوع</h6>
+<h6>إيراد الأسبوع (USD)</h6>
 
-<h2 id="weekIncome">0</h2>
+<h2 id="weekIncomeUSD">0</h2>
 
-<span>SYP / USD</span>
-
-</div>
+<span>USD</span>
 
 </div>
 
-<div class="col-lg-2 col-md-4 mb-4">
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
 
 <div class="dashboard-card steel-card orange">
 
 <i class="fa-solid fa-calendar-days"></i>
 
-<h6>إيراد الشهر</h6>
+<h6>إيراد الشهر (USD)</h6>
 
-<h2 id="monthIncome">0</h2>
+<h2 id="monthIncomeUSD">0</h2>
 
-<span>SYP / USD</span>
-
-</div>
+<span>USD</span>
 
 </div>
 
-<div class="col-lg-2 col-md-4 mb-4">
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
 
 <div class="dashboard-card purple-card">
 
 <i class="fa-solid fa-calendar"></i>
 
-<h6>إيراد السنة</h6>
+<h6>إيراد السنة (USD)</h6>
 
-<h2 id="yearIncome">0</h2>
+<h2 id="yearIncomeUSD">0</h2>
 
-<span>SYP / USD</span>
+<span>USD</span>
+
+</div>
 
 </div>
 
 </div>
 
-<div class="col-lg-2 col-md-4 mb-4">
+<!-- ===========================
+إحصائيات الليرة السورية
+=========================== -->
+
+<div class="row">
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card purple-card">
+
+<i class="fa-solid fa-money-bill-wave"></i>
+
+<h6>إيراد اليوم (SYP)</h6>
+
+<h2 id="todayIncomeSYP">0</h2>
+
+<span>SYP</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card red-card">
+
+<i class="fa-solid fa-calendar-week"></i>
+
+<h6>إيراد الأسبوع (SYP)</h6>
+
+<h2 id="weekIncomeSYP">0</h2>
+
+<span>SYP</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card steel-card orange">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<h6>إيراد الشهر (SYP)</h6>
+
+<h2 id="monthIncomeSYP">0</h2>
+
+<span>SYP</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card steel-card blue">
+
+<i class="fa-solid fa-calendar"></i>
+
+<h6>إيراد السنة (SYP)</h6>
+
+<h2 id="yearIncomeSYP">0</h2>
+
+<span>SYP</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ===========================
+إحصائيات التشغيل
+=========================== -->
+
+<div class="row">
+
+<div class="col-lg-3 col-md-6 mb-4">
 
 <div class="dashboard-card steel-card primary">
 
@@ -385,7 +465,7 @@ id="newIncome">
 
 </div>
 
-<div class="col-lg-2 col-md-4 mb-4">
+<div class="col-lg-3 col-md-6 mb-4">
 
 <div class="dashboard-card red-card">
 
@@ -396,6 +476,38 @@ id="newIncome">
 <h2 id="occupancy">0%</h2>
 
 <span>اليوم</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card steel-card green">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<h6>عدد الأيام</h6>
+
+<h2 id="daysCount">0</h2>
+
+<span>يوم</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card steel-card orange">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<h6>متوسط الإيراد</h6>
+
+<h2 id="averageIncome">0</h2>
+
+<span>SYP / USD</span>
 
 </div>
 
@@ -426,6 +538,15 @@ placeholder="بحث..."
 id="searchIncome">
 
 </div>
+  <button
+class="btn btn-success"
+id="exportExcel">
+
+<i class="fa-solid fa-file-excel"></i>
+
+تصدير Excel
+
+</button>
 
 <div class="table-responsive">
 
