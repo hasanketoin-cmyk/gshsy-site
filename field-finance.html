@@ -200,3 +200,285 @@ class="form-control"
 id="grossIncome">
 
 </div>
+  
+<input
+type="number"
+class="form-control"
+id="grossIncome">
+
+  <div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+🎁 الحسم
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="discount"
+value="0">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+💵 الإيراد النهائي
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="netIncome"
+readonly>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+⏰ ساعات التشغيل
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="hours">
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label class="form-label">
+
+📝 ملاحظات
+
+</label>
+
+<textarea
+class="form-control"
+rows="3"
+id="notes"
+placeholder="أي ملاحظات..."></textarea>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="d-flex gap-2">
+
+<button
+class="btn btn-success"
+id="saveIncome">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+حفظ الإيراد
+
+</button>
+
+<button
+class="btn btn-primary"
+id="newIncome">
+
+<i class="fa-solid fa-plus"></i>
+
+إدخال جديد
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ===========================
+لوحة الإحصائيات
+=========================== -->
+
+<div class="row mt-4">
+
+<div class="col-lg-2 col-md-4 mb-4">
+
+<div class="dashboard-card steel-card green">
+
+<i class="fa-solid fa-money-bill-wave"></i>
+
+<h6>إيراد اليوم</h6>
+
+<h2 id="todayIncome">0</h2>
+
+<span>SYP / USD</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-4">
+
+<div class="dashboard-card steel-card blue">
+
+<i class="fa-solid fa-calendar-week"></i>
+
+<h6>إيراد الأسبوع</h6>
+
+<h2 id="weekIncome">0</h2>
+
+<span>SYP / USD</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-4">
+
+<div class="dashboard-card steel-card orange">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<h6>إيراد الشهر</h6>
+
+<h2 id="monthIncome">0</h2>
+
+<span>SYP / USD</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-4">
+
+<div class="dashboard-card purple-card">
+
+<i class="fa-solid fa-calendar"></i>
+
+<h6>إيراد السنة</h6>
+
+<h2 id="yearIncome">0</h2>
+
+<span>SYP / USD</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-4">
+
+<div class="dashboard-card steel-card primary">
+
+<i class="fa-solid fa-clock"></i>
+
+<h6>ساعات التشغيل</h6>
+
+<h2 id="todayHours">0</h2>
+
+<span>ساعة</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-4">
+
+<div class="dashboard-card red-card">
+
+<i class="fa-solid fa-chart-pie"></i>
+
+<h6>نسبة الإشغال</h6>
+
+<h2 id="occupancy">0%</h2>
+
+<span>اليوم</span>
+
+</div>
+
+</div>
+
+</div>
+<!-- ===========================
+جدول الإيرادات
+=========================== -->
+
+<div class="table-card mt-4">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h4>
+
+<i class="fa-solid fa-table text-success"></i>
+
+سجل الإيرادات اليومية
+
+</h4>
+
+<input
+type="text"
+class="form-control"
+style="max-width:300px"
+placeholder="بحث..."
+id="searchIncome">
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle">
+
+<thead>
+
+<tr>
+
+<th>التاريخ</th>
+
+<th>الملعب</th>
+
+<th>العملة</th>
+
+<th>الإيراد</th>
+
+<th>الحسم</th>
+
+<th>الصافي</th>
+
+<th>الساعات</th>
+
+<th>ملاحظات</th>
+
+<th>إجراءات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="incomeTable">
+
+<tr>
+
+<td colspan="9" class="text-center text-muted">
+
+لا توجد بيانات
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script type="module" src="js/field-finance.js"></script>
+<script type="module" src="js/guard.js"></script>
+
+</body>
+</html>
