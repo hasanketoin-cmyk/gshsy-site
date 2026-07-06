@@ -312,78 +312,147 @@ window.deleteIncome = async function(id){
 // Dashboard Statistics
 // ===========================
 
-async function loadStatistics(){
+async function loadStatistics() {
 
-    const snapshot=await getDocs(incomeRef);
+    const snapshot = await getDocs(incomeRef);
 
-    let todayTotal=0;
-    let weekTotal=0;
-    let monthTotal=0;
-    let yearTotal=0;
+    let todayUSD = 0;
+    let weekUSD = 0;
+    let monthUSD = 0;
+    let yearUSD = 0;
 
-    let hoursTotal=0;
+    let todaySYP = 0;
+    let weekSYP = 0;
+    let monthSYP = 0;
+    let yearSYP = 0;
 
-    const today=new Date();
+    let hoursTotal = 0;
+    let totalDays = 0;
 
-    const weekAgo=new Date();
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    const weekAgo = new Date();
+    weekAgo.setHours(0,0,0,0);
     weekAgo.setDate(today.getDate()-6);
 
-    snapshot.forEach(docSnap=>{
+    snapshot.forEach(docSnap => {
 
-        const data=docSnap.data();
+        const data = docSnap.data();
 
-        const value=Number(data.netIncome||0);
+        const value = Number(data.netIncome || 0);
+        const hours = Number(data.hours || 0);
 
-        const hrs=Number(data.hours||0);
+        const date = new Date(data.date);
+        date.setHours(0,0,0,0);
 
-        const d=new Date(data.date);
+        totalDays++;
 
-        if(d.toDateString()===today.toDateString()){
+        if (data.currency === "USD") {
 
-            todayTotal+=value;
+            if (date.getTime() === today.getTime()) {
 
-            hoursTotal+=hrs;
+                todayUSD += value;
+                hoursTotal += hours;
 
-        }
+            }
 
-        if(d>=weekAgo){
+            if (date >= weekAgo) {
 
-            weekTotal+=value;
+                weekUSD += value;
 
-        }
+            }
 
-        if(
-            d.getMonth()===today.getMonth() &&
-            d.getFullYear()===today.getFullYear()
-        ){
+            if (
+                date.getMonth() === today.getMonth() &&
+                date.getFullYear() === today.getFullYear()
+            ) {
 
-            monthTotal+=value;
+                monthUSD += value;
 
-        }
+            }
 
-        if(d.getFullYear()===today.getFullYear()){
+            if (date.getFullYear() === today.getFullYear()) {
 
-            yearTotal+=value;
+                yearUSD += value;
+
+            }
+
+        } else {
+
+            if (date.getTime() === today.getTime()) {
+
+                todaySYP += value;
+                hoursTotal += hours;
+
+            }
+
+            if (date >= weekAgo) {
+
+                weekSYP += value;
+
+            }
+
+            if (
+                date.getMonth() === today.getMonth() &&
+                date.getFullYear() === today.getFullYear()
+            ) {
+
+                monthSYP += value;
+
+            }
+
+            if (date.getFullYear() === today.getFullYear()) {
+
+                yearSYP += value;
+
+            }
 
         }
 
     });
 
-    todayIncome.innerHTML=todayTotal.toLocaleString();
+    document.getElementById("todayIncomeUSD").innerHTML =
+        todayUSD.toLocaleString();
 
-    weekIncome.innerHTML=weekTotal.toLocaleString();
+    document.getElementById("weekIncomeUSD").innerHTML =
+        weekUSD.toLocaleString();
 
-    monthIncome.innerHTML=monthTotal.toLocaleString();
+    document.getElementById("monthIncomeUSD").innerHTML =
+        monthUSD.toLocaleString();
 
-    yearIncome.innerHTML=yearTotal.toLocaleString();
+    document.getElementById("yearIncomeUSD").innerHTML =
+        yearUSD.toLocaleString();
 
-    todayHours.innerHTML=hoursTotal;
+    document.getElementById("todayIncomeSYP").innerHTML =
+        todaySYP.toLocaleString();
 
-    // ملعبان × 12 ساعة = 24 ساعة
+    document.getElementById("weekIncomeSYP").innerHTML =
+        weekSYP.toLocaleString();
 
-    const occupancyRate=
-        Math.round((hoursTotal/24)*100);
+    document.getElementById("monthIncomeSYP").innerHTML =
+        monthSYP.toLocaleString();
 
-    occupancy.innerHTML=occupancyRate+"%";
+    document.getElementById("yearIncomeSYP").innerHTML =
+        yearSYP.toLocaleString();
+
+    document.getElementById("todayHours").innerHTML =
+        hoursTotal;
+
+    const occupancyRate = Math.round((hoursTotal / 24) * 100);
+
+    document.getElementById("occupancy").innerHTML =
+        occupancyRate + "%";
+
+    document.getElementById("daysCount").innerHTML =
+        totalDays;
+
+    const averageIncome =
+        totalDays === 0
+            ? 0
+            : Math.round((yearUSD + yearSYP) / totalDays);
+
+    document.getElementById("averageIncome").innerHTML =
+        averageIncome.toLocaleString();
 
 }
