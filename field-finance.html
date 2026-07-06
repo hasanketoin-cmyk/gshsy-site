@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>K GROUP ERP | مالية الملاعب</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<h2>K GROUP</h2>
+
+<p>ERP Financial System</p>
+
+</div>
+
+<ul>
+
+<li>
+<a href="dashboard.html">
+<i class="fa-solid fa-chart-line"></i>
+لوحة التحكم
+</a>
+</li>
+
+<li>
+<a href="invoices.html">
+<i class="fa-solid fa-file-invoice-dollar"></i>
+الفواتير
+</a>
+</li>
+
+<li>
+<a href="suppliers.html">
+<i class="fa-solid fa-building"></i>
+الموردون
+</a>
+</li>
+
+<li>
+<a href="payments.html">
+<i class="fa-solid fa-money-bill-transfer"></i>
+الدفعات
+</a>
+</li>
+
+<li>
+<a href="dues.html">
+<i class="fa-solid fa-clock"></i>
+المستحقات
+</a>
+</li>
+
+<li>
+<a href="reports.html">
+<i class="fa-solid fa-chart-column"></i>
+التقارير
+</a>
+</li>
+
+<li>
+<a href="users.html">
+<i class="fa-solid fa-users"></i>
+المستخدمون
+</a>
+</li>
+
+<li>
+<a href="steel-dashboard.html">
+<i class="fa-solid fa-industry"></i>
+ملف الحديد
+</a>
+</li>
+
+<li>
+<a class="active" href="field-finance.html">
+<i class="fa-solid fa-futbol"></i>
+مالية الملاعب
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<!-- Topbar -->
+
+<div class="topbar">
+
+<div>
+
+<h3 class="fw-bold">
+
+<i class="fa-solid fa-futbol text-success"></i>
+
+مالية الملاعب
+
+</h3>
+
+<p class="text-muted mb-0">
+
+إدارة الإيرادات اليومية للملاعب
+
+</p>
+
+</div>
+
+</div>
+
+<!-- نموذج الإدخال -->
+
+<div class="table-card">
+
+<h4 class="mb-4">
+
+<i class="fa-solid fa-circle-plus text-success"></i>
+
+إدخال إيراد جديد
+
+</h4>
+
+<div class="row">
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">التاريخ</label>
+
+<input
+type="date"
+class="form-control"
+id="incomeDate">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">الملعب</label>
+
+<select
+class="form-select"
+id="field">
+
+<option value="ملعب 1">ملعب 1</option>
+
+<option value="ملعب 2">ملعب 2</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">العملة</label>
+
+<select
+class="form-select"
+id="currency">
+
+<option value="SYP">SYP</option>
+
+<option value="USD">USD</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+إجمالي الإيراد
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="grossIncome">
+
+</div>
