@@ -116,8 +116,6 @@ async function saveIncomeData(){
 
             netIncome:Number(netIncome.value),
 
-            hours:Number(hours.value),
-
             notes:notes.value,
 
             createdAt:Timestamp.now()
@@ -160,8 +158,6 @@ function clearForm(){
     discount.value="0";
 
     netIncome.value="0";
-
-    hours.value="";
 
     notes.value="";
 
@@ -221,7 +217,7 @@ async function loadIncome(){
 
 <td>${Number(data.netIncome).toLocaleString()}</td>
 
-<td>${data.hours}</td>
+<td>${data.}</td>
 
 <td>${data.notes||"-"}</td>
 
@@ -276,7 +272,6 @@ window.editIncome = async function(id){
     discount.value=data.discount;
     netIncome.value=data.netIncome;
 
-    hours.value=data.hours;
     notes.value=data.notes;
 
 }
@@ -326,7 +321,6 @@ async function loadStatistics() {
     let monthSYP = 0;
     let yearSYP = 0;
 
-    let hoursTotal = 0;
     let totalDays = 0;
 
     const today = new Date();
@@ -353,7 +347,6 @@ async function loadStatistics() {
             if (date.getTime() === today.getTime()) {
 
                 todayUSD += value;
-                hoursTotal += hours;
 
             }
 
@@ -383,7 +376,6 @@ async function loadStatistics() {
             if (date.getTime() === today.getTime()) {
 
                 todaySYP += value;
-                hoursTotal += hours;
 
             }
 
@@ -436,13 +428,6 @@ async function loadStatistics() {
     document.getElementById("yearIncomeSYP").innerHTML =
         yearSYP.toLocaleString();
 
-    document.getElementById("todayHours").innerHTML =
-        hoursTotal;
-
-    const occupancyRate = Math.round((hoursTotal / 24) * 100);
-
-    document.getElementById("occupancy").innerHTML =
-        occupancyRate + "%";
 
     document.getElementById("daysCount").innerHTML =
         totalDays;
