@@ -37,14 +37,6 @@ const newIncome = document.getElementById("newIncome");
 
 const incomeTable = document.getElementById("incomeTable");
 
-const todayIncome = document.getElementById("todayIncome");
-const weekIncome = document.getElementById("weekIncome");
-const monthIncome = document.getElementById("monthIncome");
-const yearIncome = document.getElementById("yearIncome");
-
-const todayHours = document.getElementById("todayHours");
-const occupancy = document.getElementById("occupancy");
-
 let selectedId = null;
 
 // ===========================
@@ -58,12 +50,12 @@ calculateNetIncome();
 loadIncome();
 
 grossIncome.addEventListener("input", calculateNetIncome);
-
 discount.addEventListener("input", calculateNetIncome);
 
 saveIncome.addEventListener("click", saveIncomeData);
 
 newIncome.addEventListener("click", clearForm);
+
 // ===========================
 // حساب الإيراد النهائي
 // ===========================
@@ -77,15 +69,16 @@ function calculateNetIncome(){
     netIncome.value = gross - disc;
 
 }
+
 // ===========================
-// Save Income
+// حفظ أو تعديل
 // ===========================
 
 async function saveIncomeData(){
 
-    if(grossIncome.value==""){
+    if(grossIncome.value===""){
 
-        alert("أدخل الإيراد");
+        alert("أدخل إجمالي الإيراد");
 
         return;
 
@@ -93,7 +86,7 @@ async function saveIncomeData(){
 
     try{
 
-        await addDoc(incomeRef,{
+        const data={
 
             date:incomeDate.value,
 
@@ -107,13 +100,28 @@ async function saveIncomeData(){
 
             netIncome:Number(netIncome.value),
 
-            notes:notes.value,
+            notes:notes.value
 
-            createdAt:Timestamp.now()
+        };
 
-        });
+        if(selectedId){
 
-        alert("تم حفظ الإيراد");
+            await updateDoc(
+                doc(db,"fieldIncome",selectedId),
+                data
+            );
+
+            alert("تم تحديث الإيراد");
+
+        }else{
+
+            data.createdAt = Timestamp.now();
+
+            await addDoc(incomeRef,data);
+
+            alert("تم حفظ الإيراد");
+
+        }
 
         clearForm();
 
@@ -130,51 +138,53 @@ async function saveIncomeData(){
     }
 
 }
+
 // ===========================
-// Clear Form
+// تنظيف النموذج
 // ===========================
 
 function clearForm(){
 
-    selectedId=null;
+    selectedId = null;
 
-    incomeDate.value=new Date().toISOString().split("T")[0];
+    incomeDate.value =
+        new Date().toISOString().split("T")[0];
 
-    field.value="ملعب 1";
+    field.value = "إيراد الملعبين";
 
-    currency.value="SYP";
+    currency.value = "SYP";
 
-    grossIncome.value="";
+    grossIncome.value = "";
 
-    discount.value="0";
+    discount.value = "0";
 
-    netIncome.value="0";
+    netIncome.value = "0";
 
-    notes.value="";
+    notes.value = "";
 
 }
 // ===========================
-// Load Income
+// تحميل الإيرادات
 // ===========================
 
 async function loadIncome(){
 
-    incomeTable.innerHTML="";
+    incomeTable.innerHTML = "";
 
-    const q=query(
+    const q = query(
         incomeRef,
         orderBy("date","desc")
     );
 
-    const snapshot=await getDocs(q);
+    const snapshot = await getDocs(q);
 
     if(snapshot.empty){
 
-        incomeTable.innerHTML=`
+        incomeTable.innerHTML = `
 
 <tr>
 
-<td colspan="9" class="text-center">
+<td colspan="8" class="text-center text-muted">
 
 لا توجد بيانات
 
@@ -184,15 +194,17 @@ async function loadIncome(){
 
 `;
 
+        loadStatistics();
+
         return;
 
     }
 
     snapshot.forEach(docSnap=>{
 
-        const data=docSnap.data();
+        const data = docSnap.data();
 
-        incomeTable.innerHTML+=`
+        incomeTable.innerHTML += `
 
 <tr>
 
@@ -202,20 +214,18 @@ async function loadIncome(){
 
 <td>${data.currency}</td>
 
-<td>${Number(data.grossIncome).toLocaleString()}</td>
+<td>${Number(data.grossIncome || 0).toLocaleString()}</td>
 
-<td>${Number(data.discount).toLocaleString()}</td>
+<td>${Number(data.discount || 0).toLocaleString()}</td>
 
-<td>${Number(data.netIncome).toLocaleString()}</td>
+<td>${Number(data.netIncome || 0).toLocaleString()}</td>
 
-<td>${data.}</td>
-
-<td>${data.notes||"-"}</td>
+<td>${data.notes || "-"}</td>
 
 <td>
 
 <button
-class="btn btn-warning btn-sm"
+class="btn btn-warning btn-sm me-1"
 onclick="editIncome('${docSnap.id}')">
 
 <i class="fa-solid fa-pen"></i>
@@ -241,43 +251,53 @@ onclick="deleteIncome('${docSnap.id}')">
     loadStatistics();
 
 }
+
 // ===========================
-// Edit Income
+// تعديل سجل
 // ===========================
 
 window.editIncome = async function(id){
 
-    selectedId=id;
+    selectedId = id;
 
-    const snap=await getDoc(doc(db,"fieldIncome",id));
+    const snap = await getDoc(
+        doc(db,"fieldIncome",id)
+    );
 
     if(!snap.exists()) return;
 
-    const data=snap.data();
+    const data = snap.data();
 
-    incomeDate.value=data.date;
-    field.value=data.field;
-    currency.value=data.currency;
+    incomeDate.value = data.date;
 
-    grossIncome.value=data.grossIncome;
-    discount.value=data.discount;
-    netIncome.value=data.netIncome;
+    field.value = data.field;
 
-    notes.value=data.notes;
+    currency.value = data.currency;
+
+    grossIncome.value = data.grossIncome;
+
+    discount.value = data.discount;
+
+    netIncome.value = data.netIncome;
+
+    notes.value = data.notes || "";
 
 }
 
 // ===========================
-// Delete Income
+// حذف سجل
 // ===========================
 
 window.deleteIncome = async function(id){
 
-    if(!confirm("هل تريد حذف السجل؟")) return;
+    if(!confirm("هل تريد حذف هذا السجل؟"))
+        return;
 
     try{
 
-        await deleteDoc(doc(db,"fieldIncome",id));
+        await deleteDoc(
+            doc(db,"fieldIncome",id)
+        );
 
         alert("تم حذف السجل");
 
@@ -298,7 +318,7 @@ window.deleteIncome = async function(id){
 // Dashboard Statistics
 // ===========================
 
-async function loadStatistics() {
+async function loadStatistics(){
 
     const snapshot = await getDocs(incomeRef);
 
@@ -321,75 +341,50 @@ async function loadStatistics() {
     weekAgo.setHours(0,0,0,0);
     weekAgo.setDate(today.getDate()-6);
 
-    snapshot.forEach(docSnap => {
+    snapshot.forEach(docSnap=>{
 
         const data = docSnap.data();
 
         const value = Number(data.netIncome || 0);
-        const hours = Number(data.hours || 0);
 
         const date = new Date(data.date);
         date.setHours(0,0,0,0);
 
         totalDays++;
 
-        if (data.currency === "USD") {
+        if(data.currency==="USD"){
 
-            if (date.getTime() === today.getTime()) {
-
+            if(date.getTime()===today.getTime())
                 todayUSD += value;
 
-            }
-
-            if (date >= weekAgo) {
-
+            if(date>=weekAgo)
                 weekUSD += value;
 
-            }
-
-            if (
-                date.getMonth() === today.getMonth() &&
-                date.getFullYear() === today.getFullYear()
-            ) {
-
+            if(
+                date.getMonth()===today.getMonth() &&
+                date.getFullYear()===today.getFullYear()
+            )
                 monthUSD += value;
 
-            }
-
-            if (date.getFullYear() === today.getFullYear()) {
-
+            if(date.getFullYear()===today.getFullYear())
                 yearUSD += value;
 
-            }
+        }else{
 
-        } else {
-
-            if (date.getTime() === today.getTime()) {
-
+            if(date.getTime()===today.getTime())
                 todaySYP += value;
 
-            }
-
-            if (date >= weekAgo) {
-
+            if(date>=weekAgo)
                 weekSYP += value;
 
-            }
-
-            if (
-                date.getMonth() === today.getMonth() &&
-                date.getFullYear() === today.getFullYear()
-            ) {
-
+            if(
+                date.getMonth()===today.getMonth() &&
+                date.getFullYear()===today.getFullYear()
+            )
                 monthSYP += value;
 
-            }
-
-            if (date.getFullYear() === today.getFullYear()) {
-
+            if(date.getFullYear()===today.getFullYear())
                 yearSYP += value;
-
-            }
 
         }
 
@@ -419,6 +414,164 @@ async function loadStatistics() {
     document.getElementById("yearIncomeSYP").innerHTML =
         yearSYP.toLocaleString();
 
+    document.getElementById("daysCount").innerHTML =
+        totalDays;
+
+    const averageIncome =
+        totalDays === 0
+            ? 0
+            : Math.round((yearUSD + yearSYP) / totalDays);
+
+    document.getElementById("averageIncome").innerHTML =
+        averageIncome.toLocaleString();
+
+}
+
+// ===========================
+// البحث داخل الجدول
+// ===========================
+
+const searchIncome =
+document.getElementById("searchIncome");
+
+if(searchIncome){
+
+    searchIncome.addEventListener("keyup",function(){
+
+        const filter =
+            this.value.toLowerCase();
+
+        const rows =
+            incomeTable.querySelectorAll("tr");
+
+        rows.forEach(row=>{
+
+            row.style.display =
+                row.innerText.toLowerCase().includes(filter)
+                ? ""
+                : "none";
+
+        });
+
+    });
+
+}
+
+// ===========================
+// زر Excel (مؤقت)
+// ===========================
+
+const exportBtn =
+document.getElementById("exportExcel");
+
+if(exportBtn){
+
+    exportBtn.addEventListener("click",()=>{
+
+        alert("سيتم إضافة تصدير Excel في الخطوة القادمة.");
+
+    });
+
+}
+// ===========================
+// Dashboard Statistics
+// ===========================
+
+async function loadStatistics(){
+
+    const snapshot = await getDocs(incomeRef);
+
+    let todayUSD = 0;
+    let weekUSD = 0;
+    let monthUSD = 0;
+    let yearUSD = 0;
+
+    let todaySYP = 0;
+    let weekSYP = 0;
+    let monthSYP = 0;
+    let yearSYP = 0;
+
+    let totalDays = 0;
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    const weekAgo = new Date();
+    weekAgo.setHours(0,0,0,0);
+    weekAgo.setDate(today.getDate()-6);
+
+    snapshot.forEach(docSnap=>{
+
+        const data = docSnap.data();
+
+        const value = Number(data.netIncome || 0);
+
+        const date = new Date(data.date);
+        date.setHours(0,0,0,0);
+
+        totalDays++;
+
+        if(data.currency==="USD"){
+
+            if(date.getTime()===today.getTime())
+                todayUSD += value;
+
+            if(date>=weekAgo)
+                weekUSD += value;
+
+            if(
+                date.getMonth()===today.getMonth() &&
+                date.getFullYear()===today.getFullYear()
+            )
+                monthUSD += value;
+
+            if(date.getFullYear()===today.getFullYear())
+                yearUSD += value;
+
+        }else{
+
+            if(date.getTime()===today.getTime())
+                todaySYP += value;
+
+            if(date>=weekAgo)
+                weekSYP += value;
+
+            if(
+                date.getMonth()===today.getMonth() &&
+                date.getFullYear()===today.getFullYear()
+            )
+                monthSYP += value;
+
+            if(date.getFullYear()===today.getFullYear())
+                yearSYP += value;
+
+        }
+
+    });
+
+    document.getElementById("todayIncomeUSD").innerHTML =
+        todayUSD.toLocaleString();
+
+    document.getElementById("weekIncomeUSD").innerHTML =
+        weekUSD.toLocaleString();
+
+    document.getElementById("monthIncomeUSD").innerHTML =
+        monthUSD.toLocaleString();
+
+    document.getElementById("yearIncomeUSD").innerHTML =
+        yearUSD.toLocaleString();
+
+    document.getElementById("todayIncomeSYP").innerHTML =
+        todaySYP.toLocaleString();
+
+    document.getElementById("weekIncomeSYP").innerHTML =
+        weekSYP.toLocaleString();
+
+    document.getElementById("monthIncomeSYP").innerHTML =
+        monthSYP.toLocaleString();
+
+    document.getElementById("yearIncomeSYP").innerHTML =
+        yearSYP.toLocaleString();
 
     document.getElementById("daysCount").innerHTML =
         totalDays;
@@ -430,5 +583,52 @@ async function loadStatistics() {
 
     document.getElementById("averageIncome").innerHTML =
         averageIncome.toLocaleString();
+
+}
+
+// ===========================
+// البحث داخل الجدول
+// ===========================
+
+const searchIncome =
+document.getElementById("searchIncome");
+
+if(searchIncome){
+
+    searchIncome.addEventListener("keyup",function(){
+
+        const filter =
+            this.value.toLowerCase();
+
+        const rows =
+            incomeTable.querySelectorAll("tr");
+
+        rows.forEach(row=>{
+
+            row.style.display =
+                row.innerText.toLowerCase().includes(filter)
+                ? ""
+                : "none";
+
+        });
+
+    });
+
+}
+
+// ===========================
+// زر Excel (مؤقت)
+// ===========================
+
+const exportBtn =
+document.getElementById("exportExcel");
+
+if(exportBtn){
+
+    exportBtn.addEventListener("click",()=>{
+
+        alert("سيتم إضافة تصدير Excel في الخطوة القادمة.");
+
+    });
 
 }
