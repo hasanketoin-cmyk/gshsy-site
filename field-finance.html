@@ -34,61 +34,21 @@
 
 <ul>
 
-<li>
-<a href="dashboard.html">
-<i class="fa-solid fa-chart-line"></i>
-لوحة التحكم
-</a>
-</li>
+<li><a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> لوحة التحكم</a></li>
 
-<li>
-<a href="invoices.html">
-<i class="fa-solid fa-file-invoice-dollar"></i>
-الفواتير
-</a>
-</li>
+<li><a href="invoices.html"><i class="fa-solid fa-file-invoice-dollar"></i> الفواتير</a></li>
 
-<li>
-<a href="suppliers.html">
-<i class="fa-solid fa-building"></i>
-الموردون
-</a>
-</li>
+<li><a href="suppliers.html"><i class="fa-solid fa-building"></i> الموردون</a></li>
 
-<li>
-<a href="payments.html">
-<i class="fa-solid fa-money-bill-transfer"></i>
-الدفعات
-</a>
-</li>
+<li><a href="payments.html"><i class="fa-solid fa-money-bill-transfer"></i> الدفعات</a></li>
 
-<li>
-<a href="dues.html">
-<i class="fa-solid fa-clock"></i>
-المستحقات
-</a>
-</li>
+<li><a href="dues.html"><i class="fa-solid fa-clock"></i> المستحقات</a></li>
 
-<li>
-<a href="reports.html">
-<i class="fa-solid fa-chart-column"></i>
-التقارير
-</a>
-</li>
+<li><a href="reports.html"><i class="fa-solid fa-chart-column"></i> التقارير</a></li>
 
-<li>
-<a href="users.html">
-<i class="fa-solid fa-users"></i>
-المستخدمون
-</a>
-</li>
+<li><a href="users.html"><i class="fa-solid fa-users"></i> المستخدمون</a></li>
 
-<li>
-<a href="steel-dashboard.html">
-<i class="fa-solid fa-industry"></i>
-ملف الحديد
-</a>
-</li>
+<li><a href="steel-dashboard.html"><i class="fa-solid fa-industry"></i> ملف الحديد</a></li>
 
 <li>
 <a class="active" href="field-finance.html">
@@ -137,15 +97,17 @@
 
 <i class="fa-solid fa-circle-plus text-success"></i>
 
-إدخال إيراد جديد
+إضافة إيراد جديد
 
 </h4>
 
 <div class="row">
 
+<!-- التاريخ -->
+
 <div class="col-md-3 mb-3">
 
-<label class="form-label">التاريخ</label>
+<label class="form-label">📅 التاريخ</label>
 
 <input
 type="date"
@@ -154,25 +116,26 @@ id="incomeDate">
 
 </div>
 
+<!-- الإيراد -->
+
 <div class="col-md-3 mb-3">
 
-<label class="form-label">الملعب</label>
-
-<label class="form-label">
-🏟️ إيراد الملعبين
-</label>
+<label class="form-label">🏟️ الإيراد</label>
 
 <input
 type="text"
 class="form-control"
-value="الملعبان"
+id="field"
+value="إيراد الملعبين"
 readonly>
 
 </div>
 
+<!-- العملة -->
+
 <div class="col-md-3 mb-3">
 
-<label class="form-label">العملة</label>
+<label class="form-label">💵 العملة</label>
 
 <select
 class="form-select"
@@ -186,13 +149,11 @@ id="currency">
 
 </div>
 
+<!-- إجمالي الإيراد -->
+
 <div class="col-md-3 mb-3">
 
-<label class="form-label">
-
-إجمالي الإيراد
-
-</label>
+<label class="form-label">💰 إجمالي الإيراد</label>
 
 <input
 type="number"
@@ -200,19 +161,12 @@ class="form-control"
 id="grossIncome">
 
 </div>
-  
-<input
-type="number"
-class="form-control"
-id="grossIncome">
 
-  <div class="col-md-3 mb-3">
+<!-- الحسم -->
 
-<label class="form-label">
+<div class="col-md-3 mb-3">
 
-🎁 الحسم
-
-</label>
+<label class="form-label">🎁 الحسم</label>
 
 <input
 type="number"
@@ -222,13 +176,11 @@ value="0">
 
 </div>
 
+<!-- الإيراد النهائي -->
+
 <div class="col-md-3 mb-3">
 
-<label class="form-label">
-
-💵 الإيراد النهائي
-
-</label>
+<label class="form-label">💎 الإيراد النهائي</label>
 
 <input
 type="number"
@@ -238,14 +190,11 @@ readonly>
 
 </div>
 
+<!-- الملاحظات -->
 
-<div class="col-md-12 mb-3">
+<div class="col-md-6 mb-3">
 
-<label class="form-label">
-
-📝 ملاحظات
-
-</label>
+<label class="form-label">📝 ملاحظات</label>
 
 <textarea
 class="form-control"
@@ -284,76 +233,67 @@ id="newIncome">
 </div>
 
 </div>
-
 <!-- ===========================
 إحصائيات الدولار
 =========================== -->
 
 <div class="row mt-4">
 
-<div class="col-lg-3 col-md-6 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card steel-card green">
 
-<div class="dashboard-card steel-card green">
+            <i class="fa-solid fa-dollar-sign"></i>
 
-<i class="fa-solid fa-dollar-sign"></i>
+            <h6>إيراد اليوم (USD)</h6>
 
-<h6>إيراد اليوم (USD)</h6>
+            <h2 id="todayIncomeUSD">0</h2>
 
-<h2 id="todayIncomeUSD">0</h2>
+            <span>USD</span>
 
-<span>USD</span>
+        </div>
+    </div>
 
-</div>
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card steel-card blue">
 
-</div>
+            <i class="fa-solid fa-calendar-week"></i>
 
-<div class="col-lg-3 col-md-6 mb-4">
+            <h6>إيراد الأسبوع (USD)</h6>
 
-<div class="dashboard-card steel-card blue">
+            <h2 id="weekIncomeUSD">0</h2>
 
-<i class="fa-solid fa-calendar-week"></i>
+            <span>USD</span>
 
-<h6>إيراد الأسبوع (USD)</h6>
+        </div>
+    </div>
 
-<h2 id="weekIncomeUSD">0</h2>
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card steel-card orange">
 
-<span>USD</span>
+            <i class="fa-solid fa-calendar-days"></i>
 
-</div>
+            <h6>إيراد الشهر (USD)</h6>
 
-</div>
+            <h2 id="monthIncomeUSD">0</h2>
 
-<div class="col-lg-3 col-md-6 mb-4">
+            <span>USD</span>
 
-<div class="dashboard-card steel-card orange">
+        </div>
+    </div>
 
-<i class="fa-solid fa-calendar-days"></i>
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card purple-card">
 
-<h6>إيراد الشهر (USD)</h6>
+            <i class="fa-solid fa-calendar"></i>
 
-<h2 id="monthIncomeUSD">0</h2>
+            <h6>إيراد السنة (USD)</h6>
 
-<span>USD</span>
+            <h2 id="yearIncomeUSD">0</h2>
 
-</div>
+            <span>USD</span>
 
-</div>
-
-<div class="col-lg-3 col-md-6 mb-4">
-
-<div class="dashboard-card purple-card">
-
-<i class="fa-solid fa-calendar"></i>
-
-<h6>إيراد السنة (USD)</h6>
-
-<h2 id="yearIncomeUSD">0</h2>
-
-<span>USD</span>
-
-</div>
-
-</div>
+        </div>
+    </div>
 
 </div>
 
@@ -363,226 +303,100 @@ id="newIncome">
 
 <div class="row">
 
-<div class="col-lg-3 col-md-6 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card purple-card">
 
-<div class="dashboard-card purple-card">
+            <i class="fa-solid fa-money-bill-wave"></i>
 
-<i class="fa-solid fa-money-bill-wave"></i>
+            <h6>إيراد اليوم (SYP)</h6>
 
-<h6>إيراد اليوم (SYP)</h6>
+            <h2 id="todayIncomeSYP">0</h2>
 
-<h2 id="todayIncomeSYP">0</h2>
+            <span>SYP</span>
 
-<span>SYP</span>
+        </div>
+    </div>
 
-</div>
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card red-card">
 
-</div>
+            <i class="fa-solid fa-calendar-week"></i>
 
-<div class="col-lg-3 col-md-6 mb-4">
+            <h6>إيراد الأسبوع (SYP)</h6>
 
-<div class="dashboard-card red-card">
+            <h2 id="weekIncomeSYP">0</h2>
 
-<i class="fa-solid fa-calendar-week"></i>
+            <span>SYP</span>
 
-<h6>إيراد الأسبوع (SYP)</h6>
+        </div>
+    </div>
 
-<h2 id="weekIncomeSYP">0</h2>
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card steel-card orange">
 
-<span>SYP</span>
+            <i class="fa-solid fa-calendar-days"></i>
 
-</div>
+            <h6>إيراد الشهر (SYP)</h6>
 
-</div>
+            <h2 id="monthIncomeSYP">0</h2>
 
-<div class="col-lg-3 col-md-6 mb-4">
+            <span>SYP</span>
 
-<div class="dashboard-card steel-card orange">
+        </div>
+    </div>
 
-<i class="fa-solid fa-calendar-days"></i>
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card steel-card blue">
 
-<h6>إيراد الشهر (SYP)</h6>
+            <i class="fa-solid fa-calendar"></i>
 
-<h2 id="monthIncomeSYP">0</h2>
+            <h6>إيراد السنة (SYP)</h6>
 
-<span>SYP</span>
+            <h2 id="yearIncomeSYP">0</h2>
 
-</div>
+            <span>SYP</span>
 
-</div>
-
-<div class="col-lg-3 col-md-6 mb-4">
-
-<div class="dashboard-card steel-card blue">
-
-<i class="fa-solid fa-calendar"></i>
-
-<h6>إيراد السنة (SYP)</h6>
-
-<h2 id="yearIncomeSYP">0</h2>
-
-<span>SYP</span>
-
-</div>
-
-</div>
+        </div>
+    </div>
 
 </div>
 
 <!-- ===========================
-إحصائيات التشغيل
+إحصائيات عامة
 =========================== -->
 
 <div class="row">
 
-<div class="col-lg-3 col-md-6 mb-4">
+    <div class="col-lg-6 mb-4">
 
-<div class="dashboard-card steel-card primary">
+        <div class="dashboard-card steel-card success">
 
-<i class="fa-solid fa-clock"></i>
+            <i class="fa-solid fa-calendar-check"></i>
 
+            <h6>عدد أيام الإدخال</h6>
 
-<h2 id="todayHours">0</h2>
+            <h2 id="daysCount">0</h2>
 
-<span>ساعة</span>
+            <span>يوم</span>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
-<div class="col-lg-3 col-md-6 mb-4">
+    <div class="col-lg-6 mb-4">
 
-<div class="dashboard-card red-card">
+        <div class="dashboard-card steel-card warning">
 
-<i class="fa-solid fa-chart-pie"></i>
+            <i class="fa-solid fa-chart-line"></i>
 
-<h6>نسبة الإشغال</h6>
+            <h6>متوسط الإيراد اليومي</h6>
 
-<h2 id="occupancy">0%</h2>
+            <h2 id="averageIncome">0</h2>
 
-<span>اليوم</span>
+            <span>USD / SYP</span>
 
-</div>
+        </div>
 
-</div>
-
-<div class="col-lg-3 col-md-6 mb-4">
-
-<div class="dashboard-card steel-card green">
-
-<i class="fa-solid fa-calendar-check"></i>
-
-<h6>عدد الأيام</h6>
-
-<h2 id="daysCount">0</h2>
-
-<span>يوم</span>
+    </div>
 
 </div>
-
-</div>
-
-<div class="col-lg-3 col-md-6 mb-4">
-
-<div class="dashboard-card steel-card orange">
-
-<i class="fa-solid fa-chart-line"></i>
-
-<h6>متوسط الإيراد</h6>
-
-<h2 id="averageIncome">0</h2>
-
-<span>SYP / USD</span>
-
-</div>
-
-</div>
-
-</div>
-<!-- ===========================
-جدول الإيرادات
-=========================== -->
-
-<div class="table-card mt-4">
-
-<div class="d-flex justify-content-between align-items-center mb-4">
-
-<h4>
-
-<i class="fa-solid fa-table text-success"></i>
-
-سجل الإيرادات اليومية
-
-</h4>
-
-<input
-type="text"
-class="form-control"
-style="max-width:300px"
-placeholder="بحث..."
-id="searchIncome">
-
-</div>
-  <button
-class="btn btn-success"
-id="exportExcel">
-
-<i class="fa-solid fa-file-excel"></i>
-
-تصدير Excel
-
-</button>
-
-<div class="table-responsive">
-
-<table class="table table-hover align-middle">
-
-<thead>
-
-<tr>
-
-<th>التاريخ</th>
-
-<th>الملعب</th>
-
-<th>العملة</th>
-
-<th>الإيراد</th>
-
-<th>الحسم</th>
-
-<th>الصافي</th>
-
-<th>ملاحظات</th>
-
-<th>إجراءات</th>
-
-</tr>
-
-</thead>
-
-<tbody id="incomeTable">
-
-<tr>
-
-<td colspan="9" class="text-center text-muted">
-
-لا توجد بيانات
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<script type="module" src="js/field-finance.js"></script>
-<script type="module" src="js/guard.js"></script>
-
-</body>
-</html>
