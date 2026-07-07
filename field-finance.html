@@ -400,3 +400,98 @@ id="newIncome">
     </div>
 
 </div>
+    <!-- ===========================
+جدول الإيرادات
+=========================== -->
+
+<div class="table-card mt-4">
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+<h4>
+
+<i class="fa-solid fa-table"></i>
+
+سجل الإيرادات
+
+</h4>
+
+<div class="d-flex gap-2">
+
+<input
+type="text"
+class="form-control"
+id="searchIncome"
+placeholder="بحث...">
+
+<button
+class="btn btn-success"
+id="exportExcel">
+
+<i class="fa-solid fa-file-excel"></i>
+
+Excel
+
+</button>
+
+</div>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle">
+
+<thead>
+
+<tr>
+
+<th>التاريخ</th>
+
+<th>البيان</th>
+
+<th>العملة</th>
+
+<th>الإيراد</th>
+
+<th>الحسم</th>
+
+<th>الصافي</th>
+
+<th>ملاحظات</th>
+
+<th>الإجراءات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="incomeTable">
+
+<tr>
+
+<td colspan="8" class="text-center">
+
+لا توجد بيانات
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="js/field-finance.js"></script>
+
+<script type="module" src="js/guard.js"></script>
+
+</body>
+
+</html>
