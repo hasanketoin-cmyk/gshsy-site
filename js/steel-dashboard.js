@@ -1192,8 +1192,4 @@ window.addEventListener("load", () => {
 
     loadBilletTable();
 
-    loadSuppliers();
-
-    loadCustomers();
-
 });
