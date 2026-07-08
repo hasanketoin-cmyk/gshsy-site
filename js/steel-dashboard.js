@@ -423,8 +423,9 @@ saveButton.addEventListener("click", saveOperation);
 
 async function saveOperation() {
 
-    try {
+    alert("تم الحفظ ");
 
+    try {
         if (!validateForm()) return;
 
         if (!validateWeights()) return;
@@ -1136,54 +1137,7 @@ function clearForm() {
     const status = document.getElementById("operationStatus");
     if (status) status.selectedIndex = 0;
 }
-async function loadSuppliers() {
 
-    const select = document.getElementById("operationSupplier");
-
-    select.innerHTML = `<option value="">اختر المورد</option>`;
-
-    const snapshot = await getDocs(suppliersRef);
-
-    console.log("Suppliers Count:", snapshot.size);
-
-    snapshot.forEach(docSnap => {
-
-        const supplier = docSnap.data();
-
-        console.log(supplier);
-
-        const option = document.createElement("option");
-
-        option.value = supplier.name;
-
-        option.textContent = supplier.name;
-
-        select.appendChild(option);
-
-    });
-
-}
-async function loadCustomers() {
-
-    const select = document.getElementById("operationCustomer");
-
-    select.innerHTML = `<option value="">اختر الزبون</option>`;
-
-    const snapshot = await getDocs(customersRef);
-
-    snapshot.forEach(doc => {
-
-        const customer = doc.data();
-
-        select.innerHTML += `
-            <option value="${customer.name}">
-                ${customer.name}
-            </option>
-        `;
-
-    });
-
-}
 window.addEventListener("load", () => {
 
     loadDashboard();
